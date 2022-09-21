@@ -1,0 +1,46 @@
+// fonts
+$font-path: '~assets/fonts/';
+$font-kuro: 'Kuro';
+$font-lexend: 'Lexend';
+$font-noto: 'Noto Serif Display';
+$font-lato: 'Lato';
+$font-calibri: 'Calibri';
+
+// transition
+$transition: 0.25s;
+$transition-long: 0.4s;
+
+// z-index
+$z-header: 100;
+$z-modal: 101;
+$z-language: 99;
+$z-menu-toggle: 102;
+$z-sustainable-develop-menu: 98;
+$z-1: 1;
+$z-2: 2;
+$z-calendar-pulldown: 5;
+$z-calendar: 6;
+
+$standard-viewport: 1366px;
+$height-desktop-header: 93;
+$height-mobile-header: 80;
+
+// Browser Prefixes - Which CSS prefixes should be used?
+$webkit: true;
+$moz: false;
+$ms: false;
+$o: false;
+
+$offsets: (top, bottom, left, right);
+$breakpoints: (
+  sm: '(min-width: 576px)',
+  md: '(min-width: 768px)',
+  lg: '(min-width: 992px)',
+  xl: '(min-width: 1200px)',
+);
+
+// size screen
+$width-container-value: 1126;
+$width-pc-medium-value: 1366;
+$width-container: 1126px;
+$width-pc-medium: 1366px;
