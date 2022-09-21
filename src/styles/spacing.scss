@@ -1,0 +1,67 @@
+.mt-8 {
+  margin-top: rem(8);
+}
+
+.mt-24 {
+  margin-top: rem(24);
+}
+
+.mt-28 {
+  margin-top: rem(28);
+}
+
+.mt-32 {
+  margin-top: rem(32);
+}
+
+.mt-30 {
+  margin-top: rem(30);
+}
+
+.pt-80 {
+  padding-top: rem(80);
+  @include tablet-down {
+    padding-top: rem(60);
+  }
+  @include mobile-down {
+    padding-top: rem(40);
+  }
+}
+
+.pb-80 {
+  padding-bottom: rem(80);
+  @include tablet-down {
+    padding-bottom: rem(60);
+  }
+  @include mobile-down {
+    padding-bottom: rem(40);
+  }
+}
+
+.pt-100 {
+  padding-top: rem(100);
+  @include tablet-down {
+    padding-top: rem(50);
+  }
+  @include mobile-down {
+    padding-top: rem(24);
+  }
+}
+
+.pb-100 {
+  padding-bottom: rem(100);
+  @include tablet-down {
+    padding-bottom: rem(50);
+  }
+  @include mobile-down {
+    padding-bottom: rem(24);
+  }
+}
+
+.pt-header {
+  padding-top: rem($height-desktop-header);
+
+  @include mobile-down {
+    padding-top: rem($height-mobile-header);
+  }
+}
