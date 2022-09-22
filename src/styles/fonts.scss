@@ -364,3 +364,20 @@
   src: url('#{$font-path}Calibri-Regular.woff2') format('woff2'), url('#{$font-path}Calibri-Regular.woff') format('woff'),
     url('#{$font-path}Calibri-Regular.ttf') format('truetype');
 }
+
+@font-face {
+  font-display: swap;
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: normal;
+  src: url('#{$font-path}Calibri-Regular.woff2') format('woff2'), url('#{$font-path}Calibri-Regular.woff') format('woff'),
+    url('#{$font-path}Calibri-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: normal;
+  src: url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+}
