@@ -7,7 +7,14 @@ export interface MainLayoutContainerProps {
 
 export default function MainLayoutContainer ({children}: MainLayoutContainerProps) {
   return (
-    <MainLayout>
+    <MainLayout slideBarMenuItems={[
+      {title:'Trang chủ', href: '/trang-chu', activeIcon: 'homeBlueCrayola', defaultIcon: 'homeLightSlateGray'},
+      {title:'Từ vựng', activeIcon: 'boxBlueCrayola', defaultIcon: 'boxLightSlateGray', items: [
+        {title: 'test', href:'/test'},
+        {title: 'test1', href:'/test1'},
+        {title: 'test2', href:'/test2'},
+      ]},
+    ]}>
       {children}
     </MainLayout>
   );

@@ -1,0 +1,14 @@
+.a-image {
+  width: 100%;
+  position: relative;
+
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-logo {
+    @include aspect-ratio(135, 80);
+  }
+}

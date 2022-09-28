@@ -1,0 +1,15 @@
+$font-sizes: (
+  '16x20': (desktop:(fs: 16, lh: 20), mobile:(fs: 14, lh: 22)),
+  '16x24': (desktop:(fs: 16, lh: 24), mobile:(fs: 14, lh: 22)),
+  '24x24': (desktop:(fs:24, lh: 24)),
+);
+
+.a-text {
+  margin: 0;
+  padding: 0;
+  @include style-font-size($font-sizes);
+  @include style-color();
+  @include style-font-weight();
+  @include style-general();
+  @include style-font-family();
+}

@@ -9,7 +9,7 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          {routes.map(route => <Route path={route.path} element={route.element} />)}
+          {routes.map(route => <Route key={`route-${route.path}`} path={route.path} element={route.element} />)}
         </Routes>
       </BrowserRouter>
     </Provider>

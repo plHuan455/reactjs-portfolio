@@ -5,3 +5,11 @@
 
   @return (calc($pixel / 16))+rem;
 }
+
+@function icon-path-generation($filename) {
+  @if not $filename {
+      @error 'Missing argument $pixel';
+  }
+
+  @return '#{$icon-path}#{$filename}'; 
+}

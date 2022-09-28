@@ -1,0 +1,12 @@
+.m-searchInput {
+  position: relative;
+
+  &_input {
+    outline: none;
+    border: 0;
+  }
+
+  &_icon {
+    position: absolute;
+  }
+}

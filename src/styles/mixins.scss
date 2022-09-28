@@ -7,7 +7,7 @@
 }
 
 @mixin aspect-ratio($width: 1, $height: 1) {
-  padding-bottom: ($height / $width) * 100%;
+  padding-bottom: calc(#{$height} / #{$width} * 100%);
 }
 
 @mixin transition($value) {
@@ -150,37 +150,7 @@
 
 $colors-design: (
   'white': $white,
-  'raisinBlack': $raisin-black,
-  'davysGrey': $davys-grey,
-  'grayX11': $gray-x11,
-  'whitesmoke': $white-smoke,
-  'snow': $snow,
-  'gainsboro': $gainsboro,
-  'amazon': $amazon,
-  'xanadu': $xanadu,
-  'goldenBrown': $golden-brown,
-  'paleGoldenrod': $pale-goldenrod,
-  'juneBud': $june-bud,
-  'greenryb': $green-ryb,
-  'aeroBlue': $aero-blue,
-  'coolBlack': $cool-black,
-  'metallicSunburst': $metallic-sunburst,
-  'cyberGrape': $cyber-grape,
-  'antiqueBronze': $antique-bronze,
-  'urobilin': $urobilin,
-  'dimGray': $dim-gray,
-  'arsenic': $arsenic,
-  'jet': $jet,
-  'lavenderGray': $lavender-gray,
-  'black085': $black085,
-  'darkMidnightBlue': $dark-midnight-blue,
-  'deer': $deer,
-  'taupeGray': $taupe-gray,
-  'camel': $camel,
-  'jet333': $jet-333,
-  'columbiaBlue': $columbia-blue,
-  'spanishGray':$spanish-gray,
-  'sinopia':$sinopia,
+  'charcoal': $charcoal,
 );
 
 @mixin style-color {
@@ -224,5 +194,34 @@ $font-design: (
     &-#{$name} {
       font-family: $font;
     }
+  }
+}
+
+@mixin style-font-size($sizeList) {
+  @each $size,
+      $val in $sizeList {
+      
+      @if map-get($val, 'desktop') {
+
+          &-#{$size} {
+              font-size: rem(map-get(map-get($val, 'desktop'), 'fs'));
+              line-height: rem(map-get(map-get($val, 'desktop'), 'lh'));
+
+              @if map-get($val, 'tablet') {
+                  @include tablet-down {
+                      font-size: rem(map-get(map-get($val, 'tablet'), 'fs'));
+                      line-height: rem(map-get(map-get($val, 'tablet'), 'lh'));
+                  }
+              }
+
+              @if map-get($val, 'mobile') {
+                  @include mobile-down {
+                      font-size: rem(map-get(map-get($val, 'mobile'), 'fs'));
+                      line-height: rem(map-get(map-get($val, 'mobile'), 'lh'));
+                  }
+              }                
+          }
+      }
+      
   }
 }

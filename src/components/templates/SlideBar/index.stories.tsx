@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react';
-import React, { useMemo, useState } from 'react';
-import SlideBar, { SlideBarProps } from '.';
+import { BrowserRouter } from 'react-router-dom';
+import SlideBar from '.';
 
 export default {
   title: 'Components/templates/SlideBar',
@@ -8,14 +8,21 @@ export default {
   argTypes: {},
 } as Meta;
 
-export const Normal: Story = ({ ...args }: SlideBarProps) => {
-  console.log(args.logoSrc);
+export const Normal: Story = ({ title, slideBarItems, titleIconName, ...args }) => {
   return (
     <div>
-      <SlideBar/>
+      <BrowserRouter>
+        <SlideBar titleIconName={titleIconName} title={title} slideBarItems={slideBarItems} {...args} />
+      </BrowserRouter>
     </div>
   );
 };
 
 Normal.args = {
+  titleIconName: "logoBlueCrayola",
+  title: 'Conchon',
+  slideBarItems: [
+    {title:'Trang chủ', href: '/trang-chu', activeIcon: 'homeBlueCrayola', defaultIcon: 'homeLightSlateGray'},
+    {title:'Từ vựng', activeIcon: 'boxBlueCrayola', defaultIcon: 'boxLightSlateGray', items: [{title: 'test', href:'test'}]},
+  ]
 }
