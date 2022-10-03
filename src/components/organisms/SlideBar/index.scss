@@ -1,4 +1,4 @@
-.t-slideBar {
+.o-slideBar {
   $root: &;
   padding: rem(20);
 
@@ -44,6 +44,7 @@
 
         .a-text {
           color: $blue-crayola;
+          font-weight: 500;
         }
       }
 

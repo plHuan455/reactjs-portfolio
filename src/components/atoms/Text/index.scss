@@ -12,4 +12,8 @@ $font-sizes: (
   @include style-font-weight();
   @include style-general();
   @include style-font-family();
+
+  &-nowrap {
+    white-space: nowrap;
+  }
 }

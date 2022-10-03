@@ -5,16 +5,17 @@
 @import "components/atoms/Image";
 @import "components/atoms/Icon";
 @import "components/atoms/Text";
+@import "components/atoms/Button";
 
 //Molecules
 @import "components/molecules/Pulldown";
 @import "components/molecules/SearchInput";
 
 //Organisms
-@import "components/organisms//Container/";
+@import "components/organisms/Container/";
+@import "components/organisms/SlideBar";
 
 //Templates
-@import "components/templates/SlideBar";
 @import "components/templates/MainLayout";
 
 //Pages

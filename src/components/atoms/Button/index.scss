@@ -1,0 +1,9 @@
+.a-button {
+  @include reset-button;
+  @include font-base(16, 24);
+  padding: rem(12) rem(16);
+  border-radius: rem(12);
+  background-color: $black;
+  color: $white;
+  white-space: nowrap;
+}

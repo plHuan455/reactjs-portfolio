@@ -9,6 +9,8 @@ export type IconNames =
   | 'arrowDownSlateGray'
   | 'logoBlueCrayola'
   | 'searchBlack'
+  | 'analyticSlateGray'
+  | 'analyticBlueCrayola'
   
 type Size = '20x20' | '24x25' | '36x36';
 

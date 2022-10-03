@@ -1,12 +1,32 @@
 .m-searchInput {
+  display: flex;
   position: relative;
 
   &_input {
-    outline: none;
-    border: 0;
+    flex-grow: 1;
+    // outline: none;
+    // border: 0;
+    // background-color: $anti-flash-white;
+    // padding: rem(12);
+    // padding-left: rem(56);
+    // border-radius: rem(12);
+    // @include font-base(16, 24);
+    // color: $black;
+    
+    // &::placeholder {
+    //   @include font-base(16, 24);
+    // }
   }
 
   &_icon {
+    @include adjust-flex(center, center);
     position: absolute;
+    top: 0;
+    left: rem(24);
+    height: 100%;
+  }
+
+  &_button {
+    margin-left: rem(16);
   }
 }
