@@ -1,6 +1,8 @@
 $font-sizes: (
+  '14x18': (desktop:(fs: 14, lh: 18), mobile:(fs: 12, lh: 16)),
   '16x20': (desktop:(fs: 16, lh: 20), mobile:(fs: 14, lh: 22)),
   '16x24': (desktop:(fs: 16, lh: 24), mobile:(fs: 14, lh: 22)),
+  '20x24': (desktop:(fs:20, lh: 24)),
   '24x24': (desktop:(fs:24, lh: 24)),
 );
 

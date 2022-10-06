@@ -2,14 +2,13 @@ import './App.scss'
 import { Provider } from 'react-redux'
 import { store } from './store'
 import { routes } from './routes'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          {routes.map(route => <Route key={`route-${route.path}`} path={route.path} element={route.element} />)}
+          {routes.map((route, idx) => <Route key={`route-${idx}`} path={route.path} element={route.element} />)}
         </Routes>
       </BrowserRouter>
     </Provider>

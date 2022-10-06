@@ -26,6 +26,7 @@ type TextStyle =
 type ColorStyle =
   | 'white'
   | 'charcoal'
+  | 'lightSlateGray'
 
 type FontFamily = 'fontLexend' | 'fontNoto' | 'fontLato' | 'fontCalibri';
 

@@ -3,6 +3,7 @@
 
 //Atom
 @import "components/atoms/Image";
+@import "components/atoms/Loading";
 @import "components/atoms/Icon";
 @import "components/atoms/Text";
 @import "components/atoms/Button";
@@ -19,5 +20,5 @@
 @import "components/templates/MainLayout";
 
 //Pages
-@import "pages/TestPage";
 @import "pages/Home";
+@import "pages/BankManagerDetail";

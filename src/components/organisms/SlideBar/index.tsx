@@ -1,104 +1,116 @@
-import * as React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { mapModifiers } from '../../../utils/funcs';
-import Icon, { IconNames } from '../../atoms/Icon';
-import Text from '../../atoms/Text';
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import Icon, { IconNames } from "../../atoms/Icon"
+import Text from "../../atoms/Text"
+import { useRef, useState } from 'react';
+import { IconType } from "react-icons";
+import { mapModifiers } from "../../../utils/funcs";
+import { RiArrowDownSLine } from 'react-icons/ri';
+import useClickOutside from "../../../hooks/useClickOutside";
 
-export interface SlideBarItem {
+export interface MenuType {
+  label: string;
   href?: string;
-  title: string;
-  items?: { href: string; title: string }[];
-  activeIcon: IconNames;
-  defaultIcon: IconNames;
+  menuIcon: IconType;
+  subItems?: { label: string; href?: string; }[];
 }
-export interface SlideBarProps {
-  slideBarItems: SlideBarItem[];
-  isCompact: boolean;
-  onHeaderIconClick?: () => void;
-  title: string;
-  titleIconName?: IconNames;
+interface SlideBarProps {
+  menuItems: MenuType[];
+  title?: string;
+  titleIconName: IconNames;
 }
 
-export interface MeuTabProps extends SlideBarItem {
-  isOpen: boolean;
-  onClick?: () => void;
+const findActiveMenuItemIndex = (pathname: string, menuItems: MenuType[]) => {
+  return menuItems.findIndex(value => {
+    if(value.subItems){
+      return Boolean(value.subItems.find(subValue => subValue.href === pathname));
+    }
+    return value.href === pathname;
+  });
 }
 
-const MenuTab: React.FC<MeuTabProps> = ({ 
-  isOpen, 
-  activeIcon, 
-  defaultIcon, 
-  href, 
-  title, 
-  items, 
-  onClick }) => {
-  const navigate = useNavigate();
-  const [isHover, setIsHover] = React.useState<boolean>(false);
+const SlideBar: React.FC<SlideBarProps> = ({ menuItems, title, titleIconName }) => {
   const location = useLocation();
+  const navigate = useNavigate();
 
-  const handleLabelClick = (href?: string) => {
-    if (href) navigate(href);
+  const dropdownListRef = useRef<HTMLUListElement | null>(null);
+
+  const [isCompact, setIsCompact] = useState<boolean>(false);
+  const [activeDropdownIndex, setActiveDropdownIndex] = useState<number | undefined>(findActiveMenuItemIndex(location.pathname, menuItems));
+
+  
+  useClickOutside(dropdownListRef, () => {
+    if(isCompact) {
+      setActiveDropdownIndex(undefined);
+    }
+  })
+
+  const handleMenuItemClick = (menuIdx: number, item: MenuType) => {
+    if (!item.subItems && item.href) navigate(item.href);
+    if (item.subItems) {
+      setActiveDropdownIndex(activeDropdownIndex === menuIdx ? undefined : menuIdx);
+    }
+    else {
+      setActiveDropdownIndex(undefined);
+    }
   }
-  return (
-    <div className="o-slideBar_tab">
-      <div
-        className={mapModifiers(
-          "o-slideBar_tab_label",
-          location.pathname === href && 'active',
-          isOpen && 'tabActive'
-        )}
-        onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}
-        onClick={() => { 
-          if(!items) handleLabelClick(href);
-          if (items && onClick) onClick();
-        }}
-      >
-        <Icon iconName={isHover || location.pathname === href ? activeIcon : defaultIcon} size='20x20' />
-        <Text modifiers={['16x20', '500', 'charcoal']} type="h2">{title}</Text>
-        {Boolean(items?.length) && <div className={mapModifiers('o-slideBar_tab_dropdownIcon', isOpen && 'open')}>
-          <Icon iconName='arrowDownSlateGray' size='20x20' />
-        </div>}
-      </div>
-      {items && isOpen &&
-        <ul className="o-slideBar_tab_items">
-          {items.map((value, idx) => {
-            return <li 
-            className={mapModifiers("o-slideBar_tab_item", value.href === location.pathname)} 
-            key={`slide-tab-item-${idx}`} 
-            onClick={()=> handleLabelClick(value.href)}>
-              <Text modifiers={['16x20', '400', 'charcoal']} type="span">{value?.title}</Text>
-            </li>
-          })}
-        </ul>}
-    </div>);
-}
-
-export default function SlideBar({ title, titleIconName, slideBarItems, isCompact, onHeaderIconClick }: SlideBarProps) {
-  const [openTabIndex, setOpenTabIndex] = React.useState<number | undefined>(undefined);
 
   return (
     <div className={mapModifiers("o-slideBar", isCompact && 'compact')}>
-      <div className="o-slideBar_title" onClick={onHeaderIconClick}>
-        {titleIconName && <div className="o-slideBar_title_icon">
-          <Icon iconName={titleIconName} size='36x36' />
-        </div>}
-        <div className="o-slideBar_title_text">
-          <Text modifiers={['24x24', 'charcoal', '600', 'nowrap']} type='h2'>
-            {title}
-          </Text>
+      <div className="o-slideBar_title" onClick={() => setIsCompact(preState => !preState)}>
+        <div className="o-slideBar_title_icon">
+          <Icon iconName={titleIconName} modifiers={['32x32']} />
         </div>
-
+        <div className="o-slideBar_title_text">
+          <Text modifiers={['24x24', '600', 'charcoal']} type='h2'>{title}</Text>
+        </div>
       </div>
-      <ul className="o-slideBar_list">
-        {slideBarItems.map((item, idx) =>
-        (<li className="o-slideBar_item" key={`slideBar-item-${idx}`}>
-          <MenuTab
-            isOpen={idx === openTabIndex} {...item}
-            onClick={() => { setOpenTabIndex(idx == openTabIndex ? undefined : idx) }} />
-        </li>
-        ))}
+      <ul className="o-slideBar_menuList" ref={dropdownListRef}>
+        {menuItems.map((item, idx) => {
+          const isActive: boolean = location.pathname === item.href;
+          const isDropdownActive = item?.subItems?.some(value => value.href === location.pathname);
+          return (
+            <li className='o-slideBar_menuItem o-slideBar_menuItem-dropdown' key={`slideBar-menuItem-${idx}`}>
+              <div className="o-slideBar_menuItem_wrapper">
+                <div
+                  className={mapModifiers(
+                    "o-slideBar_menuItem_head",
+                    isActive && 'active',
+                    isDropdownActive && 'dropdownActive'
+                  )}
+                  onClick={() => handleMenuItemClick(idx, item)}
+                >
+                  <div className={mapModifiers("o-slideBar_menuItem_icon", activeDropdownIndex === idx && 'openDropdown')}>
+                    <Icon modifiers={['20x20', 'lightSlateGray']}>{item.menuIcon}</Icon>
+                  </div>
+                  <div className="o-slideBar_menuItem_text">
+                    <Text modifiers={['16x20', '500', 'charcoal']}>{item.label}</Text>
+                  </div>
+                  {item.subItems && <div className={mapModifiers("o-slideBar_menuItem_dropdownIcon", idx === activeDropdownIndex && 'openDropdown')}>
+                    <Icon modifiers={['lightSlateGray', '16x16']}>{RiArrowDownSLine}</Icon>
+                  </div>}
+                </div>
+              </div>
+              
+              {idx === activeDropdownIndex && item.subItems && item?.subItems.length > 0 &&
+                <div className="o-slideBar_menuItem_dropdown">
+                  {item.subItems.map((subItem, subIdx) => {
+                    return (
+                    <li
+                      className={mapModifiers("o-slideBar_menuItem_subItem", subItem.href === location.pathname && 'active')}
+                      key={`slideBar-menuDropdown-item-${subIdx}`}
+                      onClick={() => {if(subItem.href) navigate(subItem.href); if(isCompact) setActiveDropdownIndex(undefined)}}
+                    >
+                      <div className="o-slideBar_menuItem_subText">
+                        <Text modifiers={['16x20', '500', 'charcoal']}>{subItem.label}</Text>
+                      </div>
+                    </li>)
+                  })}
+                </div>}
+            </li>)
+        })}
       </ul>
-
     </div>
-  );
+  )
 }
+
+export default SlideBar
