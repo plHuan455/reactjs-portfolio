@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { mapModifiers } from '../../../utils/funcs';
+import { IconType } from 'react-icons';
 
 export type IconNames = 
   | 'homeLightSlateGray'
@@ -7,22 +8,26 @@ export type IconNames =
   | 'boxLightSlateGray'
   | 'boxBlueCrayola'
   | 'arrowDownSlateGray'
+  | 'arrowDownBlueCrayola'
   | 'logoBlueCrayola'
   | 'searchBlack'
   | 'analyticSlateGray'
   | 'analyticBlueCrayola'
   
-type Size = '20x20' | '24x25' | '36x36';
+type Size = '16x16' | '18x18' | '20x20' | '24x25' |'32x32' | '36x36';
 
 export interface IconProps {
-  iconName: IconNames;
-  size?: Size;
+  iconName?: IconNames;
+  modifiers?: (Size | ColorStyle)[];
+  children?: IconType
 }
 
-const Icon:React.FC<IconProps> = ({iconName, size='20x20'}) => {
-  return (
-    <i className={mapModifiers('a-icon', iconName, size)} />
-  );
+const Icon:React.FC<IconProps> = ({iconName, modifiers =['20x20'], children}) => {
+  const IconChildren = iconName ? 'i' : children;
+  if(IconChildren)
+    return <IconChildren className={mapModifiers('a-icon', iconName && iconName, modifiers)}/>
+    
+  return null;
 }
 
 export default Icon;

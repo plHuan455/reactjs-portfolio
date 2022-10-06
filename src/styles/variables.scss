@@ -8,19 +8,13 @@ $font-lato: 'Lato';
 $font-calibri: 'Calibri';
 
 // transition
+$transition-short: 0.125s;
 $transition: 0.25s;
 $transition-long: 0.4s;
 
 // z-index
-$z-header: 100;
-$z-modal: 101;
-$z-language: 99;
-$z-menu-toggle: 102;
-$z-sustainable-develop-menu: 98;
-$z-1: 1;
-$z-2: 2;
-$z-calendar-pulldown: 5;
-$z-calendar: 6;
+$z-main: 10;
+$z-slideBar: 11;
 
 $standard-viewport: 1366px;
 $height-desktop-header: 93;

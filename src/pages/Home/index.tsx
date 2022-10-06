@@ -6,9 +6,7 @@ import MainLayoutContainer from '../../container/MainLayoutContainer';
 export default function HomePage() {
   return (
     <div className="p-home">
-      <MainLayoutContainer>
-        <HomeContainer />
-      </MainLayoutContainer>
+      <HomeContainer />
     </div>
   );
 }

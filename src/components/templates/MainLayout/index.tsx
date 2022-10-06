@@ -1,25 +1,31 @@
 import * as React from 'react';
-import SlideBar, { SlideBarItem } from '../../organisms/SlideBar';
+import SlideBar, { MenuType } from '../../organisms/SlideBar';
+import { Suspense } from 'react';
+import { IconType } from "react-icons";
+import { IconNames } from '../../atoms/Icon';
 
 export interface MainLayoutProps {
   children: JSX.Element;
-  slideBarMenuItems: SlideBarItem[];
+  slideBarTitle?: string;
+  menuItems: MenuType[];
+  titleIconName: IconNames;
 }
 
-export default function MainLayout({ children, slideBarMenuItems }: MainLayoutProps) {
-  const [isSlideBarCompact, setIsSlideBarCompact] = React.useState<boolean>(false);
+export default function MainLayout({titleIconName, slideBarTitle, children, menuItems }: MainLayoutProps) {
   return (
     <div className="t-mainLayout">
       <div className="t-mainLayout_slideBar">
         <SlideBar
-          titleIconName="logoBlueCrayola"
-          title="Tiêu đề"
-          slideBarItems={slideBarMenuItems}
-          isCompact={isSlideBarCompact} 
-          onHeaderIconClick={()=> setIsSlideBarCompact(preState => !preState)}
-          />
+          title={slideBarTitle}
+          titleIconName={titleIconName}
+          menuItems={menuItems}
+        />
       </div>
-      <main className="t-mainLayout_main">{children}</main>
+      <main className="t-mainLayout_main">
+        <Suspense fallback={<div>loading ...</div>}>
+          {children}
+        </Suspense>
+      </main>
     </div>
   );
 }

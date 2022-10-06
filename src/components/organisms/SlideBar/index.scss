@@ -1,134 +1,167 @@
 .o-slideBar {
   $root: &;
-  padding: rem(20);
-
-  @include adjust-flex(flex-start, center);
-  flex-direction: column;
-  width: rem(232);
   height: 100vh;
-  background-color: $white;
-  box-shadow: inset rem(-1) 0px 0px rgba(33, 33, 33, 0.1);
+  width: rem(224);
+  box-shadow: inset rem(-1) 0 0 rgba(33, 33, 33, 0.1);
+  padding: rem(12);
   transition: all $transition linear;
 
-  &_tab {
-    position: relative;
-    &_label {
-      @include adjust-flex(flex-start, center);
-      flex-wrap: nowrap;
-      padding: rem(12);
-      cursor: pointer;
-      border-radius: rem(4);
-      transition: all $transition linear;
-      overflow: hidden;
-
-      #{$root}_tab_dropdownIcon-open {
-        transform: rotateZ(180deg);
-
-      }
-
-
-      .a-text {
-        margin-left: rem(16);
-        flex-grow: 1;
-        transition: width $transition linear;
-        white-space: nowrap;
-        overflow: hidden;
-      }
-
-      .a-icon {
-        flex-shrink: 0;
-      }
-
-      &:hover {      
-        background-color: $alice-blue;
-
-        .a-text {
-          color: $blue-crayola;
-          font-weight: 500;
-        }
-      }
-
-      &-active {
-        background-color: $alice-blue;
-        
-        .a-text {
-          color: $blue-crayola;
-        }
-      }
-    }
-
-    &_items {
-      list-style: none;
-      padding-left: rem(32);
-    }
-    
-    &_item {
-      cursor: pointer;
-      padding: rem(8) 0;
-
-      &:hover {
-        .a-text {
-          color: $blue-crayola;
-        }
-      }
-
-      &-active {
-        .a-text {
-          color: $blue-crayola;
-        }
-      }
-    }
-    
+  &-compact {
+    width: rem(48);
+    padding-left: rem(8);
+    padding-right: rem(8);
   }
 
   &_title {
     @include adjust-flex(flex-start, center);
-    width: 100%;
-    padding: rem(8) rem(4);
     cursor: pointer;
+    padding: rem(12);
     overflow: hidden;
+    transition: padding $transition linear;
 
-    &_icon + &_text {
+    &_text {
       margin-left: rem(12);
+      flex-wrap: nowrap;
+      flex-grow: 1;
     }
   }
 
-  &_list {
+  &-compact &_title {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &_menuList {
     list-style: none;
-    width: 100%;
-    margin-top: rem(16);
+    margin: rem(12) 0 0 0;
+    padding: 0;
 
-    #{$root}_item {
+    #{$root}_menuItem ~ #{$root}_menuItem {
       margin-top: rem(12);
+    }
 
-      &:first-child {
-        margin-top: 0;
+    #{$root}_menuItem {
+      position: relative;
+      
+      &_wrapper {
+        transition: padding $transition linear;
+      }
+
+      &_head {
+        @include adjust-flex(flex-start, center);
+        flex-wrap: nowrap;
+        cursor: pointer;
+        border-radius: rem(4);
+        padding: rem(12) rem(8) rem(12) rem(12);
+        overflow: hidden;
+        transition: all $transition linear;
+
+        &:hover {
+          & .a-icon, .a-text {
+            color: $blue-crayola;
+          }
+        }
+
+        &-active {
+          background-color: $alice-blue;
+          
+          .a-icon, .a-text {
+            color: $blue-crayola;
+          }
+        }
+        
+        &-hover {
+          .a-icon, .a-text {
+            color: $blue-crayola;
+          }
+        }
+      }
+
+      &_text {
+        margin-left: rem(12);
+        white-space: nowrap;
+      }
+
+      &_dropdownIcon {
+        margin-left: auto;
+      }
+
+      &_head-active {
+        .a-icon, .a-text {
+          color: $blue-crayola;
+        }
+      }
+
+      &_dropdown {
+        list-style: none;
+        margin: 0;
+      }
+
+      &_subItem {
+        cursor: pointer;
+        
+        .a-text {
+          white-space: nowrap;
+        }
+
+        &:hover {
+          .a-text{
+            color: $blue-crayola;
+          }
+        }
+
+        &-active {
+          background-color: $alice-blue;
+          .a-text {
+            color: $blue-crayola;
+          }
+        }
+      }
+
+      &_subText {
+        padding: rem(12) 0 rem(12) rem(28);
       }
     }
   }
 
   &-compact {
-    width: rem(60);
-    padding-left: rem(8);
-    padding-right: rem(8);
-    
-    #{$root}_tab_items {
-      position: absolute;
-      top: 50%;
-      left: calc(100% + #{rem(12)});
-      width: rem(160);
-      background-color: $white;
-      padding: rem(5);
-      border-radius: rem(2);
-      box-shadow: rem(4) rem(1) rem(8) rem(1) $black-12;
-    }
+    #{$root}_menuItem {
+      &_wrapper {
+        padding: rem(6) 0;
+      }
 
-    #{$root}_tab_item {
-      padding: rem(8);
-    }
+      &_head {
+        padding: rem(6);
+        
+        &-dropdownActive {
+          background-color: $alice-blue;
+          
+          .a-icon, .a-text {
+            color: $blue-crayola;
+          }
+        }
+      }
 
-    #{$root}_tab_label-tabActive {
-      background-color: $alice-blue-25;
+      &_icon-openDropdown .a-icon {
+        color: $blue-crayola;
+      }
+
+      &_dropdown {
+        position: absolute;
+        left: calc(100% + #{rem(10)});
+        top: rem(4);
+        width: rem(200);
+        background-color: $white;
+        box-shadow: 0 rem(3) rem(6) rem(-4) $black-12, 0 rem(6) rem(6) 0 $black-08, 0 rem(9) rem(28) rem(8) $black-05;
+        z-index: $z-slideBar;
+        border-radius: rem(4);
+        padding: rem(4) 0;
+      }
+
+      &_subText {
+        padding: rem(12);
+      }
     }
   }
+
 }

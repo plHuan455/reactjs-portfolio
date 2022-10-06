@@ -1,21 +1,26 @@
-import * as React from 'react';
 import MainLayout from '../../components/templates/MainLayout';
-
+import { BiHomeAlt } from 'react-icons/bi';
+import {TbBrandGoogleAnalytics} from 'react-icons/tb';
+import {BsBoxSeam} from 'react-icons/bs';
+import { renderPageUrl } from '../../navigations';
 export interface MainLayoutContainerProps {
   children: JSX.Element;
 }
 
 export default function MainLayoutContainer ({children}: MainLayoutContainerProps) {
   return (
-    <MainLayout slideBarMenuItems={[
-      {title:'Trang chủ', href: '/trang-chu', activeIcon: 'homeBlueCrayola', defaultIcon: 'homeLightSlateGray'},
-      {title:'Quản lý chi tiêu', href: '/quan-ly-chi-tieu', activeIcon: 'analyticBlueCrayola', defaultIcon: 'analyticSlateGray'},
-      {title:'Từ vựng', activeIcon: 'boxBlueCrayola', defaultIcon: 'boxLightSlateGray', items: [
-        {title: 'test', href:'/test'},
-        {title: 'test1', href:'/test1'},
-        {title: 'test2', href:'/test2'},
-      ]},
-    ]}>
+    <MainLayout 
+      titleIconName='logoBlueCrayola'
+      slideBarTitle='Sales.io'
+      menuItems={[
+        {label: 'Trang chủ', href:'/trang-chu', menuIcon: BiHomeAlt},
+        {label: 'Quản lý chi tiêu', menuIcon: TbBrandGoogleAnalytics, subItems: [
+          {label: 'Chi tiết', href: renderPageUrl('BANK_MANAGER_DETAIL')},
+          {label: 'Thêm chi tiêu', href: renderPageUrl('BANK_MANAGER_ADD')},
+        ]},
+        {label: 'word', menuIcon: BsBoxSeam, subItems: [{label: 'test 1', href: renderPageUrl('VOCABULARIES')}]},
+      ]}
+    >
       {children}
     </MainLayout>
   );

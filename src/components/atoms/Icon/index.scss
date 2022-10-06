@@ -1,6 +1,9 @@
 $size-icon: (
+    '16x16': (w: 16, h: 16),
+    '18x18': (w: 18, h: 18),
     '20x20': (w: 20, h: 20),
     '24x25': (w: 24, h: 25),
+    '32x32': (w: 32, h: 32),
     '36x36': (w: 36, h: 36),
 );
 
@@ -10,10 +13,11 @@ $icon-src: (
     'boxLightSlateGray': icon-path-generation('ic_box_light_slate_gray.svg'),
     'boxBlueCrayola': icon-path-generation('ic_box_blue_crayola.svg'),
     'arrowDownSlateGray': icon-path-generation('ic_arrow_down_slate_gray.svg'),
+    'arrowDownBlueCrayola': icon-path-generation('ic_arrow_down_lue_crayola.svg'), 
     'logoBlueCrayola': icon-path-generation('ic_logo_blue_crayola.svg'),
     'searchBlack': icon-path-generation('ic_search_black.svg'),
     'analyticSlateGray': icon-path-generation('ic_analytic_slate_gray.svg'),
-    'analyticBlueCrayola': icon-path-generation('ic_analytic_blue_crayola.svg'),
+    'analyticBlueCrayola': icon-path-generation('ic_analytic_blue_crayola.svg'), 
 );
 
 .a-icon {
@@ -36,4 +40,6 @@ $icon-src: (
             background-image: url($val);
         }
     }
+
+    @include style-color();
 }
