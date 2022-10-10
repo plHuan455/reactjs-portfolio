@@ -1,8 +1,10 @@
+import BankManagerDetailContainer from "../../container/BankManagerDetailContainer";
+
 interface BankManagerDetailProps {
 }
 const BankManagerDetail: React.FC<BankManagerDetailProps> = () => {
   return <div className="p-bankManagerDetail">
-    bank manager detail page
+    <BankManagerDetailContainer />
   </div>
 }
 

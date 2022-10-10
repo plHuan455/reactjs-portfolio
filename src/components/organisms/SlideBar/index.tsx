@@ -6,6 +6,7 @@ import { IconType } from "react-icons";
 import { mapModifiers } from "../../../utils/funcs";
 import { RiArrowDownSLine } from 'react-icons/ri';
 import useClickOutside from "../../../hooks/useClickOutside";
+import useMatchMedia from "../../../hooks/useMatchMedia";
 
 export interface MenuType {
   label: string;
@@ -19,23 +20,15 @@ interface SlideBarProps {
   titleIconName: IconNames;
 }
 
-const findActiveMenuItemIndex = (pathname: string, menuItems: MenuType[]) => {
-  return menuItems.findIndex(value => {
-    if(value.subItems){
-      return Boolean(value.subItems.find(subValue => subValue.href === pathname));
-    }
-    return value.href === pathname;
-  });
-}
-
 const SlideBar: React.FC<SlideBarProps> = ({ menuItems, title, titleIconName }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { isMobile, isTablet } = useMatchMedia()
 
   const dropdownListRef = useRef<HTMLUListElement | null>(null);
 
-  const [isCompact, setIsCompact] = useState<boolean>(false);
-  const [activeDropdownIndex, setActiveDropdownIndex] = useState<number | undefined>(findActiveMenuItemIndex(location.pathname, menuItems));
+  const [isCompact, setIsCompact] = useState<boolean>(isMobile || isTablet);
+  const [activeDropdownIndex, setActiveDropdownIndex] = useState<number | undefined>();
 
   
   useClickOutside(dropdownListRef, () => {
@@ -92,7 +85,7 @@ const SlideBar: React.FC<SlideBarProps> = ({ menuItems, title, titleIconName }) 
               </div>
               
               {idx === activeDropdownIndex && item.subItems && item?.subItems.length > 0 &&
-                <div className="o-slideBar_menuItem_dropdown">
+                <ul className="o-slideBar_menuItem_dropdown">
                   {item.subItems.map((subItem, subIdx) => {
                     return (
                     <li
@@ -105,7 +98,7 @@ const SlideBar: React.FC<SlideBarProps> = ({ menuItems, title, titleIconName }) 
                       </div>
                     </li>)
                   })}
-                </div>}
+                </ul>}
             </li>)
         })}
       </ul>

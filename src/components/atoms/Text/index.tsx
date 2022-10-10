@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { mapModifiers } from '../../../utils/funcs';
 
-type Size = '14x18' | '16x20' | '16x24' | '20x24' | '24x24';
+type Size = '14x16' | '14x21' | '14x18' | '16x20' | '16x24' | '20x24' | '24x24' | '24x28' | '28x36' | '38x56';
 
 type TextStyles = 'nowrap';
 

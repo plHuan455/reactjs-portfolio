@@ -1,8 +1,9 @@
 import MainLayout from '../../components/templates/MainLayout';
 import { BiHomeAlt } from 'react-icons/bi';
-import {TbBrandGoogleAnalytics} from 'react-icons/tb';
-import {BsBoxSeam} from 'react-icons/bs';
-import { renderPageUrl } from '../../navigations';
+import { TbBrandGoogleAnalytics } from 'react-icons/tb';
+import { BsBoxSeam } from 'react-icons/bs';
+import { RiTestTubeFill } from 'react-icons/ri';
+import { renderPageUrl } from '../../navigation';
 export interface MainLayoutContainerProps {
   children: JSX.Element;
 }
@@ -18,7 +19,8 @@ export default function MainLayoutContainer ({children}: MainLayoutContainerProp
           {label: 'Chi tiết', href: renderPageUrl('BANK_MANAGER_DETAIL')},
           {label: 'Thêm chi tiêu', href: renderPageUrl('BANK_MANAGER_ADD')},
         ]},
-        {label: 'word', menuIcon: BsBoxSeam, subItems: [{label: 'test 1', href: renderPageUrl('VOCABULARIES')}]},
+        {label: 'Word', menuIcon: BsBoxSeam, subItems: [{label: 'test 1', href: renderPageUrl('VOCABULARIES')}]},
+        {label: 'Test', menuIcon: RiTestTubeFill, href: renderPageUrl('TEST')},
       ]}
     >
       {children}

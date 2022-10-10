@@ -11,10 +11,15 @@
   &_main {
     flex-grow: 1;
     z-index: $z-main;
-    @include mobile-down {
+    height: 100vh;
+    overflow: auto;
+    background-color: $anti-flash-white;
+    @include scroll-bars(4, $border-thumb: 0);
+
+    @include tablet-down {
       position: absolute;
-      left: rem(60);
-      width: 100%;
+      left: rem(48);
+      width: calc(100% - #{rem(48)});
     }
   }
 }

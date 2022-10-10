@@ -3,11 +3,26 @@ $black: rgb(0, 0, 0); // #000000
 $charcoal: rgb(50, 64, 84); // #324054
 $blue-crayola: rgb(45, 104, 254); // #2D68FE
 $light-slate-gray: rgb(113, 131, 155); // #71839B
+$light-gray: rgb(203, 210, 216); // #cbd2d8
 $alice-blue: rgb(239, 246, 255); // #EFF6FF
 $anti-flash-white: rgb(242, 244, 248); // #F2F4F8
+$dark-gray-x11: rgb(170, 165, 165); // #aaa5a5
+$deep-green-cyan-turquoise: rgb(25, 135, 84); // #198754
+$rusty-red: rgb(220, 53, 69); // #dc3545
+$blueberry: rgb(59, 130, 246); // #3B82F6
+$eerie-black: rgb(31, 31, 31); // #1F1F1F
+$gray-x11: rgb(181, 183, 192); // #B5B7C0
+$charleston-green: rgb(41, 45, 50); // #292D32
+$isabelline: rgb(238, 238, 238); // #EEEEEE
 
 // Gradient
+$black-005: rgba($black, 0.005);
 $black-05: rgba($black, 0.05);
+$black-008: rgba($black, 0.008);
 $black-08: rgba($black, 0.08);
 $black-12: rgba($black, 0.12);
-$alice-blue-25: rgb($alice-blue, 0.25); // #EFF6FF
+$black-0012: rgba($black, 0.012);
+$alice-blue-25: rgba($alice-blue, 0.25);
+$blueberry-75: rgba($blueberry, 0.75);
+$light-slate-gray-75: rgb($light-slate-gray, 0.75);
+$light-slate-gray-25: rgb($light-slate-gray, 0.25);

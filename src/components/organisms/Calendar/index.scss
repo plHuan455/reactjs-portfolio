@@ -1,0 +1,136 @@
+.o-calendar {
+  $root: &;
+
+  display: grid;
+  grid-template-columns: repeat(42, 1fr);
+  background-color: $white;
+  border: rem(1) solid $light-gray;
+  border-radius: rem(8);
+  box-shadow: 0 rem(3) rem(6) rem(-4) $black-12, 0 rem(6) rem(6) 0 $black-08, 0 rem(9) rem(28) rem(8) $black-05;
+
+  &_header {
+    grid-column: span 42;
+    @include adjust-flex(space-between, center);
+    padding: rem(8) rem(16);
+
+    &_text {
+      @include adjust-flex(flex-start, center);
+      flex-grow: 1;
+      cursor: pointer;
+
+      .a-text {
+        margin-right: rem(8);
+        @include mobile-down {
+          @include font-base(24, 28);
+        }
+      }
+    }
+    
+    &_buttons {
+      @include adjust-flex(flex-start, center);
+    }
+    
+    &_btnRight {
+      margin-left: rem(10);
+    }
+
+    &_btnLeft, &_btnRight {
+      cursor: pointer;
+      border-radius: rem(8);
+    }
+  }
+
+  &_item {
+    grid-column: span 6;
+    width: 100%;
+    cursor: pointer;
+    @include aspect-ratio(114, 75);
+    position: relative;
+    border-left: rem(1) solid $light-gray;
+    border-top: rem(1) solid $light-gray;
+    overflow: hidden;
+
+    @include tablet-down {
+      @include aspect-ratio(114, 80);
+    }
+
+    @include small-mobile {
+      @include aspect-ratio(114, 150);
+    }
+
+    &-weekDay {
+      @include aspect-ratio(114, 40);
+
+      @include mobile-down {
+        @include aspect-ratio(114, 60);
+      }
+
+      #{$root}_itemWrapper {
+        @include adjust-flex(center, center);
+      }
+    }
+
+    &-month {
+      grid-column: span 7;
+
+      @include mobile-down {
+        grid-column: span 14;
+      }
+      
+      #{$root}_itemWrapper {
+        @include adjust-flex(center, center);
+        cursor: pointer;
+
+        .a-text {
+          @include font-base(20, 26);
+          font-weight: 500;
+        }
+
+        &:hover {
+          background-color: $alice-blue;
+          .a-text {
+            color: $blueberry;
+          }
+        }
+      }
+    }
+
+    &Wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      padding: rem(8);
+    }
+
+    &Note {
+      margin-top: rem(8);
+    }
+
+    &-noBt {
+      border-top: 0;
+    }
+
+    &-noBl {
+      border-left: 0;
+    }
+
+    &-radius-br {
+      border-bottom-right-radius: rem(8);
+    }
+
+    &-outMonth {
+      .a-text {
+        color: $dark-gray-x11;
+      }
+    }
+
+    &-today {
+      border: rem(2) solid $blueberry-75;
+      border-radius: rem(4);
+    }
+  }
+}

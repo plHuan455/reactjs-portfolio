@@ -1,7 +1,5 @@
-import * as React from 'react';
 import SlideBar, { MenuType } from '../../organisms/SlideBar';
 import { Suspense } from 'react';
-import { IconType } from "react-icons";
 import { IconNames } from '../../atoms/Icon';
 
 export interface MainLayoutProps {

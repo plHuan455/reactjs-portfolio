@@ -5,6 +5,12 @@ body {
   margin: 0;
 }
 
+html {
+  @include mobile-down {
+    font-size: 12px;
+  }
+}
+
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent; //issue click in mobile flash background highligh

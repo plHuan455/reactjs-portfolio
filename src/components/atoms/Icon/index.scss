@@ -18,6 +18,7 @@ $icon-src: (
     'searchBlack': icon-path-generation('ic_search_black.svg'),
     'analyticSlateGray': icon-path-generation('ic_analytic_slate_gray.svg'),
     'analyticBlueCrayola': icon-path-generation('ic_analytic_blue_crayola.svg'), 
+    'closeEerieBlack': icon-path-generation('ic_close_eerie_black.svg'), 
 );
 
 .a-icon {
@@ -29,8 +30,8 @@ $icon-src: (
     @each $size,
         $val in $size-icon {
         &-#{$size} {
-            height: map-get($val, 'h')+ px;
-            width: map-get($val, 'w') + px;
+            height: rem(map-get($val, 'h'));
+            width: rem(map-get($val, 'w'));
         }
     }
 

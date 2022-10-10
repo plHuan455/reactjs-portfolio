@@ -15,9 +15,13 @@
 //Organisms
 @import "components/organisms/Container/";
 @import "components/organisms/SlideBar";
+@import "components/organisms/Calendar";
+@import "components/organisms/Modal";
 
 //Templates
 @import "components/templates/MainLayout";
+@import "components/templates/Section";
+@import "components/templates/PendingManageCalendar";
 
 //Pages
 @import "pages/Home";

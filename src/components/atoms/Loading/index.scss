@@ -1,3 +1,16 @@
 .a-loading {
-  
+  .a-icon {
+    animation: spin linear infinite;
+    animation-duration: 1s;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateZ(0);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
 }

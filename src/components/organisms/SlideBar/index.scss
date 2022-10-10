@@ -84,6 +84,11 @@
 
       &_dropdownIcon {
         margin-left: auto;
+        transition: transform $transition-short linear;
+
+        &-openDropdown {
+          transform: rotateZ(180deg);
+        }
       }
 
       &_head-active {

@@ -13,12 +13,13 @@ export type IconNames =
   | 'searchBlack'
   | 'analyticSlateGray'
   | 'analyticBlueCrayola'
+  | 'closeEerieBlack'
   
-type Size = '16x16' | '18x18' | '20x20' | '24x25' |'32x32' | '36x36';
+export type IconSize = '16x16' | '18x18' | '20x20' | '24x25' |'32x32' | '36x36';
 
 export interface IconProps {
   iconName?: IconNames;
-  modifiers?: (Size | ColorStyle)[];
+  modifiers?: (IconSize | ColorStyle)[];
   children?: IconType
 }
 

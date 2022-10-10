@@ -1,0 +1,80 @@
+.t-pendingManageCalendar {
+  &_note {
+    .a-text {
+      @include text-overflow(1);
+
+      @include mobile-down {}
+    }
+  }
+
+  .o-calendar_itemWrapper {
+    @include mobile-down {
+      padding: rem(2);
+    }
+  }
+
+  &_modal {
+    color: $black;
+
+    &_table {
+      margin-top: rem(20);
+      width: 100%;
+
+      thead, tbody {
+        display: block;
+      }
+
+      tbody {
+        max-height: calc(420 / 872 * 100vh);
+        overflow: auto;
+        @include scroll-bars(4, $light-slate-gray-75, $light-slate-gray-25 ,$border-thumb: 1);
+      }
+      
+      tr {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        border-bottom: rem(1) solid $isabelline;
+
+        th, td {
+          align-self: center;
+        }
+
+        th {
+          justify-self: start;
+          @include font-base(14, 21);
+          font-weight: 600;
+          color: $gray-x11;
+          padding: rem(14) rem(8);
+        }
+
+        td {
+          padding: rem(24) rem(8);
+        }
+
+        .col-1 {
+          grid-column: span 1;
+        }
+
+        .col-2 {
+          grid-column: span 2;
+        }
+
+        .col-3 {
+          grid-column: span 3;
+        }
+
+        .col-4 {
+          grid-column: span 4;
+        }
+
+        .col-5 {
+          grid-column: span 5;
+        }
+
+        .col-12 {
+          grid-column: span 12;
+        }
+      }
+    }
+  }
+}

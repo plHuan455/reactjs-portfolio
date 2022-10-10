@@ -1,9 +1,14 @@
+import { BiLoaderAlt } from "react-icons/bi";
+import Icon, { IconSize } from "../Icon";
+
 interface LoadingProps {
+  isFull?: boolean;
+  size?: IconSize;
 }
 
-const Loading: React.FC<LoadingProps> = () => {
+const Loading: React.FC<LoadingProps> = ({ size, isFull }) => {
   return <div className="a-loading">
-    Loading...
+    <Icon modifiers={size ? [size]: []}>{BiLoaderAlt}</Icon>
   </div>
 }
 

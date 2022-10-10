@@ -18,8 +18,8 @@
   $size: 12,
   // $thumbColor: $celestial-blue,
   // $trackColor: $alice-blue,
-  $thumb-color: $golden-brown,
-  $track-color: $bg-white-smoke,
+  $thumb-color: $light-slate-gray-75,
+  $track-color: $alice-blue,
   $border-radius-thumb: 5,
   $border-radius-track: 5,
   $border-thumb: 2,
@@ -150,8 +150,12 @@
 
 $colors-design: (
   'white': $white,
+  'black': $black,
   'charcoal': $charcoal,
   'lightSlateGray': $light-slate-gray,
+  'rustyRed': $rusty-red,
+  'deepGreenCyanTurquoise': $deep-green-cyan-turquoise,
+  'charlestonGreen': $charleston-green,
 );
 
 @mixin style-color {
