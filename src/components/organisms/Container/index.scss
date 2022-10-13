@@ -1,11 +1,72 @@
+$rowGaps: (
+  24,
+  32
+);
+
+.o-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+
+  @each $spacing in $rowGaps {
+    &-cg-#{$spacing} {
+      column-gap: rem($spacing);
+    }
+
+    &-rg-#{$spacing} {
+      row-gap: rem($spacing);
+    }
+  }
+}
+
+.o-col {
+  @for $i from 1 through 12 {
+    &-#{$i} {
+      grid-column: span #{$i};
+    }
+  }
+
+  @for $i from 1 through 12 {
+    @include desktop-up {
+      &-xs-#{$i} {
+        grid-column: span #{$i};
+      }
+    }
+  }
+
+  @for $i from 1 through 12 {
+    @include tablet-up {
+      &-lg-#{$i} {
+        grid-column: span #{$i};
+      }
+    }
+  }
+
+  @for $i from 1 through 12 {
+    @include small-mobile-up {
+      &-sm-#{$i} {
+        grid-column: span #{$i};
+      }
+    }
+  }
+
+  @for $i from 1 through 12 {
+    @include mobile-up {
+      &-md-#{$i} {
+        grid-column: span #{$i};
+      }
+    }
+  }
+}
+
 .o-container {
   margin-left: auto;
   margin-right: auto;
+
   @include break-min($standard-viewport) {
     max-width: $standard-viewport;
-    padding-left: rem(86);
     padding-right: rem(86);
+    padding-left: rem(86);
   }
-  
+
   max-width: 98%;
 }
