@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { mapModifiers } from '../../../utils/funcs';
 
-type Spacing = '0' | '24' | '32';
+type Spacing = '0' | '12' | '24' | '32';
 
 export interface CusRowProps {
   colGap?: Spacing;

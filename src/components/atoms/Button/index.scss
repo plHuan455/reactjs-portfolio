@@ -2,8 +2,30 @@
   @include reset-button;
   @include font-base(16, 24);
   padding: rem(12) rem(16);
-  border-radius: rem(12);
+  border-radius: rem(8);
   background-color: $black;
   color: $white;
   white-space: nowrap;
+
+  @include style-font-size();
+  @include style-color();
+  @include style-font-weight();
+  @include style-general();
+  @include style-font-family();
+
+
+  &-noBg {
+    background-color: transparent;
+  }
+
+  &-outline {
+    border: rem(1) solid $light-slate-gray;
+  }
+
+  &-disabled {
+    color: $white;
+    background-color: $ash-grey;
+    cursor: default;
+  }
+
 }

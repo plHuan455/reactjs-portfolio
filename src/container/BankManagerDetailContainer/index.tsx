@@ -1,3 +1,4 @@
+import Section from "../../components/templates/Section";
 import CalendarContainer from "./CalendarContainer";
 
 interface BankManagerDetailContainerProps {
@@ -5,7 +6,9 @@ interface BankManagerDetailContainerProps {
 
 const BankManagerDetailContainer: React.FC<BankManagerDetailContainerProps> = () => {
   return <>
-    <CalendarContainer />
+    <Section>
+      <CalendarContainer />
+    </Section>
   </>
 }
 
