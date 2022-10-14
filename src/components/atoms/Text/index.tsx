@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { mapModifiers } from '../../../utils/funcs';
 
-type Size = '14x16' | '14x21' | '14x18' | '16x20' | '16x24' | '20x24' | '24x24' | '24x28' | '28x36' | '38x56';
-
 type TextStyles = 'nowrap';
 
 export type TextTypes = 'span' | 'p' | 'div';
 
 interface TextProps {
-  modifiers?: (GeneralTextStyle | Size | TextStyles)[];
+  modifiers?: (GeneralTextStyle | TextStyles)[];
   type?: 'p' | 'span' | 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
   content?: string;
   isInline?: boolean;

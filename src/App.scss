@@ -7,6 +7,7 @@
 @import "components/atoms/Icon";
 @import "components/atoms/Text";
 @import "components/atoms/Button";
+@import "components/atoms/Input";
 
 //Molecules
 @import "components/molecules/Pulldown";
@@ -22,7 +23,9 @@
 @import "components/templates/MainLayout";
 @import "components/templates/Section";
 @import "components/templates/PendingManageCalendar";
+@import "components/templates/GroupCreateForm";
 
 //Pages
 @import "pages/Home";
 @import "pages/BankManagerDetail";
+@import "pages/GroupCreate/";

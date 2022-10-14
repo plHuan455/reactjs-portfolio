@@ -31,7 +31,11 @@ type ColorStyle =
   | 'rustyRed'
   | 'deepGreenCyanTurquoise'
   | 'charlestonGreen'
+  | 'darkLiver'
+  | 'davysGrey'
+
+type TextSizes = '14x16' | '14x21' | '14x18' | '16x20' | '16x24' | '20x24' | '24x24' | '24x28' | '28x36' | '38x56';
 
 type FontFamily = 'fontLexend' | 'fontNoto' | 'fontLato' | 'fontCalibri';
 
-type GeneralTextStyle = ColorStyle | FontWeightStyle | TextStyle | FontFamily;
+type GeneralTextStyle = ColorStyle | FontWeightStyle | TextStyle | FontFamily | TextSizes;

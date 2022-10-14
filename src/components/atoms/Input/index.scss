@@ -1,0 +1,28 @@
+.a-input {
+  padding: rem(8) 0;
+
+  &_label {
+    @include font-base(14, 20);
+    display: block;
+  }
+
+  &_error {
+    @include font-base(14, 20);
+    color: $rusty-red;
+  }
+
+  input {
+    @include font-base(14, 20);
+    width: 100%;
+    font-weight: 400;
+    outline: none;
+    padding: rem(4);
+    border: rem(1) solid $platinum;
+    border-radius: rem(4);
+  }
+
+  label + input {
+    margin-top: rem(8);
+  }
+  
+}
