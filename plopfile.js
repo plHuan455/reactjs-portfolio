@@ -23,17 +23,17 @@ module.exports = (plop) => {
         {
           type: 'add',
           path: 'src/components/{{type}}/{{pascalCase name}}/index.tsx',
-          templateFile: 'src/plop-templates/component/index.tsx.hbs',
+          templateFile: 'plop-templates/component/index.tsx.hbs',
         },
         {
           type: 'add',
           path: 'src/components/{{type}}/{{pascalCase name}}/index.stories.tsx',
-          templateFile: 'src/plop-templates/component/index.stories.tsx.hbs',
+          templateFile: 'plop-templates/component/index.stories.tsx.hbs',
         },
         {
           type: 'add',
           path: 'src/components/{{type}}/{{pascalCase name}}/index.scss',
-          templateFile: 'src/plop-templates/component/styled.ts.hbs',
+          templateFile: 'plop-templates/component/styled.ts.hbs',
         },
       );
       return actions;
@@ -56,23 +56,18 @@ module.exports = (plop) => {
       actions.push(
         {
           type: 'add',
-          path: 'src/containers/{{pascalCase name}}/index.tsx',
-          templateFile: 'src/plop-templates/container/index.tsx.hbs',
-        },
-        {
-          type: 'add',
-          path: 'src/containers/{{pascalCase name}}/types.ts',
-          templateFile: 'src/plop-templates/container/types.ts.hbs',
+          path: 'src/containers/{{pascalCase name}}Container/index.tsx',
+          templateFile: 'plop-templates/container/index.tsx.hbs',
         },
         {
           type: 'add',
           path: 'src/pages/{{pascalCase name}}/index.tsx',
-          templateFile: 'src/plop-templates/page/index.tsx.hbs',
+          templateFile: 'plop-templates/page/index.tsx.hbs',
         },
         {
           type: 'add',
-          path: 'src/pages/{{pascalCase name}}/styled.ts',
-          templateFile: 'src/plop-templates/page/styled.ts.hbs',
+          path: 'src/pages/{{pascalCase name}}/index.scss',
+          templateFile: 'plop-templates/page/styled.ts.hbs',
         },
       );
       return actions;

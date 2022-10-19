@@ -1,5 +1,5 @@
 import {lazy} from 'react';
-import MainLayoutContainer from './container/MainLayoutContainer';
+import MainLayoutContainer from './containers/MainLayoutContainer';
 import { renderPageUrl } from './navigation';
 import Test from './pages/test';
 import Vocabulary from './pages/Vocabulary';

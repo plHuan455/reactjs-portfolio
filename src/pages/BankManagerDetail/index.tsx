@@ -1,4 +1,4 @@
-import BankManagerDetailContainer from "../../container/BankManagerDetailContainer";
+import BankManagerDetailContainer from "../../containers/BankManagerDetailContainer";
 
 interface BankManagerDetailProps {
 }
