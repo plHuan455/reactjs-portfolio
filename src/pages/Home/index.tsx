@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MainLayout from '../../components/templates/MainLayout';
-import HomeContainer from '../../container/HomeContainer';
-import MainLayoutContainer from '../../container/MainLayoutContainer';
+import HomeContainer from '../../containers/HomeContainer';
+import MainLayoutContainer from '../../containers/MainLayoutContainer';
 
 export default function HomePage() {
   return (

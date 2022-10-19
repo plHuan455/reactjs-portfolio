@@ -1,4 +1,4 @@
-import GroupCreateContainer from "../../container/GroupCreateContainer";
+import GroupCreateContainer from "../../containers/GroupCreateContainer";
 
 interface GroupCreateProps {}
 
