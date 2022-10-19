@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { Col, Row } from "../../components/organisms/Container";
-import Modal from "../../components/organisms/Modal";
-import GroupCreateForm from "../../components/templates/GroupCreateForm";
+import Text from "~atoms/Text";
 import GroupCreate from "../GroupCreate";
 
 const Test: React.FC = () => {
   console.log(process.env.NODE_ENV);
-  return <GroupCreate />
+  return <>
+    <GroupCreate />
+    <Text modifiers={['deepGreenCyanTurquoise']}>test text</Text>
+  </>
 }
 
 export default Test;
