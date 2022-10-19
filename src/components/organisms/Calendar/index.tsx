@@ -127,6 +127,7 @@ const Calendar: React.FC<CalendarProps> = ({
             className={mapModifiers(
               'o-calendar_item',
               idx % 7 === 0 && 'noBl',
+              isADate(selectedDate, value) && 'selected',
               value.getMonth() !== calendarViewDate.getMonth() && 'outMonth',
               isADate(new Date(), value) && 'today'
             )}

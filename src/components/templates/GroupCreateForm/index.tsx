@@ -15,11 +15,13 @@ export interface GroupCreateFields {
 
 export interface GroupCreateFormProps {
   method: UseFormReturn<GroupCreateFields>;
+  onCancel?: () => void;
   onSubmit: (value: GroupCreateFields) => void;
 }
 
 const GroupCreateForm: React.FC<GroupCreateFormProps> = ({
   method,
+  onCancel,
   onSubmit,
 }) => {
   const {formState: { isValid }} = method;
@@ -98,7 +100,14 @@ const GroupCreateForm: React.FC<GroupCreateFormProps> = ({
             </Col>
             <Col colSpan="12">
               <div className="t-groupCreateForm_form_buttons">
-                <Button type="button" className="t-groupCreateForm_form_btnCancel" modifiers={['noBg', 'davysGrey', '14x16']}>Huỷ</Button>
+                <Button 
+                type="button" 
+                className="t-groupCreateForm_form_btnCancel" 
+                modifiers={['noBg', 'davysGrey', '14x16']}
+                onClick={onCancel}
+                >
+                  Huỷ
+                  </Button>
                 <Button 
                   type="submit" 
                   className="t-groupCreateForm_form_btnCreate"

@@ -1,12 +1,17 @@
 import { Story, Meta } from '@storybook/react';
+import { useState } from 'react';
 import Calendar from '.';
 
 export default {
-  title: 'Components/organisms/Calendar',
+  title: 'Components/Organisms/Calendar',
   component: Calendar,
   argTypes: {},
 } as Meta;
 
-export const normal: Story = () => (
-    <Calendar selectedDate={new Date()}/>
-);
+export const normal: Story = () => {
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  return <Calendar
+    selectedDate={selectedDate}
+    onChange={(date) => setSelectedDate(date)}
+  />
+}
