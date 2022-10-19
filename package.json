@@ -2,13 +2,13 @@
   "name": "english-word",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "plop": "plop"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.8",
@@ -42,6 +42,8 @@
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",
     "babel-loader": "^8.2.5",
+    "hygen": "^6.2.11",
+    "plop": "^3.1.1",
     "typescript": "^4.6.4",
     "vite": "^3.1.0"
   }

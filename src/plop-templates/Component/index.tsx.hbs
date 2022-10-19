@@ -1,0 +1,16 @@
+import React from 'react';
+
+interface {{pascalCase name}}Props {
+  children?: React.ReactNode;
+}
+
+const {{pascalCase name}}: React.FC<{{pascalCase name}}Props> = ({ children }) => {
+  return <div className="{{classNameComponent type}}{{camelCase name}}">{children}</div>
+};
+
+{{pascalCase name}}.defaultProps = {
+  children: undefined,
+};
+
+export default {{pascalCase name}};
+

@@ -1,0 +1,15 @@
+import { Story, Meta } from '@storybook/react';
+import React from 'react';
+
+import {{pascalCase name}} from '.';
+
+const meta: Meta = {
+  title: 'Components/{{type}}/{{pascalCase name}}',
+  component: {{pascalCase name}},
+  argTypes: {},
+};
+export default meta;
+
+export const normal: Story = ({...args}) => {
+  return <{{pascalCase name}} {...args} />
+};
