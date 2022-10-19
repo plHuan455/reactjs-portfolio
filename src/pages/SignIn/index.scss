@@ -1,0 +1,5 @@
+.p-signIn {
+  background-color: $rich-black;
+  @include adjust-flex(center, center);
+  height: 100vh;
+}

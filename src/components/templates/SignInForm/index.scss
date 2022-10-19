@@ -1,0 +1,29 @@
+.t-signInForm {
+  &_description {
+    margin-top: rem(40);
+  }
+
+  &_form {
+    &_field {
+      margin-top: rem(32);
+
+      &:first-child {
+        margin-top: rem(39);
+      }
+
+      .a-input input{
+        @include font-base(14, 20);
+        padding: rem(12) rem(18);
+        border-radius: rem(18);
+        color: $white;
+        background-color: $dark-slate-gray;
+        outline: none;
+        border: 0;
+
+        &::placeholder {
+          color: $light-gray;
+        }
+      }
+    }
+  }
+}
