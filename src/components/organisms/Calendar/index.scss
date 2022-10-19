@@ -132,5 +132,9 @@
       border: rem(2) solid $blueberry-75;
       border-radius: rem(4);
     }
+
+    &-selected {
+      background-color: $pale-cornflower-blue-75;
+    }
   }
 }

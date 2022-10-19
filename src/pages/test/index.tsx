@@ -5,6 +5,7 @@ import GroupCreateForm from "../../components/templates/GroupCreateForm";
 import GroupCreate from "../GroupCreate";
 
 const Test: React.FC = () => {
+  console.log(process.env.NODE_ENV);
   return <GroupCreate />
 }
 

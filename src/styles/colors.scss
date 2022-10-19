@@ -19,6 +19,7 @@ $white-smoke: rgb(246, 246, 246); // #f6f6f6
 $platinum: rgb(227, 227, 229); // #e3e3e5
 $davys-grey: rgb(85, 83, 84); // #555354
 $ash-grey: rgb(176, 180, 185); // #b0b4b9
+$pale-cornflower-blue: rgb(185, 209, 249); // #b9d1f9
 
 // Gradient
 $black-005: rgba($black, 0.005);
@@ -29,5 +30,6 @@ $black-12: rgba($black, 0.12);
 $black-0012: rgba($black, 0.012);
 $alice-blue-25: rgba($alice-blue, 0.25);
 $blueberry-75: rgba($blueberry, 0.75);
-$light-slate-gray-75: rgb($light-slate-gray, 0.75);
-$light-slate-gray-25: rgb($light-slate-gray, 0.25);
+$light-slate-gray-75: rgba($light-slate-gray, 0.75);
+$light-slate-gray-25: rgba($light-slate-gray, 0.25);
+$pale-cornflower-blue-75: rgba($pale-cornflower-blue, .75); // #b9d1f9

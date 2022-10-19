@@ -18,7 +18,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ value, handleChange, ...args}
         onChange={(e)=> {if(handleChange) handleChange(e.target.value)}}
       />
       <div className="m-searchInput_icon">
-        <Icon iconName='searchBlack' size='24x25'/>
+        <Icon iconName='searchBlack' modifiers={['24x25']}/>
       </div>
       <div className="m-searchInput_button">
         <Button>

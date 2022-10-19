@@ -54,7 +54,7 @@ const SlideBar: React.FC<SlideBarProps> = ({ menuItems, title, titleIconName }) 
           <Icon iconName={titleIconName} modifiers={['32x32']} />
         </div>
         <div className="o-slideBar_title_text">
-          <Text modifiers={['24x24', '600', 'charcoal']} type='h2'>{title}</Text>
+          <Text modifiers={['24x24', '600', 'charcoal', 'nowrap']} type='h2'>{title}</Text>
         </div>
       </div>
       <ul className="o-slideBar_menuList" ref={dropdownListRef}>

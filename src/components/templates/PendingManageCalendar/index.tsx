@@ -118,7 +118,7 @@ const PendingManageCalendar: React.FC<PendingManageCalendarProps> = ({
                 </td>
               </tr>
             )}
-            {noteInSelectedDateList.map((value, idx) => <tr>
+            {noteInSelectedDateList.map((value, idx) => <tr key={`pending-calendar-modal-table-note-${idx}`}>
               <td className="col-1"><Text modifiers={['14x21', '600', 'charlestonGreen', 'fontLexend']}>{idx + 1}</Text></td>
               <td className="col-5"><Text modifiers={['14x21', '600', 'charlestonGreen', 'fontLexend']}>{value.content}</Text></td>
               <td className="col-2">
