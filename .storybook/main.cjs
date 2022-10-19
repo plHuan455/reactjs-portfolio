@@ -1,6 +1,4 @@
-const path = require('path')
 module.exports = {
-  "addons": ['@storybook/preset-scss'],
   "stories": [
     "../src/**/*.stories.mdx",
     "../src/**/*.stories.@(js|jsx|ts|tsx)"
