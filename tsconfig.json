@@ -20,6 +20,7 @@
       "~molecules/*": ["./src/components/molecules/*"],
       "~organisms/*": ["./src/components/organisms/*"],
       "~templates/*": ["./src/components/templates/*"],
+      "~assets/*": ["./src/assets/*"],
       "~pages/*": ["./src/pages/*"],
       "~containers/*": ["./src/containers/*"],
       "~hooks/*": ["./src/hooks/*"],
