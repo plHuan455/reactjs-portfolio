@@ -73,13 +73,13 @@ const SlideBar: React.FC<SlideBarProps> = ({ menuItems, title, titleIconName }) 
                   onClick={() => handleMenuItemClick(idx, item)}
                 >
                   <div className={mapModifiers("o-slideBar_menuItem_icon", activeDropdownIndex === idx && 'openDropdown')}>
-                    <Icon modifiers={['20x20', 'lightSlateGray']}>{item.menuIcon}</Icon>
+                    <Icon modifiers={['20x20', 'independence']}>{item.menuIcon}</Icon>
                   </div>
                   <div className="o-slideBar_menuItem_text">
-                    <Text modifiers={['16x20', '500', 'charcoal']}>{item.label}</Text>
+                    <Text modifiers={['16x20', '400', 'independence']}>{item.label}</Text>
                   </div>
                   {item.subItems && <div className={mapModifiers("o-slideBar_menuItem_dropdownIcon", idx === activeDropdownIndex && 'openDropdown')}>
-                    <Icon modifiers={['lightSlateGray', '16x16']}>{RiArrowDownSLine}</Icon>
+                    <Icon modifiers={['independence', '16x16']}>{RiArrowDownSLine}</Icon>
                   </div>}
                 </div>
               </div>
