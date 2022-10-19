@@ -3,7 +3,6 @@ import { getDateList, getFirstDateInMonth, isADate, mapModifiers } from "../../.
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import Icon from "../../atoms/Icon";
 import Text from "../../atoms/Text";
-import { BiLoaderAlt } from "react-icons/bi";
 import Loading from "../../atoms/Loading";
 
 export interface NoteType {
