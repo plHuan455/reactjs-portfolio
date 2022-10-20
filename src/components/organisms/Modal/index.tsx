@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 
 import { mapModifiers } from '../../../utils/funcs';
-import Icon, { IconNames, IconSize } from '../../atoms/Icon';
+import Icon, { IconNames } from '../../atoms/Icon';
 
 interface CustomModalProps {
   isOpen: boolean;
@@ -11,7 +11,7 @@ interface CustomModalProps {
   isShowCloseButton?: boolean;
   modifiers?: 'calendar' // add more modifiers
   iconName?: IconNames;
-  sizeIconClose?: IconSize;
+  sizeIconClose?: BoxSize;
   children?: React.ReactNode;
 }
 

@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import Loading from '~atoms/Loading';
 import HeaderControl from '~templates/HeaderControl';
 
 interface AuthLayoutProps {
@@ -12,7 +13,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children, onHeaderControlClick 
       <HeaderControl onClick={onHeaderControlClick} />
     </div>
     <main className="t-authLayout_main">
-      <Suspense fallback="loading ...">
+      <Suspense fallback={<Loading size="full"/>}>
         {children}
       </Suspense>
     </main>

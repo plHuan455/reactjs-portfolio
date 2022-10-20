@@ -15,11 +15,9 @@ export type IconNames =
   | 'analyticBlueCrayola'
   | 'closeEerieBlack'
   
-export type IconSize = '16x16' | '18x18' | '20x20' | '24x25' |'32x32' | '36x36';
-
 export interface IconProps {
   iconName?: IconNames;
-  modifiers?: (IconSize | ColorStyle)[];
+  modifiers?: (BoxSize | ColorStyle)[];
   children?: IconType
 }
 
