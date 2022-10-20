@@ -1,0 +1,11 @@
+.t-authLayout {
+  position: relative;
+
+  &_headerControl {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: $z-header;
+  }
+}
