@@ -9,6 +9,7 @@ const BankManagerCreatePage = lazy(() => import('./pages/BankManagerCreate'));
 const BankManagerDetailPage = lazy(() => import('./pages/BankManagerDetail'));
 const HomPage = lazy(() => import('./pages/Home'));
 const SignInPage = lazy(() => import('./pages/SignIn'))
+const SignUpPage = lazy(() => import('./pages/SignUp'))
 
 interface RouteType {
   path: string;
@@ -23,6 +24,6 @@ export const routes: RouteType[] = [
   {path: renderPageUrl('BANK_MANAGER_DETAIL'), element:<MainLayoutContainer><BankManagerDetailPage /></MainLayoutContainer>},
   {path: renderPageUrl('BANK_MANAGER_ADD'), element:<MainLayoutContainer><BankManagerCreatePage /></MainLayoutContainer>},
   {path: renderPageUrl('SIGN_IN'), element:<AuthLayoutContainer><SignInPage /></AuthLayoutContainer>},
-  {path: renderPageUrl('SIGN_UP'), element:<AuthLayoutContainer><SignInPage /></AuthLayoutContainer>},
+  {path: renderPageUrl('SIGN_UP'), element:<AuthLayoutContainer><SignUpPage /></AuthLayoutContainer>},
   {path: renderPageUrl('TEST'), element:<MainLayoutContainer><Test /></MainLayoutContainer>},
 ];

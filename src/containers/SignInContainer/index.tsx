@@ -9,7 +9,7 @@ interface SignInContainerProps {}
 
 const SignInContainer: React.FC<SignInContainerProps> = () => {
   return <>
-    <Section className="p-signIn_form" modifiers={['noPb', 'noPt']}>
+    <Section className="p-signIn_form">
       <SignInFormContainer />
     </Section>
   </>;

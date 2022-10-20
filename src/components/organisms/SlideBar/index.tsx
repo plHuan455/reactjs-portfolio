@@ -94,7 +94,7 @@ const SlideBar: React.FC<SlideBarProps> = ({ menuItems, title, titleIconName }) 
                       onClick={() => {if(subItem.href) navigate(subItem.href); if(isCompact) setActiveDropdownIndex(undefined)}}
                     >
                       <div className="o-slideBar_menuItem_subText">
-                        <Text modifiers={['16x20', '500', 'charcoal']}>{subItem.label}</Text>
+                        <Text modifiers={['16x20', '400', 'charcoal']}>{subItem.label}</Text>
                       </div>
                     </li>)
                   })}
