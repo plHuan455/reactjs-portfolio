@@ -20,8 +20,8 @@ export default function MainLayoutContainer ({children}: MainLayoutContainerProp
           {label: 'Thêm chi tiêu', href: renderPageUrl('BANK_MANAGER_ADD')},
         ]},
         {label: 'Word', menuIcon: BsBoxSeam, subItems: [{label: 'test 1', href: renderPageUrl('VOCABULARIES')}]},
-        {label: 'Tài khoản', menuIcon: BiUser, subItems: [{label: 'Đăng nhập', href: renderPageUrl('SIGN_IN')}, {label: 'Đăng ký', href: renderPageUrl('SIGN_IN')}]},
         {label: 'Test', menuIcon: RiTestTubeFill, href: renderPageUrl('TEST')},
+        {label: 'Tài khoản', menuIcon: BiUser, subItems: [{label: 'Đăng nhập', href: renderPageUrl('SIGN_IN')}, {label: 'Đăng ký', href: renderPageUrl('SIGN_UP')}]},
       ]}
     >
       {children}

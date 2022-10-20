@@ -5,7 +5,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 interface FormContainerProps {}
 
-
 const schema = yup.object({
   username: yup.string().required('Vui lòng nhập tên nhóm!'),
   password: yup.string().required('Vui lòng nhập mật khẩu!'),
@@ -14,6 +13,7 @@ const schema = yup.object({
 
 const FormContainer: React.FC<FormContainerProps> = () => {
   const method = useForm<SignInFields>({
+    mode: 'onBlur',
     defaultValues: {
       username: '',
       password: '',

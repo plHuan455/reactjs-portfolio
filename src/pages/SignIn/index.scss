@@ -1,20 +1,4 @@
 .p-signIn {
-  position: relative;
-  background-color: $rich-black;
-  @include adjust-flex(center, center);
-  height: 100vh;
-  background-image: url('~assets/images/loginWare.svg');
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: contain;
-
-  &_control {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
   &_form {
 
   }

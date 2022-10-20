@@ -88,7 +88,7 @@ const Calendar: React.FC<CalendarProps> = ({
   return <div className="o-calendar">
     <div className="o-calendar_header">
       <div className="o-calendar_header_text" onClick={handleHeaderClick}>
-        <Text modifiers={['28x36', '700', 'black']}>{`${isShowMonth ? '' : `Tháng ${calendarViewDate.getMonth() + 1} `}Năm ${calendarViewDate.getFullYear()}`}</Text>
+        <Text modifiers={['28x36', '600', 'black']}>{`${isShowMonth ? '' : `Tháng ${calendarViewDate.getMonth() + 1} `}Năm ${calendarViewDate.getFullYear()}`}</Text>
         {isLoading && <div className="o-calendar_header_loading">
           <Loading size="32x32" />
         </div>}

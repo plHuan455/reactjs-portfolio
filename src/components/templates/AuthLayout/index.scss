@@ -1,5 +1,12 @@
 .t-authLayout {
+  padding-top: rem(80);
+  height: 100vh;  
   position: relative;
+  background-color: $rich-black;
+  background-image: url('~assets/images/loginWare.svg');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
 
   &_headerControl {
     position: absolute;
@@ -7,5 +14,12 @@
     right: 0;
     left: 0;
     z-index: $z-header;
+  }
+
+  &_main {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    @include scroll-bars(8, $border-thumb: 1  );
   }
 }
