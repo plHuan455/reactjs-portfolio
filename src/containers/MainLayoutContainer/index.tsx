@@ -1,5 +1,5 @@
 import MainLayout from '../../components/templates/MainLayout';
-import { BiHomeAlt } from 'react-icons/bi';
+import { BiHomeAlt, BiUser } from 'react-icons/bi';
 import { TbBrandGoogleAnalytics } from 'react-icons/tb';
 import { BsBoxSeam } from 'react-icons/bs';
 import { RiTestTubeFill } from 'react-icons/ri';
@@ -20,6 +20,7 @@ export default function MainLayoutContainer ({children}: MainLayoutContainerProp
           {label: 'Thêm chi tiêu', href: renderPageUrl('BANK_MANAGER_ADD')},
         ]},
         {label: 'Word', menuIcon: BsBoxSeam, subItems: [{label: 'test 1', href: renderPageUrl('VOCABULARIES')}]},
+        {label: 'Tài khoản', menuIcon: BiUser, subItems: [{label: 'Đăng nhập', href: renderPageUrl('SIGN_IN')}, {label: 'Đăng ký', href: renderPageUrl('SIGN_IN')}]},
         {label: 'Test', menuIcon: RiTestTubeFill, href: renderPageUrl('TEST')},
       ]}
     >

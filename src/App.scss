@@ -24,8 +24,11 @@
 @import "components/templates/Section";
 @import "components/templates/PendingManageCalendar";
 @import "components/templates/GroupCreateForm";
+@import "components/templates/SignInForm";
+@import "components/templates/HeaderControl";
 
 //Pages
 @import "pages/Home";
 @import "pages/BankManagerDetail";
 @import "pages/GroupCreate/";
+@import "pages/SignIn/";

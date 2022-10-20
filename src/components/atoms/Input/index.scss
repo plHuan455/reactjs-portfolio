@@ -1,5 +1,15 @@
 .a-input {
+  $root: &; 
+  $checkbox-size: 18;
   padding: rem(8) 0;
+
+  &.checkbox {
+    position: relative;
+  }
+
+  label + input {
+    margin-top: rem(8);
+  }
 
   &_label {
     @include font-base(14, 20);
@@ -11,7 +21,7 @@
     color: $rusty-red;
   }
 
-  input {
+  &_input {
     @include font-base(14, 20);
     width: 100%;
     font-weight: 400;
@@ -20,9 +30,46 @@
     border: rem(1) solid $platinum;
     border-radius: rem(4);
   }
+  &.checkbox {
+    padding: 0;
+    width: rem($checkbox-size);
+    height: rem($checkbox-size);
 
-  label + input {
-    margin-top: rem(8);
+    #{$root}_input {
+      margin: 0;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  &_checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: rem($checkbox-size);
+    width: rem($checkbox-size);
+    background-color: $dark-slate-gray;
+    border-radius: rem(5);
+    cursor: pointer;
+
+    &::after {
+      content: "";
+      display: none;
+      position: absolute;
+      left: calc(#{$checkbox-size} / 25 * #{rem(9)});
+      top: calc(#{$checkbox-size} / 25 * #{rem(5)});
+      width: calc(#{$checkbox-size} / 25 * #{rem(5)});
+      height: calc(#{$checkbox-size} / 25 * #{rem(10)});
+      border: solid white;
+      border-width: 0 calc(#{$checkbox-size} / 25 * #{rem(3)}) calc(#{$checkbox-size} / 25 * #{rem(3)}) 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+
+  &_input:checked ~ #{$root}_checkmark::after{
+    display: block;
   }
   
 }

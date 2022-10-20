@@ -9,9 +9,11 @@ const Lottie: React.FC<LottieProps> = ({ src }) => {
   const [lottieAnimation, setLottieAnimation] = useState();
   useEffect(() => {
     (async function fetchJSON(){
-      const response = await fetch(src).then(data => data.json());
-      // setLottieAnimation(response);
-      setLottieAnimation(response)
+      try{
+        const response = await fetch(src).then(data => data.json());
+        setLottieAnimation(response)
+      }catch{
+      }
     })()
   }, [src])
   return <div className="a-lottie">

@@ -1,0 +1,50 @@
+.t-signInForm {
+  width: rem(460);
+
+  &_description {
+    margin-top: rem(40);
+  }
+
+  &_form {
+    padding: 0 rem(24);
+
+    &_field {
+      margin-top: rem(32);
+
+      &:first-child {
+        margin-top: rem(39);
+      }
+
+      &-checkbox {
+        margin-top: rem(24);
+        @include adjust-flex(flex-start, center);
+      }
+
+      .a-input input{
+        @include font-base(14, 20);
+        padding: rem(12) rem(18);
+        border-radius: rem(18);
+        color: $white;
+        background-color: $dark-slate-gray;
+        outline: none;
+        border: 0;
+
+        &::placeholder {
+          color: $light-gray;
+        }
+      }
+
+      &_label {
+        margin-left: rem(7);
+        cursor: pointer;
+      }
+    }
+  }
+
+  &_button {
+    width: 100%;  
+    margin-top: rem(24);
+    background-color: $ufo-green;
+    padding: rem(12);
+  }
+}
