@@ -1,0 +1,13 @@
+.t-headerControl {
+  @include adjust-flex(flex-end, center);
+  padding: rem(12) rem(24);
+
+  &_icon {
+    cursor: pointer;
+  }
+  
+  &_text {
+    cursor: pointer;
+    margin-left: rem(12);
+  }
+}

@@ -1,8 +1,8 @@
 import Icon from "../../atoms/Icon";
 import Text from "../../atoms/Text";
 import { IoMdClose } from 'react-icons/io';
-import Input from "../../atoms/Input";
-import { Controller, FormProvider, useForm, UseFormReturn } from "react-hook-form";
+import {Input} from "../../atoms/Input";
+import { Controller, FormProvider, UseFormReturn } from "react-hook-form";
 import Button from "../../atoms/Button";
 import Container, { Col, Row } from "../../organisms/Container";
 import placeholderImg from "../../../assets/images/placeholderImage.jpeg";
@@ -48,7 +48,7 @@ const GroupCreateForm: React.FC<GroupCreateFormProps> = ({
                         error={fieldState?.error?.message}
                         label="Tên nhóm"
                         value={value}
-                        onInputChange={onChange}
+                        onChange={onChange}
                         onBlur={onBlur}
                         placeholder="Nhập tên nhóm ..."
                         id="group-create-name"
@@ -63,7 +63,7 @@ const GroupCreateForm: React.FC<GroupCreateFormProps> = ({
                       <Input
                         label="Hình Nhóm"
                         value={value}
-                        onInputChange={onChange}
+                        onChange={onChange}
                         onBlur={onBlur}
                         placeholder="Địa chỉ hình ảnh ..."
                         id="group-create-avatar"
@@ -90,7 +90,7 @@ const GroupCreateForm: React.FC<GroupCreateFormProps> = ({
                   <Input
                     label="Mô Tả"
                     value={value}
-                    onInputChange={onChange}
+                    onChange={onChange}
                     onBlur={onBlur}
                     placeholder="Nhập mô tả về nhóm ..."
                     id="group-create-description"

@@ -1,4 +1,5 @@
 import {lazy} from 'react';
+import NonLayoutContainer from '~containers/NoneLayoutContainer/NonLayoutContainer';
 import MainLayoutContainer from './containers/MainLayoutContainer';
 import { renderPageUrl } from './navigation';
 import Test from './pages/test';
@@ -21,6 +22,7 @@ export const routes: RouteType[] = [
   {path: renderPageUrl('VOCABULARIES'), element: <MainLayoutContainer><Vocabulary /></MainLayoutContainer>},
   {path: renderPageUrl('BANK_MANAGER_DETAIL'), element:<MainLayoutContainer><BankManagerDetailPage /></MainLayoutContainer>},
   {path: renderPageUrl('BANK_MANAGER_ADD'), element:<MainLayoutContainer><BankManagerCreatePage /></MainLayoutContainer>},
-  {path: renderPageUrl('SIGN_IN'), element:<SignInPage />},
+  {path: renderPageUrl('SIGN_IN'), element:<NonLayoutContainer><SignInPage /></NonLayoutContainer>},
+  {path: renderPageUrl('SIGN_UP'), element:<NonLayoutContainer><SignInPage /></NonLayoutContainer>},
   {path: renderPageUrl('TEST'), element:<MainLayoutContainer><Test /></MainLayoutContainer>},
 ];
