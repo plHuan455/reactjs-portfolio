@@ -2,7 +2,10 @@
   @include adjust-flex(center, center);
     
   &_wrapper {
-    width: rem(460);
+    width: rem(500);
+    @include mobile-down {
+      width: 95%;
+    }
   }
 
   &_description {
