@@ -1,7 +1,8 @@
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
+import { useForm } from 'react-hook-form';
 
-import SignUpForm from '.';
+import SignUpForm, { SignUpFields } from '.';
 
 const meta: Meta = {
   title: 'Components/templates/SignUpForm',
@@ -11,5 +12,6 @@ const meta: Meta = {
 export default meta;
 
 export const normal: Story = ({...args}) => {
-  return <SignUpForm {...args} />
+  const method = useForm<SignUpFields>();
+  return <SignUpForm {...args} method={method} onSubmit={() => {}}/>
 };

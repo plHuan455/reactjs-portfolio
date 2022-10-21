@@ -1,12 +1,3 @@
-$size-icon: (
-    '16x16': (w: 16, h: 16),
-    '18x18': (w: 18, h: 18),
-    '20x20': (w: 20, h: 20),
-    '24x25': (w: 24, h: 25),
-    '32x32': (w: 32, h: 32),
-    '36x36': (w: 36, h: 36),
-);
-
 $icon-src: (
     'homeLightSlateGray': icon-path-generation('ic_home_light_slate_gray.svg'),
     'homeBlueCrayola': icon-path-generation('ic_home_blue_crayola.svg'),
@@ -27,14 +18,6 @@ $icon-src: (
     background-size: contain;
     display: block;
 
-    @each $size,
-        $val in $size-icon {
-        &-#{$size} {
-            height: rem(map-get($val, 'h'));
-            width: rem(map-get($val, 'w'));
-        }
-    }
-
     @each $icon,
         $val in $icon-src {
         &-#{$icon} {
@@ -43,4 +26,5 @@ $icon-src: (
     }
 
     @include style-color();
+    @include box-size();
 }

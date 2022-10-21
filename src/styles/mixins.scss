@@ -14,8 +14,7 @@
   transition: $value;
 }
 
-@mixin scroll-bars(
-  $size: 12,
+@mixin scroll-bars($size: 12,
   // $thumbColor: $celestial-blue,
   // $trackColor: $alice-blue,
   $thumb-color: $light-slate-gray-75,
@@ -24,6 +23,7 @@
   $border-radius-track: 5,
   $border-thumb: 2,
 ) {
+
   // For Google Chrome
   &::-webkit-scrollbar {
     height: rem($size);
@@ -148,6 +148,25 @@
   justify-content: $justify-content;
 }
 
+$size-icons: (
+  '16x16': (w: 16, h: 16),
+  '18x18': (w: 18, h: 18),
+  '20x20': (w: 20, h: 20),
+  '24x25': (w: 24, h: 25),
+  '32x32': (w: 32, h: 32),
+  '36x36': (w: 36, h: 36),
+);
+
+@mixin box-size {
+  @each $size,
+  $val in $size-icons {
+    &-#{$size} {
+      height: rem(map-get($val, 'h'));
+      width: rem(map-get($val, 'w'));
+    }
+  }
+}
+
 $colors-design: (
   'white': $white,
   'black': $black,
@@ -177,7 +196,9 @@ $font-sizes: (
 );
 
 @mixin style-color {
-  @each $name, $color in $colors-design {
+
+  @each $name,
+  $color in $colors-design {
     &-#{$name} {
       color: $color;
     }
@@ -186,19 +207,19 @@ $font-sizes: (
 
 // prefix declarations
 @mixin prefixed($property, $value) {
-  @if $webkit == true {
+  @if $webkit ==true {
     -webkit-#{$property}: #{$value};
   }
 
-  @if $moz == true {
+  @if $moz ==true {
     -moz-#{$property}: #{$value};
   }
 
-  @if $ms == true {
+  @if $ms ==true {
     -ms-#{$property}: #{$value};
   }
 
-  @if $o == true {
+  @if $o ==true {
     -o-#{$property}: #{$value};
   }
 
@@ -213,7 +234,9 @@ $font-design: (
 );
 
 @mixin style-font-family {
-  @each $name, $font in $font-design {
+
+  @each $name,
+  $font in $font-design {
     &-#{$name} {
       font-family: $font;
     }
@@ -221,30 +244,31 @@ $font-design: (
 }
 
 @mixin style-font-size() {
+
   @each $size,
-      $val in $font-sizes {
-      
-      @if map-get($val, 'desktop') {
+  $val in $font-sizes {
 
-          &-#{$size} {
-              font-size: rem(map-get(map-get($val, 'desktop'), 'fs'));
-              line-height: rem(map-get(map-get($val, 'desktop'), 'lh'));
+    @if map-get($val, 'desktop') {
 
-              @if map-get($val, 'tablet') {
-                  @include tablet-down {
-                      font-size: rem(map-get(map-get($val, 'tablet'), 'fs'));
-                      line-height: rem(map-get(map-get($val, 'tablet'), 'lh'));
-                  }
-              }
+      &-#{$size} {
+        font-size: rem(map-get(map-get($val, 'desktop'), 'fs'));
+        line-height: rem(map-get(map-get($val, 'desktop'), 'lh'));
 
-              @if map-get($val, 'mobile') {
-                  @include mobile-down {
-                      font-size: rem(map-get(map-get($val, 'mobile'), 'fs'));
-                      line-height: rem(map-get(map-get($val, 'mobile'), 'lh'));
-                  }
-              }                
+        @if map-get($val, 'tablet') {
+          @include tablet-down {
+            font-size: rem(map-get(map-get($val, 'tablet'), 'fs'));
+            line-height: rem(map-get(map-get($val, 'tablet'), 'lh'));
           }
+        }
+
+        @if map-get($val, 'mobile') {
+          @include mobile-down {
+            font-size: rem(map-get(map-get($val, 'mobile'), 'fs'));
+            line-height: rem(map-get(map-get($val, 'mobile'), 'lh'));
+          }
+        }
       }
-      
+    }
+
   }
 }

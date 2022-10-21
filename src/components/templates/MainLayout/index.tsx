@@ -1,6 +1,7 @@
 import SlideBar, { MenuType } from '../../organisms/SlideBar';
 import { Suspense } from 'react';
 import { IconNames } from '../../atoms/Icon';
+import Loading from '~atoms/Loading';
 
 export interface MainLayoutProps {
   children: JSX.Element;
@@ -20,7 +21,7 @@ export default function MainLayout({titleIconName, slideBarTitle, children, menu
         />
       </div>
       <main className="t-mainLayout_main">
-        <Suspense fallback={<div>loading ...</div>}>
+        <Suspense fallback={<Loading size='full' />}>
           {children}
         </Suspense>
       </main>
