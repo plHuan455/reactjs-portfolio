@@ -1,5 +1,4 @@
 import { Story, Meta } from '@storybook/react';
-import React from 'react';
 
 import Lottie from '.';
 
@@ -11,9 +10,9 @@ const meta: Meta = {
 export default meta;
 
 export const normal: Story = ({src, ...args}) => {
-  return <Lottie src={src} {...args} />
+  return <Lottie src={src} />
 };
 
 normal.args = {
-  src: 'https://lottie.host/155f5c16-5452-44b5-a65c-12c0edbd7a56/blyAmy6UH2.json'
+  src: 'https://assets1.lottiefiles.com/packages/lf20_Zz37yH.json'
 }
