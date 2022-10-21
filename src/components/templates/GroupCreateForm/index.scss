@@ -23,12 +23,13 @@
     }
     
     &_buttons {
+      @include adjust-flex(flex-start, center);
       width: fit-content;
       margin: auto;
     }
 
     &_btnCancel {
-
+      
     }
 
     &_btnCreate {

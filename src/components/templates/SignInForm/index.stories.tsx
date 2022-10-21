@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { BrowserRouter } from 'react-router-dom';
 import * as yup from 'yup';
 
 import SignInForm, { SignInFields } from '.';
@@ -20,7 +21,7 @@ const schema = yup.object({
   remember: yup.boolean(),
 }).required();
 
-export const normal: Story = ({...args}) => {
+export const normal: Story = ({ ...args }) => {
   const method = useForm<SignInFields>({
     defaultValues: {
       username: '',
@@ -29,5 +30,9 @@ export const normal: Story = ({...args}) => {
     },
     resolver: yupResolver(schema)
   });
-  return <SignInForm {...args}  method={method} onSubmit={(values)=> console.log(values)}/>
+  return <div>
+    <BrowserRouter>
+      <SignInForm {...args}  method={method} onSubmit={(values)=> console.log(values)}/>
+  </BrowserRouter>
+  </div>
 };
