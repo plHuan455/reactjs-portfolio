@@ -22,8 +22,9 @@ const Lottie: React.FC<LottieProps> = ({ src, animationData }) => {
       })()
     }
   }, [src, animationData])
+  if(!lottieAnimation && !animationData) return null;
   return <div className="a-lottie">
-    {lottieAnimation || animationData && <LottieLib animationData={lottieAnimation || animationData} />}
+    <LottieLib animationData={lottieAnimation || animationData} />
   </div>
 }
 

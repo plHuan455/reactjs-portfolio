@@ -3,7 +3,7 @@ import catLoadAnimation from '~assets/lotties/catLoading.json';
 import { mapModifiers } from "../../../utils/funcs";
 
 
-interface LoadingProps {
+export interface LoadingProps {
   size?: BoxSize | 'full';
 }
 

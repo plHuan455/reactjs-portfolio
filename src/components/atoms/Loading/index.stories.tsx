@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react';
 
-import Loading from '.';
+import Loading, { LoadingProps } from '.';
 
 const meta: Meta = {
   title: 'Components/atoms/Loading',
@@ -9,9 +9,10 @@ const meta: Meta = {
 };
 export default meta;
 
-export const normal: Story = ({ ...args }) => {
-  return <Loading />
+export const normal: Story<LoadingProps> = ({ ...args }) => {
+  return <Loading {...args} />
 };
 
 normal.args = {
+  size: '36x36'
 }
