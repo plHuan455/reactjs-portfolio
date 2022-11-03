@@ -29,6 +29,18 @@
     margin-top: rem(24);
   }
 
+  &-group {
+    @include adjust-flex(flex-start, center);
+    background-color: $blue-ryb;
+    padding: rem(16);
+  }
+
+  &-pendingManager {
+    background-color: $blue-ryb;
+    padding: rem(8) rem(12);
+    color: $white;
+  }
+
   &-disabled {
     color: $white;
     background-color: $ash-grey;

@@ -65,8 +65,7 @@ $rowGaps: (
   max-width: 98%;
 
   @include break-min($standard-viewport) {
-    max-width: $standard-viewport;
-    padding-right: rem(86);
-    padding-left: rem(86);
+    max-width: rem($width-standard-viewport);
+    padding: 0 rem(8);
   }
 }

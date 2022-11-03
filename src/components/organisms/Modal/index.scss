@@ -36,8 +36,8 @@
   &_close {
     padding: 0;
     position: absolute;
-    right: rem(16);
-    top: rem(16);
+    right: rem(13);
+    top: rem(13);
     z-index: $z-1;
     @include reset-button();
   }
@@ -59,7 +59,8 @@
     }
   }
 
-  &-calendar {
+  // Modifiers
+  &-pendingList {
     height: 100%;
     max-height: unset;
     max-width: unset;
@@ -76,6 +77,36 @@
     #{$root}_wrapper {
       border-radius: rem(4);
       box-shadow: 0 3px 6px -4px $black-0012, 0 6px 16px $black-008, 0 9px 28px 8px $black-005;
+      padding: rem(40);
+
+      @include tablet-down {
+        padding: rem(40) rem(18) rem(28);
+      }
+
+      @include mobile-down {
+        padding-left: rem(12);
+        padding-right: rem(8);
+      }
+    }
+  }
+
+  &-addPending {
+    color: $black;
+    max-height: unset;
+    max-width: unset;
+    width: 100%;
+
+    #{$root}_main {
+      max-width: 90%;
+
+      @include mobile-down {
+        max-width: 98%;
+      }
+    }
+
+    #{$root}_wrapper {
+      border-radius: rem(4);
+      box-shadow: 0 rem(3) rem(6) rem(-4) $black-0012, 0 rem(6) rem(16) $black-008, 0 rem(9) rem(28) rem(8) $black-005;
       padding: rem(40);
 
       #{$root}_close {

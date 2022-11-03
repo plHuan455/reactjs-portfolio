@@ -6,7 +6,7 @@ interface BankManagerDetailContainerProps {
 
 const BankManagerDetailContainer: React.FC<BankManagerDetailContainerProps> = () => {
   return <>
-    <Section>
+    <Section modifiers={['noPt']}>
       <CalendarContainer />
     </Section>
   </>

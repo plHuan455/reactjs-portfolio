@@ -1,0 +1,77 @@
+.o-groupCard {
+  $root: &;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $white;
+  width: 100%;
+  height: 100%;
+  border-radius: rem(12);
+
+  &_header {
+    @include adjust-flex(space-between, center);
+    padding: rem(14);
+
+    &_userList {
+      @include adjust-flex(flex-start, center);
+      background-color: #fff;
+
+      #{$root}_user {
+        @include adjust-flex(center, center);
+        border: rem(2) solid $white;
+        border-radius: 50%;
+        width: rem(30);
+        height: rem(30);
+        @include font-base(12, 12);
+        font-weight: 600;
+        text-transform: uppercase;
+
+        @for $i from 2 through 3 {
+          &:nth-child(#{$i}) {
+            transform: translateX(calc(#{$i - 1} * #{rem(-8)}));
+          }
+        }
+      }
+    }
+
+    &_iconControl {
+      @include adjust-flex(flex-start, center);
+
+      #{$root}_menuIcon {
+        margin-left: rem(8);
+      }
+    }
+  }
+
+  &_avatar {
+    @include adjust-flex(center, center);
+    flex-grow: 1;
+
+    &_wrapper {
+      height: 88%;
+      aspect-ratio: 1 / 1;
+    }
+
+    &_img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      padding: 6%;
+      border: rem(2) solid $blue-ryb;
+    }
+  }
+
+  &_info {
+    padding: rem(14);
+
+    &_text {
+      @include text-overflow(1);
+    }
+
+    &_description {
+      @include text-overflow(1);
+    }
+  }
+  
+}

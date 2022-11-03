@@ -104,3 +104,34 @@ export const numberToMoney = (num: number): string => {
 export const addZero = (num: number):string => {
   return num < 10 ? `0${num}` : String(num);
 } 
+
+export const getHashOfString = (str: string) => {
+  const charArray = Array.from(str);
+  return charArray.reduce((total, _char, index) => {
+    return total += (str.charCodeAt(index) * index);
+  }, 0);
+}
+
+export const getAvatarColors = (name: string) => {
+  const hash = getHashOfString(name);
+  const h = Math.floor((hash % (360 - 100)) + 0);
+  const s = Math.floor((hash % (100 - 0)) + 0);
+  const l = Math.floor((hash % (100 - 0)) + 0);
+  return {color: `hsl(${h}, 100%, 38%)`, backgroundColor: `hsl(${h}, 93%, 80%)`};
+};
+
+export const convertHours = (hours: string) => {
+  const hoursNum = Number(hours);
+  if(isNaN(hoursNum)) return 0;
+  if(hoursNum > 23) return 23;
+  if(hoursNum < 0) return 0;
+  return hoursNum
+}
+
+export const convertMinutes = (minutes: string) => {
+  const minutesNum = Number(minutes);
+  if(isNaN(minutesNum)) return 0;
+  if(minutesNum > 59) return 59;
+  if(minutesNum < 0) return 0;
+  return minutesNum;
+}

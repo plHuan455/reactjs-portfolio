@@ -9,7 +9,7 @@ interface CustomModalProps {
   handleClose?: () => void;
   afterClose?: () => void;
   isShowCloseButton?: boolean;
-  modifiers?: 'calendar' // add more modifiers
+  modifiers?: 'pendingList' | 'addPending' // add more modifiers
   iconName?: IconNames;
   sizeIconClose?: BoxSize;
   children?: React.ReactNode;

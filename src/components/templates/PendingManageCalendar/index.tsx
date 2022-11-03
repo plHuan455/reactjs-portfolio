@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import Button from "~atoms/Button";
+import PendingCreateContainer from "~containers/PendingCreateContainer";
 import useMatchMedia from "../../../hooks/useMatchMedia";
 import { addZero, convertMoney, isADate, numberToMoney } from "../../../utils/funcs";
 import Text from "../../atoms/Text";
@@ -23,6 +25,7 @@ const PendingManageCalendar: React.FC<PendingManageCalendarProps> = ({
   ...args
 }) => {
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
+  const [isShowModalForm, setIsShowModalForm] = useState<boolean>(false);
   const { isMobile, isTablet } = useMatchMedia();
   const isDesktop = !(isMobile || isTablet);
 
@@ -87,18 +90,26 @@ const PendingManageCalendar: React.FC<PendingManageCalendarProps> = ({
     <Modal
       isOpen={isShowModal}
       handleClose={() => setIsShowModal(false)}
-      modifiers='calendar'
+      modifiers='pendingList'
     >
       <div className="t-pendingManageCalendar_modal">
         {/* {noteInSelectedDateList.map(value => <Text modifiers={['black']}>{`content: ${value.content}, money: ${value.money}`}</Text>)} */}
         <div className="t-pendingManageCalendar_modal_title">
-          <Text type="h2" modifiers={['black', '24x28', '600', 'center']}>
-            Danh sách chi tiêu 
-          </Text>
+          <div className="t-pendingManageCalendar_modal_titleText">
+            <Text type="h2" modifiers={['black', '24x28', '600', 'center']}>
+              Danh sách chi tiêu 
+            </Text>
+          </div>
+          <div className="t-pendingManageCalendar_modal_titleButton">
+            <Button modifiers={['14x16']} onClick={() => {setIsShowModalForm(true); setIsShowModal(false)}} variant='pendingManager'>+ Thêm</Button>
+          </div>
+        </div>
+        <div className="t-pendingManageCalendar_date">
           <Text type="h2" modifiers={['lightSlateGray', '20x24', '600', 'center']}>
             {`(${addZero(selectedDate.getDate())}/${addZero(selectedDate.getMonth())}/${selectedDate.getFullYear()})`}
           </Text>
         </div>
+        
 
         <table className="t-pendingManageCalendar_modal_table">
           <thead>
@@ -134,6 +145,14 @@ const PendingManageCalendar: React.FC<PendingManageCalendarProps> = ({
           </tbody>
         </table>
       </div>
+    </Modal>
+
+    <Modal
+      isOpen={isShowModalForm}
+      handleClose={() => {setIsShowModalForm(false)}}
+      modifiers='addPending'
+    >
+      <PendingCreateContainer onCancelClick={() => { setIsShowModal(true); setIsShowModalForm(false) }}/>
     </Modal>
   </div>
 }
