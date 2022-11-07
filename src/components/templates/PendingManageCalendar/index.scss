@@ -16,6 +16,13 @@
   &_modal {
     color: $black;
 
+    &_title {
+      @include adjust-flex(center, center);
+    }
+    &_titleButton {
+      margin-left: rem(12);
+    }
+
     &_table {
       margin-top: rem(20);
       width: 100%;

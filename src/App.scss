@@ -19,6 +19,8 @@
 @import "components/organisms/SlideBar";
 @import "components/organisms/Calendar";
 @import "components/organisms/Modal";
+@import "components/organisms/GroupCard";
+@import "components/organisms/CreatePendingForm";
 
 //Templates
 @import "components/templates/MainLayout";
@@ -29,6 +31,7 @@
 @import "components/templates/SignInForm";
 @import "components/templates/SignUpForm";
 @import "components/templates/HeaderControl";
+@import "components/templates/GroupManager";
 
 //Pages
 @import "pages/Home";

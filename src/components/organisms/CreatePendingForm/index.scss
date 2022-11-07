@@ -1,0 +1,31 @@
+.o-createPendingForm {
+
+  .a-input_error {
+    padding-left: rem(4);
+  }
+
+  &_button {
+    @include adjust-flex(center, center);
+
+    &_add {
+      .a-button {
+        padding-left: rem(24);
+        padding-right: rem(24);
+      }
+    }
+
+    &_cancel {
+      .a-button {
+        color: $black;
+      }
+    }
+  }
+
+  &_form {
+    margin-top: rem(16);
+  }
+
+  &_timeLabel {
+    @include font-base(14, 20);
+  }
+}

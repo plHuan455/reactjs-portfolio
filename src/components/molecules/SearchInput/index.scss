@@ -3,26 +3,24 @@
   position: relative;
 
   &_input {
+    @include font-base(16, 20);
     flex-grow: 1;
-    // outline: none;
-    // border: 0;
-    // background-color: $anti-flash-white;
-    // padding: rem(12);
-    // padding-left: rem(56);
-    // border-radius: rem(12);
-    // @include font-base(16, 24);
-    // color: $black;
-    
-    // &::placeholder {
-    //   @include font-base(16, 24);
-    // }
+    border: 0;
+    color: $independence;
+    outline: none;
+    padding: rem(16) 0 rem(16) rem(24);
+
+    &::placeholder {
+      @include font-base(16, 20);
+      color: $light-steel-blue;
+    }
+
   }
 
   &_icon {
     @include adjust-flex(center, center);
     position: absolute;
     top: 0;
-    left: rem(24);
     height: 100%;
   }
 

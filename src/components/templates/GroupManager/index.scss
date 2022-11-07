@@ -1,0 +1,85 @@
+.t-groupManager {
+  $root: &;
+  margin-top: rem(4);
+
+  &_header {
+    width: 100%;
+    background-color: $white;
+    padding: rem(12) 0;
+
+    &Wrapper {
+      @include adjust-flex(flex-start, center);
+    }
+
+    &_search {
+      margin-left: rem(48);
+      flex-grow: 1;
+      
+      @include small-mobile {
+        margin-left: rem(24);
+      }
+    }
+
+    &_addButton {
+      margin-left: rem(20);
+      
+      #{$root}_addBtnText {
+        @include small-mobile {
+          display: none;
+        }
+      }
+
+      .a-button {
+        overflow: hidden;
+      }
+
+      .a-text {
+        margin-left: rem(12);
+      }
+    }
+
+  }
+
+  &_groupTitle {
+    padding: rem(16) 0 rem(12);
+  }
+
+  &_groupList {
+    display: grid;
+    grid-template-columns: repeat(4, 4fr);
+    grid-template-rows: repeat(3, rem(96));
+    grid-auto-flow: row dense;
+    grid-auto-rows: rem(96);
+    grid-gap: rem(6);
+
+    @include small-mobile {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, rem(100));
+      grid-auto-rows: rem(100);
+    }
+
+
+    #{$root}_card {
+      grid-row: span 2;
+
+      &:nth-child(7n + 1) {
+        @include small-mobile-up {
+          grid-row: span 3;
+        }
+      }
+
+      &:nth-child(7n + 3) {
+        @include small-mobile-up {
+          grid-column: span 2;
+          grid-row: span 3;
+        }
+      }
+
+      &:nth-child(7n + 4) {
+        @include small-mobile-up {
+          grid-row: span 3;
+        }
+      }
+    }
+  }
+}

@@ -178,9 +178,13 @@ $colors-design: (
   'darkLiver': $dark-liver,
   'davysGrey': $davys-grey,
   'independence': $independence,
+  'columbiaBlue': $columbia-blue,
+  'deepKoamaru': $deep-koamaru,
+  'lightSteelBlue': $light-steel-blue,
 );
 
 $font-sizes: (
+  '12x18': (desktop:(fs: 12, lh: 18)),
   '14x16': (desktop:(fs: 14, lh: 16)),
   '14x18': (desktop:(fs: 14, lh: 18)),
   '14x20': (desktop:(fs: 14, lh: 20)),
@@ -193,6 +197,7 @@ $font-sizes: (
   '28x36': (desktop:(fs:28, lh: 36)),
   '38x56': (desktop:(fs:38, lh: 56)),
   '42x52': (desktop:(fs:42, lh: 52)),
+  '45x56': (desktop:(fs:45, lh: 56)),
 );
 
 @mixin style-color {

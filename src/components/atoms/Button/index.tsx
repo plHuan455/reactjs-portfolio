@@ -6,7 +6,7 @@ type ButtonTypes = 'noBg' | 'outline';
 
 export interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   modifiers?: (GeneralTextStyle | ButtonTypes)[];
-  variant?: 'auth'
+  variant?: 'auth' | 'group' | 'pendingManager'
 }
 
 const Button: React.FC<ButtonProps> = ({ variant, modifiers, disabled, type = "button", children, ...args }) => {
