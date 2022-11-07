@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const mobileMediaQuery = window.matchMedia('(max-width: 576px)');
-const tabletMediaQuery = window.matchMedia('(min-width: 577px and max-width: 991px)');
+const tabletMediaQuery = window.matchMedia('(min-width: 577px) and (max-width: 991px)');
 
 export default function useMatchMedia() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);

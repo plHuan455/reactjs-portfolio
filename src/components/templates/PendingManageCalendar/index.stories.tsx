@@ -1,7 +1,7 @@
 import { Story, Meta } from '@storybook/react';
 import { useState } from 'react';
 import PendingManageCalendar from '.';
-import { calendarNoteList } from '../../../assets/dataDummy/bankManagerDetailDummy';
+import { calendarNoteListDummy } from '../../../assets/dataDummy/bankManagerDetailDummy';
 
 export default {
   title: 'Components/Templates/PendingManageCalendar',
@@ -15,7 +15,7 @@ export const normal: Story = () => {
 
   return <PendingManageCalendar 
       selectedDate={selectedDate}
-      noteList={calendarNoteList}
+      noteList={calendarNoteListDummy}
       onHeaderClick={()=> setIsShowMonthSelect(preState => !preState)}
       isShowMonth={isShowMonthSelect}
       onChange={(date) => setSelectedDate(date)}

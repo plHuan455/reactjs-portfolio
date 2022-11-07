@@ -8,7 +8,7 @@
   }
 
 
-  &_main {
+  &_content {
     flex-grow: 1;
     z-index: $z-main;
     height: 100vh;
@@ -20,6 +20,22 @@
       position: absolute;
       left: rem(48);
       width: calc(100% - #{rem(48)});
+    }
+
+    &_header {
+      position: fixed;
+      z-index: $z-header;
+      left: rem($width-desktop-slidebar-compact);
+      right: 0;
+      transition: left $transition linear;
+      
+      &-fullSlideBar {
+        left: rem($width-desktop-slidebar);
+      }
+    }
+
+    &_main {
+      margin-top: rem($height-desktop-header);
     }
   }
 }

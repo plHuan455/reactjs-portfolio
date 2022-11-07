@@ -1,0 +1,22 @@
+.t-header {
+  $root: &;
+
+  background-color: $white;
+  width: 100%;
+  padding: rem(8) 0;
+  @include box-shadow;
+
+  &_wrapper {
+    @include adjust-flex(flex-start, center);
+
+    #{$root}_searchBar {
+      flex-grow: 1;
+    }
+  
+    #{$root}_group {
+      margin-left: rem(20);
+    }
+  }
+
+ 
+}

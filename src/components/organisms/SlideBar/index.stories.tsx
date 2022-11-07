@@ -1,4 +1,5 @@
 import { Story, Meta } from '@storybook/react';
+import { useState } from 'react';
 import { BiHomeAlt } from 'react-icons/bi';
 import { BsBoxSeam } from 'react-icons/bs';
 import { RiTestTubeFill } from 'react-icons/ri';
@@ -14,8 +15,10 @@ export default {
 } as Meta;
 
 export const normal: Story = () => {
+  const [isCompact, setIsCompact] = useState<boolean>(false);
   return <BrowserRouter>
     <SlideBar
+      isCompact={isCompact}
       title='Test title'
       titleIconName='logoBlueCrayola'
       menuItems={[
@@ -29,6 +32,7 @@ export const normal: Story = () => {
         { label: 'Word', menuIcon: BsBoxSeam, subItems: [{ label: 'test 1', href: renderPageUrl('VOCABULARIES') }] },
         { label: 'Test', menuIcon: RiTestTubeFill, href: renderPageUrl('TEST') },
       ]}
+      onCompact={() => setIsCompact(preState => !preState)}
     />
   </BrowserRouter>
 }
