@@ -18,16 +18,16 @@ interface SlideBarProps {
   menuItems: MenuType[];
   title?: string;
   titleIconName: IconNames;
+  isCompact: boolean;
+  onCompact?: () => void;
 }
 
-const SlideBar: React.FC<SlideBarProps> = ({ menuItems, title, titleIconName }) => {
+const SlideBar: React.FC<SlideBarProps> = ({ isCompact, onCompact, menuItems, title, titleIconName }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isMobile, isTablet } = useMatchMedia()
 
   const dropdownListRef = useRef<HTMLUListElement | null>(null);
 
-  const [isCompact, setIsCompact] = useState<boolean>(isMobile || isTablet);
   const [activeDropdownIndex, setActiveDropdownIndex] = useState<number | undefined>();
 
   
@@ -49,7 +49,7 @@ const SlideBar: React.FC<SlideBarProps> = ({ menuItems, title, titleIconName }) 
 
   return (
     <div className={mapModifiers("o-slideBar", isCompact && 'compact')}>
-      <div className="o-slideBar_title" onClick={() => setIsCompact(preState => !preState)}>
+      <div className="o-slideBar_title" onClick={() => {if(onCompact) onCompact()} }>
         <div className="o-slideBar_title_icon">
           <Icon iconName={titleIconName} modifiers={['32x32']} />
         </div>

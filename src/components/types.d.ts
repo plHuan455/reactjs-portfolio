@@ -37,6 +37,7 @@ type ColorStyle =
   | 'columbiaBlue'
   | 'deepKoamaru'
   | 'lightSteelBlue'
+  | 'sonicSilver' 
 
 type BoxSize = |'16x16' | '18x18' | '20x20' | '24x25' |'32x32' | '36x36';
 

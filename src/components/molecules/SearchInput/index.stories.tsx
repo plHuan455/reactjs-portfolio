@@ -12,6 +12,6 @@ export const normal: Story = () => {
   const [value, setValue] = useState<string>('');
   return <SearchInput
     value={value}
-    handleChange={(value) => setValue(value)}  
+    onChange={(value) => setValue(value)}  
   />
 }

@@ -148,6 +148,10 @@
   justify-content: $justify-content;
 }
 
+@mixin box-shadow {
+  box-shadow: 0 rem(3) rem(6) rem(-4) $black-12, 0 rem(6) rem(6) 0 $black-08, 0 rem(9) rem(28) rem(8) $black-05;
+}
+
 $size-icons: (
   '16x16': (w: 16, h: 16),
   '18x18': (w: 18, h: 18),
@@ -181,6 +185,7 @@ $colors-design: (
   'columbiaBlue': $columbia-blue,
   'deepKoamaru': $deep-koamaru,
   'lightSteelBlue': $light-steel-blue,
+  'sonicSilver': $sonic-silver,
 );
 
 $font-sizes: (
