@@ -7,6 +7,8 @@ import { renderPageUrl } from '../../navigation';
 import { useState } from 'react';
 import useMatchMedia from '~hooks/useMatchMedia';
 import useDebounce from '~hooks/useDebounce';
+import { searchListDummy } from '~assets/dataDummy/groupDummy';
+import { SearchItemTypes } from '~molecules/SearchInput';
 export interface MainLayoutContainerProps {
   children: JSX.Element;
 }
@@ -17,29 +19,20 @@ export default function MainLayoutContainer({ children }: MainLayoutContainerPro
   const [isSlideBarCompact, setIsSlideBarCompact] = useState<boolean>(isMobile || isTablet);
   const [isShowSearchList, setIsShowSearchList] = useState<boolean>(false);
   const debounceSearchValue = useDebounce(headerSearchValue, 1000);
+
+  const handleHeaderSearchItemClick = (value: SearchItemTypes) => {
+    setIsShowSearchList(false);
+  }
+
   return (
     <MainLayout
       titleIconName='logoBlueCrayola'
       slideBarTitle='Sales.io'
       isDesktopDown={isMobile || isTablet}
       isSlideBarCompact={isSlideBarCompact}
-      onSlideBarCompact={() => setIsSlideBarCompact(preState => !preState)}
       headerSearchValue={headerSearchValue}
       isHeaderShowSearchList={isShowSearchList}
-      onHeaderCloseSearchList={()=> setIsShowSearchList(false)}
-      onHeaderOpenSearchList={() => {setIsShowSearchList(true)}}
-      headerSearchList={[
-        {
-          title: 'test 1',
-          description: 'description 1',
-          avatarSrc: 'https://picsum.photos/300/200'
-        },
-        {
-          title: 'test 2',
-          description: 'description 2',
-          avatarSrc: 'https://picsum.photos/300/201'
-        },
-      ]}
+      headerSearchList={searchListDummy}
       menuItems={[
         { 
           label: 'Trang chủ', href: renderPageUrl('HOME'), menuIcon: BiHomeAlt 
@@ -61,6 +54,11 @@ export default function MainLayoutContainer({ children }: MainLayoutContainerPro
       ]}
       headerSearchPlaceholder='Tìm và chọn để thay đổi nhóm'
       onHeaderSearchChange={(value) => setHeaderSearchValue(value)}
+      onSlideBarCompact={(isCompact) => setIsSlideBarCompact(isCompact)}
+      onSlideBarClickOutside={() => {if(isMobile || isTablet) {setIsSlideBarCompact(true)}} }
+      onHeaderCloseSearchList={()=> setIsShowSearchList(false)}
+      onHeaderOpenSearchList={() => {setIsShowSearchList(true)}}
+      onHeaderSearchItemClick={handleHeaderSearchItemClick}
     >
       {children}
     </MainLayout>

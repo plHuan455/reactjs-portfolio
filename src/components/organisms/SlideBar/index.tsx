@@ -19,10 +19,12 @@ interface SlideBarProps {
   title?: string;
   titleIconName: IconNames;
   isCompact: boolean;
-  onCompact?: () => void;
+  onCompact?: (isCompact: boolean) => void;
+  onClickOutside?: () => void;
 }
 
-const SlideBar: React.FC<SlideBarProps> = ({ isCompact, onCompact, menuItems, title, titleIconName }) => {
+const SlideBar: React.FC<SlideBarProps> = ({ isCompact, onCompact, onClickOutside, menuItems, title, titleIconName }) => {
+  const slideBarRef = useRef<HTMLDivElement | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -30,6 +32,7 @@ const SlideBar: React.FC<SlideBarProps> = ({ isCompact, onCompact, menuItems, ti
 
   const [activeDropdownIndex, setActiveDropdownIndex] = useState<number | undefined>();
 
+  useClickOutside(slideBarRef, () => {if(onClickOutside) onClickOutside()})
   
   useClickOutside(dropdownListRef, () => {
     if(isCompact) {
@@ -48,8 +51,8 @@ const SlideBar: React.FC<SlideBarProps> = ({ isCompact, onCompact, menuItems, ti
   }
 
   return (
-    <div className={mapModifiers("o-slideBar", isCompact && 'compact')}>
-      <div className="o-slideBar_title" onClick={() => {if(onCompact) onCompact()} }>
+    <div className={mapModifiers("o-slideBar", isCompact && 'compact')} ref={slideBarRef}>
+      <div className="o-slideBar_title" onClick={() => {if(onCompact) onCompact(!isCompact)} }>
         <div className="o-slideBar_title_icon">
           <Icon iconName={titleIconName} modifiers={['32x32']} />
         </div>

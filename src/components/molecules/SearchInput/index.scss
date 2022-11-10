@@ -42,10 +42,22 @@
       border-top: rem(1) solid $isabelline;
       border-bottom: rem(1) solid $isabelline;
     }
+
+    &_items {
+      max-height: rem(312);
+      overflow: auto;
+      @include scroll-bars(4, $border-thumb: 0);
+
+    }
     
     &_item {
       @include adjust-flex(flex-start, center);
       padding: rem(16);
+      cursor: pointer;
+
+      &:hover {
+        background-color: $alice-blue;
+      }
 
       #{$root}_searchAvatar {
         width: rem(42);

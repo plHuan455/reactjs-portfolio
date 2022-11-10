@@ -105,7 +105,7 @@ const Calendar: React.FC<CalendarProps> = ({
     </div>
 
     {isShowMonth ? Array(12).fill(1).map((_, idx) =>
-      <div className="o-calendar_item o-calendar_item-month" onClick={() => { handleMonthClick(idx + 1) }}>
+      <div className="o-calendar_item o-calendar_item-month" onClick={() => { handleMonthClick(idx + 1) }} key={`calendar-month-${idx}`}>
         <div className="o-calendar_itemWrapper">
           <Text modifiers={['16x24', 'charcoal', '700']}>
             {`Tháng ${idx + 1}`}

@@ -13,14 +13,16 @@ export interface MainLayoutProps {
   menuItems: MenuType[];
   titleIconName: IconNames;
   isSlideBarCompact: boolean;
-  onSlideBarCompact?: () => void;
   headerSearchValue: string;
   headerSearchPlaceholder?: string;
   headerSearchList?: SearchItemTypes[];
   isHeaderShowSearchList?: boolean;
+  onSlideBarCompact?: (isCompact: boolean) => void;
+  onSlideBarClickOutside?: () => void;
   onHeaderCloseSearchList?: () => void;
   onHeaderOpenSearchList?: () => void;
   onHeaderSearchChange?: (value: string) => void;
+  onHeaderSearchItemClick?: (value: SearchItemTypes) => void;
 }
 
 export default function MainLayout({
@@ -35,9 +37,11 @@ export default function MainLayout({
   children, 
   menuItems, 
   onSlideBarCompact,
+  onSlideBarClickOutside,
   onHeaderCloseSearchList,
   onHeaderOpenSearchList,
-  onHeaderSearchChange 
+  onHeaderSearchChange,
+  onHeaderSearchItemClick,
 }: MainLayoutProps) {
   return (
     <div className="t-mainLayout">
@@ -47,6 +51,7 @@ export default function MainLayout({
           titleIconName={titleIconName}
           menuItems={menuItems}
           isCompact={isSlideBarCompact}
+          onClickOutside={onSlideBarClickOutside}
           onCompact={onSlideBarCompact}
         />
       </div>
@@ -60,6 +65,7 @@ export default function MainLayout({
             searchList={headerSearchList}
             onSearchChange={onHeaderSearchChange}
             onOpenSearchList={onHeaderOpenSearchList}
+            onSearchItemClick={onHeaderSearchItemClick}
           />
         </div>
         <main className="t-mainLayout_content_main">

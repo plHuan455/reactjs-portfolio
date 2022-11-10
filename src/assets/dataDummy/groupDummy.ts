@@ -1,3 +1,4 @@
+import { SearchItemTypes } from "~molecules/SearchInput";
 import { GroupTypes } from "~templates/GroupManager";
 
 export const groupListDummy: GroupTypes[] = [
@@ -84,5 +85,38 @@ export const groupListDummy: GroupTypes[] = [
     name: 'test 14',
     description: 'test',
     memberList: [{username: 'plhuan'}],
+  },
+]
+
+export const searchListDummy: SearchItemTypes[] = [
+  {
+    title: 'test 1',
+    description: 'description 1',
+    avatarSrc: 'https://picsum.photos/300/200'
+  },
+  {
+    title: 'test 2',
+    description: 'description 2',
+    avatarSrc: 'https://picsum.photos/300/201'
+  },
+  {
+    title: 'test 2',
+    description: 'description 2',
+    avatarSrc: 'https://picsum.photos/300/201'
+  },
+  {
+    title: 'test 2',
+    description: 'description 2',
+    avatarSrc: 'https://picsum.photos/300/201'
+  },
+  {
+    title: 'test 2',
+    description: 'description 2',
+    avatarSrc: 'https://picsum.photos/300/201'
+  },
+  {
+    title: 'test 2',
+    description: 'description 2',
+    avatarSrc: 'https://picsum.photos/300/201'
   },
 ]

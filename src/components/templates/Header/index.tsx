@@ -10,6 +10,7 @@ export interface HeaderProps {
   onCloseSearchList?: () => void;
   onOpenSearchList?: () => void;
   onSearchChange?: (value: string) => void;
+  onSearchItemClick?: (value: SearchItemTypes) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ 
@@ -19,7 +20,8 @@ const Header: React.FC<HeaderProps> = ({
   searchPlaceholder, 
   onCloseSearchList, 
   onOpenSearchList, 
-  onSearchChange 
+  onSearchChange,
+  onSearchItemClick,
 }) => {
   return <div className="t-header">
     <Container>
@@ -33,6 +35,7 @@ const Header: React.FC<HeaderProps> = ({
             onOpenSearchList={onOpenSearchList}
             modifiers='hasBorder'
             placeholder={searchPlaceholder}
+            onSearchItemClick={onSearchItemClick}
           />
         </div>
         <div className="t-header_group">

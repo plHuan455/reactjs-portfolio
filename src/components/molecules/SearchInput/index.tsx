@@ -8,6 +8,7 @@ import useClickOutside from '~hooks/useClickOutside';
 import { useRef } from 'react';
 
 export interface SearchItemTypes {
+  id?: string;
   avatarSrc?: string;
   title: string;
   description?: string;
@@ -21,6 +22,7 @@ export interface SearchInputProps extends Omit<React.DetailedHTMLProps<React.Inp
   onChange?: (value: string) => void
   onOpenSearchList?: () => void;
   onCloseSearchList?: () => void;
+  onSearchItemClick?: (value: SearchItemTypes) => void;
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({ 
@@ -31,6 +33,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   onChange, 
   onOpenSearchList,
   onCloseSearchList,
+  onSearchItemClick,
   ...args
 }: SearchInputProps) => {
   const searchRef = useRef<HTMLDivElement>(null);
@@ -61,22 +64,23 @@ const SearchInput: React.FC<SearchInputProps> = ({
         <div className="m-searchInput_searchList_message">
           <Text modifiers={['14x16', 'sonicSilver']}>Tìm thấy {searchList.length} kết quả</Text>
         </div>
-        
-        {searchList?.map((searchItem, idx) => 
-          <div className="m-searchInput_searchList_item" key={`search-item-${idx}`}>
-            <div className="m-searchInput_searchAvatar">
-              <img className="m-searchInput_searchAvatar_img" src={searchItem.avatarSrc ?? ''} />
-            </div>
-            <div className="m-searchInput_searchContent">
-              <div className="m-searchInput_searchContent_title">
-                <Text modifiers={['14x16', '500', 'capitalize', 'black']}>{searchItem.title}</Text>
+        <div className="m-searchInput_searchList_items">
+          {searchList?.map((searchItem, idx) => 
+            <div className="m-searchInput_searchList_item" key={`search-item-${idx}`} onClick={() => {if(onSearchItemClick) onSearchItemClick(searchItem)}}>
+              <div className="m-searchInput_searchAvatar">
+                <img className="m-searchInput_searchAvatar_img" src={searchItem.avatarSrc ?? ''} />
               </div>
-              <div className="m-searchInput_searchContent_description">
-                <Text modifiers={['14x16', 'sonicSilver']}>{searchItem.description}</Text>
+              <div className="m-searchInput_searchContent">
+                <div className="m-searchInput_searchContent_title">
+                  <Text modifiers={['14x16', '500', 'capitalize', 'black']}>{searchItem.title}</Text>
+                </div>
+                <div className="m-searchInput_searchContent_description">
+                  <Text modifiers={['14x16', 'sonicSilver']}>{searchItem.description}</Text>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>}
     </div>
     
