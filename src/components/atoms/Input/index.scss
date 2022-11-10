@@ -120,6 +120,50 @@
     }
   }
 
+  // Number
+  &-number {
+    padding: 0;
+
+    #{$root}_input {
+      @include font-base(14, 18);
+      border: rem(1) solid $platinum;
+      border-radius: rem(8);
+      outline: none;
+      padding: rem(12) rem(8);
+      width: 100%;
+    }
+
+    #{$root}_rows {
+      position: absolute;
+      right: rem(8);
+      top: 0;
+      height: 100%;
+      @include adjust-flex(center, center);
+      flex-direction: column;
+
+      #{$root}_rowUp, #{$root}_rowDown {
+        cursor: pointer;
+      }
+    }
+
+  }
+  &-labelInside {
+    position: relative;
+    #{$root}_input {
+      margin-top: 0;
+      padding-right: rem(56);
+    }
+
+    #{$root}_label {
+      @include adjust-flex(center, center);
+      @include font-base(14, 18);
+      position: absolute;
+      top: calc(50% - #{rem(10)});
+      
+      left: rem(28);
+    }
+  }
+
   &_input:checked ~ #{$root}_checkmark::after{
     display: block;
   }

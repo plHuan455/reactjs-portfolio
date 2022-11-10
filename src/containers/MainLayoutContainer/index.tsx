@@ -1,7 +1,5 @@
 import MainLayout from '../../components/templates/MainLayout';
 import { BiHomeAlt, BiUser } from 'react-icons/bi';
-import { TbBrandGoogleAnalytics } from 'react-icons/tb';
-import { BsBoxSeam } from 'react-icons/bs';
 import { RiTestTubeFill } from 'react-icons/ri';
 import { renderPageUrl } from '../../navigation'; 
 import { useState } from 'react';
@@ -9,6 +7,9 @@ import useMatchMedia from '~hooks/useMatchMedia';
 import useDebounce from '~hooks/useDebounce';
 import { searchListDummy } from '~assets/dataDummy/groupDummy';
 import { SearchItemTypes } from '~molecules/SearchInput';
+import { MdOutlineGroup } from 'react-icons/md';
+import { BsCalendar3 } from 'react-icons/bs';
+
 export interface MainLayoutContainerProps {
   children: JSX.Element;
 }
@@ -38,10 +39,10 @@ export default function MainLayoutContainer({ children }: MainLayoutContainerPro
           label: 'Trang chủ', href: renderPageUrl('HOME'), menuIcon: BiHomeAlt 
         },
         {
-          label: 'Quản lý chi tiêu', href: renderPageUrl('BANK_MANAGER_DETAIL'), menuIcon: TbBrandGoogleAnalytics
+          label: 'Quản lý chi tiêu', href: renderPageUrl('BANK_MANAGER_DETAIL'), menuIcon: BsCalendar3
         },
         {
-          label: 'Nhóm', menuIcon: BsBoxSeam, subItems: [
+          label: 'Nhóm', menuIcon: MdOutlineGroup, subItems: [
             { label: 'Quản lý nhóm', href: renderPageUrl('GROUP_MANAGER') },
             { label: 'Tạo nhóm', href: renderPageUrl('GROUP_CREATE') }]
         },

@@ -1,17 +1,20 @@
 import './App.scss'
-import { Provider } from 'react-redux'
-import { store } from './store'
 import { routes } from './routes'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import useHistory from '~hooks/useHistory';
+import PrivateRouteContainer from '~containers/PrivateRouteContainer';
 function App() {
+  useHistory();
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          {routes.map((route, idx) => <Route key={`route-${idx}`} path={route.path} element={route.element} />)}
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+    <Routes>
+      {routes.map((route, idx) => (
+        <Route
+          key={`route-${idx}`}
+          path={route.path}
+          element={route.isPrivate ? <PrivateRouteContainer>{route.element}</PrivateRouteContainer>: route.element} 
+        />
+      ))}
+    </Routes>
   )
 }
 

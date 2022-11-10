@@ -47,6 +47,7 @@
   &_avatar {
     @include adjust-flex(center, center);
     flex-grow: 1;
+    cursor: pointer;
 
     &_wrapper {
       height: 88%;

@@ -14,11 +14,14 @@ export interface SearchItemTypes {
   description?: string;
 }
 
+type SearchModifiers = 'hasBorder';
+
 export interface SearchInputProps extends Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'onChange'> {
   value: string;
   searchList?: SearchItemTypes[];
   isShowSearchList?: boolean;
-  modifiers?: 'hasBorder';
+  isNoIcon?: boolean;
+  modifiers?: SearchModifiers | SearchModifiers[];
   onChange?: (value: string) => void
   onOpenSearchList?: () => void;
   onCloseSearchList?: () => void;
@@ -29,6 +32,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   value, 
   isShowSearchList,
   modifiers,
+  isNoIcon,
   searchList = [],
   onChange, 
   onOpenSearchList,
@@ -46,11 +50,11 @@ const SearchInput: React.FC<SearchInputProps> = ({
     // if(onOpenSearchList) onOpenSearchList();
   }
   return (
-    <div className={mapModifiers('m-searchInput', modifiers, isShowSearchList && 'showedSearchList')} ref={searchRef}>
+    <div className={mapModifiers('m-searchInput', modifiers, isShowSearchList && 'showedSearchList', isNoIcon && 'noIcon')} ref={searchRef}>
       <input 
         {...args} 
         value={value}
-        className="m-searchInput_input" 
+        className="m-searchInput_input"
         type='text' 
         onChange={handleInputChange}
         onFocus={()=> {if(onOpenSearchList) onOpenSearchList()}}
@@ -85,6 +89,9 @@ const SearchInput: React.FC<SearchInputProps> = ({
     </div>
     
   );
+}
+
+SearchInput.defaultProps = {
 }
 
 export default SearchInput;

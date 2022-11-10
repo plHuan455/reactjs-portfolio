@@ -99,4 +99,15 @@
       }
     }
   }
+
+  &-noIcon {
+    #{$root}_icon {
+      display: none;
+    }
+
+    #{$root}_input {
+      padding-left: rem(16);
+      padding-right: rem(16);
+    }
+  }
 }

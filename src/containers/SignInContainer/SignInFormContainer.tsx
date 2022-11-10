@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 import SignInForm, { SignInFields } from "~templates/SignInForm";
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useAppDispatch } from "../../store";
+import { signInAsync } from "../../store/system";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 interface FormContainerProps {}
 
@@ -12,6 +15,8 @@ const schema = yup.object({
 }).required();
 
 const FormContainer: React.FC<FormContainerProps> = () => {
+  const dispatch = useAppDispatch();
+
   const method = useForm<SignInFields>({
     mode: 'onBlur',
     defaultValues: {
@@ -22,8 +27,13 @@ const FormContainer: React.FC<FormContainerProps> = () => {
     resolver: yupResolver(schema)
   });
 
-  const handleSubmit = (values: SignInFields) => {
-    console.log(values);
+  const handleSubmit = async(values: SignInFields) => {
+    try {
+      const actionResult = await dispatch(signInAsync({username: values.username, password: values.password}))
+      const currUser = unwrapResult(actionResult);
+      console.log(currUser);
+    }catch(err){
+    }
   }
 
   return <SignInForm method={method} onSubmit={handleSubmit}/>

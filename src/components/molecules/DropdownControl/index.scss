@@ -1,0 +1,31 @@
+.m-dropdownControl {
+  $root: &;
+  position: relative;
+
+  &_show {
+    cursor: pointer;
+  }
+
+  &-disabled {
+    #{$root}_show {
+      cursor: default;
+    }
+  }
+
+  &_dropdownList {
+    position: absolute;
+    padding: rem(12);
+    border-radius: rem(8);
+    width: rem(192);
+    background-color: $white;
+    right: 0;
+    top: calc(100% + #{rem(8)});
+    @include box-shadow;
+    z-index: $z-member-control;
+
+    &_item {
+      cursor: pointer;
+      padding: rem(8);
+    }
+  }
+}

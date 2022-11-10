@@ -4,7 +4,7 @@ import GroupCreateFormContainer from "./GroupCreateFormContainer";
 export interface GroupCreateContainerProps {}
 
 const GroupCreateContainer: React.FC<GroupCreateContainerProps> = () => {
-  return <Section modifiers={['noPt']}>
+  return <Section>
     <GroupCreateFormContainer />
   </Section>;
 }

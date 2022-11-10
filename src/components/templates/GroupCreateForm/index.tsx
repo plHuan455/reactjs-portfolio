@@ -31,7 +31,7 @@ const GroupCreateForm: React.FC<GroupCreateFormProps> = ({
         <div className="t-groupCreateForm_text">
           <Text type="h1" modifiers={['16x24', 'darkLiver', '600']}>Tạo nhóm</Text>
         </div>
-        <div className="t-groupCreateForm_header_iconClose">
+        <div className="t-groupCreateForm_header_iconClose" onClick={onCancel}>
           <Icon modifiers={['16x16', 'darkLiver']}>{IoMdClose}</Icon>
         </div>
       </div>

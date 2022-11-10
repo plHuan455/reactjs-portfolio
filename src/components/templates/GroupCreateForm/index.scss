@@ -8,6 +8,10 @@
     @include adjust-flex(space-between, center);
     padding: rem(12) 0;
     border-bottom: rem(2) solid $white-smoke;
+
+    &_iconClose {
+      cursor: pointer;
+    }
   }
 
   &_form {
