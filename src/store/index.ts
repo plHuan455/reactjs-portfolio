@@ -1,9 +1,11 @@
  import {Action, ThunkAction, configureStore} from "@reduxjs/toolkit";
  import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
  import exampleReducer from "./example";
+ import systemReducer from "./system";
 
  const rootReducer = {
-  example: exampleReducer
+  example: exampleReducer,
+	system: systemReducer,
  }
 
  export const store = configureStore({

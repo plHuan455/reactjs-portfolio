@@ -9,6 +9,7 @@ import GroupCard, { GroupMember } from '~organisms/GroupCard';
 import { mapModifiers } from '../../../utils/funcs';
 
 export interface GroupTypes {
+  slug: string;
   name: string;
   description: string;
   memberList: GroupMember[];
@@ -20,9 +21,10 @@ export interface GroupManagerProps {
   searchValue: string;
   onAddGroupClick?: () => void;
   onChangeSearchValue?: (value: string) => void;
+  onGroupCardClick?: (slug: string) => void;
 }
 
-const GroupManager: React.FC<GroupManagerProps> = ({ groupList, searchValue, onChangeSearchValue, onAddGroupClick }) => {
+const GroupManager: React.FC<GroupManagerProps> = ({ groupList, searchValue, onChangeSearchValue, onAddGroupClick, onGroupCardClick }) => {
   return <div className="t-groupManager">
     <div className="t-groupManager_header">
       <Container>
@@ -60,7 +62,7 @@ const GroupManager: React.FC<GroupManagerProps> = ({ groupList, searchValue, onC
             }
             key={`group-list-${index}`}
           >
-            <GroupCard {...value} />
+            <GroupCard {...value} onAvatarClick={onGroupCardClick} />
           </div>
         ))}
       </div>

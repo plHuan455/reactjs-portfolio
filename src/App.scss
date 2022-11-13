@@ -13,6 +13,7 @@
 //Molecules
 @import "components/molecules/Pulldown";
 @import "components/molecules/SearchInput";
+@import "components/molecules/DropdownControl";
 
 //Organisms
 @import "components/organisms/Container/";
@@ -33,6 +34,7 @@
 @import "components/templates/HeaderControl";
 @import "components/templates/GroupManager";
 @import "components/templates/Header";
+@import "components/templates/MemberManager";
 
 //Pages
 @import "pages/Home";

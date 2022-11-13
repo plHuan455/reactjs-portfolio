@@ -153,6 +153,7 @@
 }
 
 $size-icons: (
+  '12x12': (w: 12, h: 12),
   '16x16': (w: 16, h: 16),
   '18x18': (w: 18, h: 18),
   '20x20': (w: 20, h: 20),
@@ -186,6 +187,9 @@ $colors-design: (
   'deepKoamaru': $deep-koamaru,
   'lightSteelBlue': $light-steel-blue,
   'sonicSilver': $sonic-silver,
+  'grayX11': $gray-x11,
+  'outerSpace': $outer-space,
+  'darkGrayX11': $dark-gray-x11,
 );
 
 $font-sizes: (

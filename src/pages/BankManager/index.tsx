@@ -1,5 +1,4 @@
 import BankManagerContainer from '../../containers/BankMangerContainer';
-import MainLayoutContainer from '../../containers/MainLayoutContainer';
 
 export interface BankManagerProps {
 }

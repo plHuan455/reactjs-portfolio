@@ -4,8 +4,10 @@ import axios, { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
 
 // import { LOCAL_STORAGE } from 'utils/constants';
 
+// const url = process.env.NODE_ENV === 'development' ? process.env.SERVER_URL_DEV : process.env.SERVER_URL_PRODUCT;
+
 const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL,
+  baseURL: 'http://localhost:8080/api',
 });
 
 axiosInstance.interceptors.request.use(
@@ -29,7 +31,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse): AxiosResponse => response,
   async (error: AxiosError): Promise<AxiosError> => Promise.reject(
-    error.response?.data ? (error.response?.data as any)?.errors : error,
+    error
   ),
 );
 export default axiosInstance;

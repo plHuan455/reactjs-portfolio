@@ -5,7 +5,7 @@ interface GroupManagerContainerProps {}
 
 const GroupManagerContainer: React.FC<GroupManagerContainerProps> = () => {
   return <>
-    <Section modifiers={['noPb', 'noPt']}>
+    <Section>
       <ManagerContainer />
     </Section>
   </>;

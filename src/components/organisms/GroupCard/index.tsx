@@ -1,9 +1,11 @@
 import React from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { MdOutlineChatBubbleOutline } from 'react-icons/md';
+import { Navigate, useNavigate } from 'react-router-dom';
 import Icon from '~atoms/Icon';
 import Image from '~atoms/Image';
 import Text from '~atoms/Text';
+import { renderPageUrl } from '../../../navigation';
 import { getAvatarColors } from '../../../utils/funcs';
 
 export interface GroupMember {
@@ -12,12 +14,16 @@ export interface GroupMember {
 
 export interface GroupCardProps {
   avatarSrc: string;
+  slug: string;
   name: string;
   description: string;
   memberList: GroupMember[];
+  onAvatarClick?: (slug: string) => void;
 }
 
-const GroupCard: React.FC<GroupCardProps> = ({name, description, memberList = [], avatarSrc}) => {
+const GroupCard: React.FC<GroupCardProps> = ({slug, name, description, memberList = [], avatarSrc, onAvatarClick}) => {
+  const navigate = useNavigate();
+
   return <div className="o-groupCard">
     <div className="o-groupCard_header">
       <div className="o-groupCard_header_userList">
@@ -39,7 +45,7 @@ const GroupCard: React.FC<GroupCardProps> = ({name, description, memberList = []
       </div>
     </div>
 
-    <div className="o-groupCard_avatar">
+    <div className="o-groupCard_avatar" onClick={() => {if(onAvatarClick) onAvatarClick(slug)}}>
       <div className="o-groupCard_avatar_wrapper">
         <img className="o-groupCard_avatar_img" src={avatarSrc} />
       </div>
