@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
+import { getToken } from '../../utils/localStorage';
 
 // import { getAccessToken } from './storage';
 
@@ -12,17 +13,17 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   ($config: AxiosRequestConfig): AxiosRequestConfig => {
-    // if ($config.headers) {
-    //   const token = getAccessToken();
-    //   if (token) {
-    //     $config.headers.Authorization = `Bearer ${token}`;
-    //   }
-    //   if ($config.method === 'get') {
-    //     $config.params = { ...$config.params, locale: window.localStorage.getItem(LOCAL_STORAGE.LANGUAGE) || 'vi' };
-    //   }
-    //   $config.headers['Content-Type'] = 'application/json';
-    //   $config.headers.Accept = 'application/json';
-    // }
+    if ($config.headers) {
+      const token = getToken();
+      if (token) {
+        $config.headers.Authorization = `Bearer ${token}`;
+      }
+      // if ($config.method === 'get') {
+      //   $config.params = { ...$config.params, locale: window.localStorage.getItem(LOCAL_STORAGE.LANGUAGE) || 'vi' };
+      // }
+      $config.headers['Content-Type'] = 'application/json';
+      $config.headers.Accept = 'application/json';
+    }
     return $config;
   },
   async (error: AxiosError): Promise<AxiosError> => Promise.reject(error),

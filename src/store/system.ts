@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SignInService } from '~services/auth';
+import { signInService } from '~services/auth';
 import { SignInPayloadTypes } from '~services/auth/type';
 import { RootState } from '.';
-import { storeToken } from '../utils/localStorage';
+import { getToken, removeToken, storeToken } from '../utils/localStorage';
 
 interface UserTypes {
   username: string;
@@ -17,11 +17,10 @@ interface SystemState {
 
 const initialState: SystemState = {
   history: [],
+  token: getToken() ?? undefined,
 };
 
-
-export const signInAsync = createAsyncThunk('systemReducer/system', SignInService);
-
+export const signInAsync = createAsyncThunk('systemReducer/signIn', signInService);
 
 export const systemSlice = createSlice({
   name: 'system',
@@ -41,6 +40,17 @@ export const systemSlice = createSlice({
       }
       $state.history.pop();
       return $state;
+    },
+
+    addUser($state, action: PayloadAction<{username: string, email: string, fullName: string}>) {
+      $state.user = action.payload;
+      return $state;
+    },
+
+    signOut($state) {
+      $state.user = undefined;
+      $state.token = undefined;
+      removeToken();
     }
   },
 
@@ -48,6 +58,7 @@ export const systemSlice = createSlice({
     builder.addCase(signInAsync.fulfilled, ($state, action: PayloadAction<SignInPayloadTypes>) => {
       $state.user = action.payload;
       $state.token = action.payload.token;
+      console.log(action.payload);
       storeToken(action.payload.token)
       return $state;
     });
@@ -55,9 +66,10 @@ export const systemSlice = createSlice({
 }
 );
 
-export const { addHistory, popHistory } = systemSlice.actions;
+export const { addHistory, popHistory, addUser, signOut } = systemSlice.actions;
 
 export const getSystemUser = (state: RootState) => state.system.user;
 export const getSystemHistory = (state: RootState) => state.system.history;
+export const getSystemToken = (state: RootState) => state.system.token;
 
 export default systemSlice.reducer;

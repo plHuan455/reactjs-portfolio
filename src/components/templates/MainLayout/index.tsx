@@ -69,7 +69,7 @@ export default function MainLayout({
           />
         </div>
         <main className="t-mainLayout_content_main">
-          <Suspense fallback={<Loading size='full' />}>
+          <Suspense fallback={<Loading size='page' />}>
             {children}
           </Suspense>
         </main>

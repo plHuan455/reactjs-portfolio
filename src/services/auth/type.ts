@@ -9,3 +9,9 @@ export interface SignInPayloadTypes {
   fullName: string;
   email: string;
 }
+
+export interface UserInfoPayloadTypes {
+  username: string;
+  fullName: string;
+  email: string;
+}
