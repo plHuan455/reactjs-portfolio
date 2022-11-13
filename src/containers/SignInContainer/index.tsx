@@ -3,7 +3,6 @@ import Icon from "~atoms/Icon";
 import Text from "~atoms/Text";
 import Section from "~templates/Section";
 import SignInFormContainer from "./SignInFormContainer";
-import SignInHeaderControlContainer from "./SignInHeaderControlContainer";
 
 interface SignInContainerProps {}
 

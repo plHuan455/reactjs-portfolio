@@ -9,7 +9,7 @@ const useNavigateBack = () => {
 
   const navigateBack = () => {
     if(history.length < 2) {
-      navigate('/');
+      navigate(renderPageUrl('HOME'));
       return;
     }
     navigate(history[0]);

@@ -35,6 +35,13 @@ export const systemSlice = createSlice({
       $state.history.push(action.payload);
       return $state;
     },
+    popHistory($state) {
+      if($state.history.length == 0) {
+        return $state;
+      }
+      $state.history.pop();
+      return $state;
+    }
   },
 
   extraReducers(builder) {
@@ -48,7 +55,7 @@ export const systemSlice = createSlice({
 }
 );
 
-export const { addHistory } = systemSlice.actions;
+export const { addHistory, popHistory } = systemSlice.actions;
 
 export const getSystemUser = (state: RootState) => state.system.user;
 export const getSystemHistory = (state: RootState) => state.system.history;

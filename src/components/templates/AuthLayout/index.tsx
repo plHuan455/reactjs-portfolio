@@ -3,14 +3,15 @@ import Loading from '~atoms/Loading';
 import HeaderControl from '~templates/HeaderControl';
 
 interface AuthLayoutProps {
-  onHeaderControlClick: () => void;
+  backBtnTitle: string;
   children?: React.ReactNode;
+  onHeaderControlClick: () => void;
 }
 
-const AuthLayout: React.FC<AuthLayoutProps> = ({ children, onHeaderControlClick }) => {
+const AuthLayout: React.FC<AuthLayoutProps> = ({ backBtnTitle, children, onHeaderControlClick }) => {
   return <div className="t-authLayout">
     <div className="t-authLayout_headerControl">
-      <HeaderControl onClick={onHeaderControlClick} />
+      <HeaderControl backBtnTitle={backBtnTitle} onClick={onHeaderControlClick} />
     </div>
     <main className="t-authLayout_main">
       <Suspense fallback={<Loading size="full"/>}>
