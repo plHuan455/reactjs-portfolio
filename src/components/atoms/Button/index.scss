@@ -1,5 +1,6 @@
 .a-button {
   $root: &;
+  @include adjust-flex(center, center);
   @include reset-button;
   @include font-base(16, 24);
   padding: rem(12) rem(16);
@@ -14,6 +15,10 @@
   @include style-font-weight();
   @include style-general();
   @include style-font-family();
+  
+  &_loading {
+    margin-left: rem(4);
+  }
 
   &-noBg {
     background-color: transparent;

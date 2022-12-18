@@ -3,8 +3,10 @@ import SignInForm, { SignInFields } from "~templates/SignInForm";
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAppDispatch } from "../../store";
-import { signInAsync } from "../../store/system";
-import { unwrapResult } from "@reduxjs/toolkit";
+import { signIn } from "../../store/system";
+import { toast } from 'react-toastify';
+import { useMutation } from "@tanstack/react-query";
+import { signInService } from "~services/auth";
 
 interface FormContainerProps {}
 
@@ -16,6 +18,17 @@ const schema = yup.object({
 
 const FormContainer: React.FC<FormContainerProps> = () => {
   const dispatch = useAppDispatch();
+  const {mutate: signInMutate, isLoading: isSubmitting} = useMutation({
+    mutationKey: ['sign-in'],
+    mutationFn: signInService,
+    onSuccess: (data) => {
+      toast.success('Đăng nhập thành công!');
+      dispatch(signIn(data));
+    },
+    onError: () => {
+      toast.error('Tài khoản hoặc mật khẩu không chính xác');
+    }
+  })
 
   const method = useForm<SignInFields>({
     mode: 'onBlur',
@@ -28,15 +41,11 @@ const FormContainer: React.FC<FormContainerProps> = () => {
   });
 
   const handleSubmit = async(values: SignInFields) => {
-    try {
-      const actionResult = await dispatch(signInAsync({username: values.username, password: values.password}))
-      const currUser = unwrapResult(actionResult);
-      console.log(currUser);
-    }catch(err){
-    }
+    // console.log(values);
+    signInMutate(values);
   }
 
-  return <SignInForm method={method} onSubmit={handleSubmit}/>
+  return <SignInForm method={method} onSubmit={handleSubmit} isSubmitting={isSubmitting}/>
 }
 
 export default FormContainer;

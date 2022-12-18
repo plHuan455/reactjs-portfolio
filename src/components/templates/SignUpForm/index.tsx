@@ -11,7 +11,7 @@ export interface SignUpFields {
   username: string;
   password: string;
   email: string;
-  fullname: string;
+  fullName: string;
   repeatPassword: string;
 }
 
@@ -34,7 +34,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ method, onSubmit }) => {
         <form className='t-signUpForm_form' onSubmit={method.handleSubmit(onSubmit)}>
           <div className="t-signUpForm_form_field">
             <Controller
-              name="fullname"
+              name="fullName"
               render={({ field: { onChange, onBlur, value }, fieldState }) =>
                 <Input
                   variant='auth'
@@ -63,6 +63,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ method, onSubmit }) => {
                   onChange={onChange}
                   onBlur={onBlur}
                   placeholder="Email"
+                  type='email'
                   id="sign-up-email"
                 />
               }

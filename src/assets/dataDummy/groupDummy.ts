@@ -11,6 +11,7 @@ export const groupMemberDummy: MemberTypes[] = [
 
 export const groupListDummy: GroupTypes[] = [
   {
+    id: '1',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 1',
     slug: 'test-1',
@@ -18,6 +19,7 @@ export const groupListDummy: GroupTypes[] = [
     memberList: [{username: 'plhuan'}, {username: 'ttdthuong'}],
   },
   {
+    id: '2',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 2',
     slug: 'test-2',
@@ -25,6 +27,7 @@ export const groupListDummy: GroupTypes[] = [
     memberList: [{username: 'plhuan'}, {username: 'ttdthuong'}],
   },
   {
+    id: '3',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 3',
     slug: 'test-3',
@@ -32,6 +35,7 @@ export const groupListDummy: GroupTypes[] = [
     memberList: [{username: 'plhuan'}, {username: 'ttdthuong'}],
   },
   {
+    id: '4',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 4',
     slug: 'test-4',
@@ -39,6 +43,7 @@ export const groupListDummy: GroupTypes[] = [
     memberList: [{username: 'plhuan'}, {username: 'ttdthuong'}],
   },
   {
+    id: '5',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 5',
     slug: 'test-5',
@@ -46,6 +51,7 @@ export const groupListDummy: GroupTypes[] = [
     memberList: [{username: 'plhuan'}, {username: 'ttdthuong'}],
   },
   {
+    id: '6',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 6',
     slug: 'test-6',
@@ -53,6 +59,7 @@ export const groupListDummy: GroupTypes[] = [
     memberList: [{username: 'plhuan'}, {username: 'ttdthuong'}],
   },
   {
+    id: '7',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 7',
     slug: 'test-7',
@@ -60,6 +67,7 @@ export const groupListDummy: GroupTypes[] = [
     memberList: [{username: 'plhuan'}, {username: 'ttdthuong'}],
   },
   {
+    id: '8',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 8',
     slug: 'test-8',
@@ -67,6 +75,7 @@ export const groupListDummy: GroupTypes[] = [
     memberList: [{username: 'plhuan'}, {username: 'ttdthuong'}],
   },
   {
+    id: '9',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 9',
     slug: 'test-9',
@@ -74,20 +83,23 @@ export const groupListDummy: GroupTypes[] = [
     memberList: [{username: 'plhuan'}, {username: 'ttdthuong'}],
   },
   {
+    id: '10',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 10',
-    slug: 'test-0',
+    slug: 'test-10',
     description: 'test',
     memberList: [{username: 'plhuan'}],
   },
   {
+    id: '11',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 11',
-    slug: 'test-1',
+    slug: 'test-11',
     description: 'test',
     memberList: [{username: 'plhuan'}],
   },
   {
+    id: '12',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 12',
     slug: 'test-2',
@@ -95,16 +107,18 @@ export const groupListDummy: GroupTypes[] = [
     memberList: [{username: 'plhuan'}],
   },
   {
+    id: '13',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 13',
-    slug: 'test-3',
+    slug: 'test-13',
     description: 'test',
     memberList: [{username: 'plhuan'}],
   },
   {
+    id: '14',
     avatarSrc: 'https://picsum.photos/300/200',
     name: 'test 14',
-    slug: 'test-4',
+    slug: 'test-14',
     description: 'test',
     memberList: [{username: 'plhuan'}],
   },

@@ -2,6 +2,18 @@
   $root: &;
   position: relative;
 
+  .m-dropdownControl_dropdownList {
+    width: rem(152);
+
+    &_item {
+      padding: rem(12);
+      @include font-base(14, 16);
+      &:hover {
+        background-color: $alice-blue;
+      }
+    }
+  }
+
   &_show {
     cursor: pointer;
   }
@@ -14,7 +26,6 @@
 
   &_dropdownList {
     position: absolute;
-    padding: rem(12);
     border-radius: rem(8);
     width: rem(192);
     background-color: $white;

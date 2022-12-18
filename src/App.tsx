@@ -1,4 +1,6 @@
 import './App.scss'
+import 'react-toastify/dist/ReactToastify.css';
+
 import { routes } from './routes'
 import { Routes, Route } from 'react-router-dom';
 import useHistory from '~hooks/useHistory';
@@ -8,6 +10,8 @@ import { getUserInfoService } from '~services/auth';
 import { useAppDispatch, useAppSelector } from './store';
 import { addUser, getSystemToken, signOut } from './store/system';
 import Loading from '~atoms/Loading';
+import { ToastContainer } from 'react-toastify';
+
 function App() {
   const dispatch = useAppDispatch();
   const token = useAppSelector(getSystemToken);
@@ -28,15 +32,27 @@ function App() {
     return <Loading size='full' modifiers='main'/>
 
   return (
-    <Routes>
-      {routes.map((route, idx) => (
-        <Route
-          key={`route-${idx}`}
-          path={route.path}
-          element={route.isPrivate ? <PrivateRouteContainer>{route.element}</PrivateRouteContainer>: route.element} 
-        />
-      ))}
-    </Routes>
+    <>
+      <Routes>
+        {routes.map((route, idx) => (
+          <Route
+            key={`route-${idx}`}
+            path={route.path}
+            element={route.isPrivate ? <PrivateRouteContainer>{route.element}</PrivateRouteContainer>: route.element} 
+          />
+        ))}
+      </Routes>
+      <ToastContainer 
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+        theme="light"
+      />
+    </>
   )
 }
 

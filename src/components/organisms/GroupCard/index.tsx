@@ -1,16 +1,17 @@
 import React from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { MdOutlineChatBubbleOutline } from 'react-icons/md';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Icon from '~atoms/Icon';
-import Image from '~atoms/Image';
 import Text from '~atoms/Text';
-import { renderPageUrl } from '../../../navigation';
+import DropdownControl from '~molecules/DropdownControl';
 import { getAvatarColors } from '../../../utils/funcs';
 
 export interface GroupMember {
   username: string;
 }
+
+export type GroupControlTypes = 'create' | 'update';
 
 export interface GroupCardProps {
   avatarSrc: string;
@@ -19,11 +20,20 @@ export interface GroupCardProps {
   description: string;
   memberList: GroupMember[];
   onAvatarClick?: (slug: string) => void;
+  onDelete?: () => void;
+  onUpdate?: () => void;
 }
 
-const GroupCard: React.FC<GroupCardProps> = ({slug, name, description, memberList = [], avatarSrc, onAvatarClick}) => {
-  const navigate = useNavigate();
-
+const GroupCard: React.FC<GroupCardProps> = ({
+  slug,
+   name,
+   description,
+   memberList = [],
+   avatarSrc,
+   onAvatarClick,
+   onDelete,
+   onUpdate,
+}) => {
   return <div className="o-groupCard">
     <div className="o-groupCard_header">
       <div className="o-groupCard_header_userList">
@@ -40,7 +50,18 @@ const GroupCard: React.FC<GroupCardProps> = ({slug, name, description, memberLis
           <Icon modifiers={['24x25', 'columbiaBlue']}>{MdOutlineChatBubbleOutline}</Icon>
         </div>
         <div className="o-groupCard_menuIcon">
+        <DropdownControl
+          dropdownList={[
+            { label: 'Cập nhật', value: 'update'},
+            { label: 'Xóa nhóm', value: 'delete'},
+          ]}
+          onItemClick={(type) => {
+            if(type === 'delete' && onDelete) onDelete(); 
+            if(type === 'update' && onUpdate) onUpdate();
+          }}
+        >
           <Icon modifiers={['24x25', 'columbiaBlue']}>{BsThreeDotsVertical}</Icon>
+        </DropdownControl>
         </div>
       </div>
     </div>

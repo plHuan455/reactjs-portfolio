@@ -14,12 +14,18 @@ export interface GroupCreateFields {
 }
 
 export interface GroupCreateFormProps {
+  title?: string;
+  buttonText?: string;
   method: UseFormReturn<GroupCreateFields>;
+  isFormLoading?: boolean;
   onCancel?: () => void;
   onSubmit: (value: GroupCreateFields) => void;
 }
 
 const GroupCreateForm: React.FC<GroupCreateFormProps> = ({
+  title = "Tạo nhóm",
+  buttonText = "Tạo nhóm",
+  isFormLoading,
   method,
   onCancel,
   onSubmit,
@@ -29,10 +35,7 @@ const GroupCreateForm: React.FC<GroupCreateFormProps> = ({
     <div className="t-groupCreateForm">
       <div className="t-groupCreateForm_header">
         <div className="t-groupCreateForm_text">
-          <Text type="h1" modifiers={['16x24', 'darkLiver', '600']}>Tạo nhóm</Text>
-        </div>
-        <div className="t-groupCreateForm_header_iconClose" onClick={onCancel}>
-          <Icon modifiers={['16x16', 'darkLiver']}>{IoMdClose}</Icon>
+          <Text type="h1" modifiers={['16x24', 'darkLiver', '600']}>{title}</Text>
         </div>
       </div>
       <FormProvider {...method}>
@@ -103,7 +106,7 @@ const GroupCreateForm: React.FC<GroupCreateFormProps> = ({
                 <Button 
                 type="button" 
                 className="t-groupCreateForm_form_btnCancel" 
-                modifiers={['noBg', 'davysGrey', '14x16']}
+                modifiers={['noBg', 'davysGrey', '16x28']}
                 onClick={onCancel}
                 >
                   Huỷ
@@ -111,9 +114,11 @@ const GroupCreateForm: React.FC<GroupCreateFormProps> = ({
                 <Button 
                   type="submit" 
                   className="t-groupCreateForm_form_btnCreate"
-                  modifiers={['white', '14x16']} 
-                  disabled={!isValid}>
-                    Tạo Nhóm
+                  modifiers={['white', '16x28']} 
+                  disabled={!isValid}
+                  isLoading={isFormLoading}
+                  >
+                    {buttonText}
                 </Button>
               </div>
             </Col>

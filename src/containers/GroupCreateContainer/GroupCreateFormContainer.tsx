@@ -4,34 +4,48 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from "react-router-dom";
 import {
-  useMutation
+  useMutation, useQueryClient
 } from "@tanstack/react-query";
 import { renderPageUrl } from "../../navigation";
 import { createGroupService } from "~services/group";
+import { toast } from "react-toastify";
 
 export interface GroupCreateFormContainerProps { }
 
-const schema = yup.object({
+export const groupCreateSchema = yup.object({
   name: yup.string().required('Vui lòng nhập tên nhóm!'),
   description: yup.string(),
   avatarImg: yup.string(),
 }).required();
 
 const GroupCreateFormContainer: React.FC<GroupCreateFormContainerProps> = () => {
-  const {mutate: createGroupMutate} = useMutation({mutationFn: createGroupService});
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const method = useForm<GroupCreateFields>({
     mode: 'onBlur',
     defaultValues: { name: '', description: '', avatarImg: '' },
-    resolver: yupResolver(schema),
+    resolver: yupResolver(groupCreateSchema),
+  });
+  const {mutate: createGroupMutate, isLoading} = useMutation({
+    mutationKey: ['create-group'],
+    mutationFn: createGroupService,
+    onError: () => {
+      toast.error('Tạo nhóm không thành công');
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(['get-groups']);
+      toast.success('Tạo nhóm thành công');
+      method.reset();
+    }
   });
 
-  const handleSubmit = (value: GroupCreateFields) => {
+  const handleSubmit = async (value: GroupCreateFields) => {
     createGroupMutate(value);
   }
 
   return <GroupCreateForm
     method={method}
+    isFormLoading={isLoading}
     onSubmit={handleSubmit}
     onCancel={() => navigate(renderPageUrl('GROUP_MANAGER'))}
   />

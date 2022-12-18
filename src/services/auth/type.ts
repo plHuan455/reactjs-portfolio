@@ -10,8 +10,16 @@ export interface SignInPayloadTypes {
   email: string;
 }
 
-export interface UserInfoPayloadTypes {
+export interface SignUpParamsTypes {
   username: string;
-  fullName: string;
+  password: string;
   email: string;
+  fullName: string;
+}
+
+export interface UserInfoPayloadTypes {
+  id?: string;
+  username?: string;
+  fullName?: string;
+  email?: string;
 }

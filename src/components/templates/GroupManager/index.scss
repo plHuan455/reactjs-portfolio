@@ -44,6 +44,11 @@
     padding: rem(16) 0 rem(12);
   }
 
+  &_groupEmpty {
+    background-color: $white;
+    padding: rem(24) 0;
+  }
+
   &_groupList {
     display: grid;
     grid-template-columns: repeat(4, 4fr);
@@ -77,7 +82,14 @@
 
       &:nth-child(7n + 4) {
         @include small-mobile-up {
+          grid-column-start: 1;
+        }
+      }
+      
+      &:nth-child(7n + 5) {
+        @include small-mobile-up {
           grid-row: span 3;
+          grid-column-start: 2;
         }
       }
     }

@@ -13,7 +13,7 @@
     z-index: $z-main;
     height: 100vh;
     overflow: auto;
-    background-color: $anti-flash-white;
+    background-color: $alice-blue;
     @include scroll-bars(4, $border-thumb: 0);
 
     @include tablet-down {

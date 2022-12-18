@@ -20,8 +20,6 @@ const initialState: SystemState = {
   token: getToken() ?? undefined,
 };
 
-export const signInAsync = createAsyncThunk('systemReducer/signIn', signInService);
-
 export const systemSlice = createSlice({
   name: 'system',
   initialState,
@@ -51,22 +49,19 @@ export const systemSlice = createSlice({
       $state.user = undefined;
       $state.token = undefined;
       removeToken();
-    }
-  },
+    },
 
-  extraReducers(builder) {
-    builder.addCase(signInAsync.fulfilled, ($state, action: PayloadAction<SignInPayloadTypes>) => {
+    signIn($state, action: PayloadAction<SignInPayloadTypes>) {
       $state.user = action.payload;
       $state.token = action.payload.token;
-      console.log(action.payload);
-      storeToken(action.payload.token)
+      storeToken($state.token);
       return $state;
-    });
-  }
+    }
+  },
 }
 );
 
-export const { addHistory, popHistory, addUser, signOut } = systemSlice.actions;
+export const { addHistory, popHistory, addUser, signOut, signIn } = systemSlice.actions;
 
 export const getSystemUser = (state: RootState) => state.system.user;
 export const getSystemHistory = (state: RootState) => state.system.history;

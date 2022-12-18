@@ -16,10 +16,11 @@ export interface SignInFields {
 
 interface SignInFormProps {
   method: UseFormReturn<SignInFields>
+  isSubmitting?: boolean;
   onSubmit: (values: SignInFields) => void;
 }
 
-const SignInForm: React.FC<SignInFormProps> = ({ method, onSubmit }) => {
+const SignInForm: React.FC<SignInFormProps> = ({ method, isSubmitting, onSubmit }) => {
   return <div className="t-signInForm">
     <div className="t-signInForm_wrapper">
       <div className="t-signInForm_title">
@@ -85,7 +86,7 @@ const SignInForm: React.FC<SignInFormProps> = ({ method, onSubmit }) => {
             </div>
           </div>
 
-          <Button className="t-signInForm_button" type='submit' variant='auth'>
+          <Button className="t-signInForm_button" type='submit' variant='auth' isLoading={isSubmitting}>
             <Text modifiers={['16x20', 'white', 'fontLexend']}>Đăng nhập</Text>
           </Button>
         </form>
