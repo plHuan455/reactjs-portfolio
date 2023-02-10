@@ -8,7 +8,7 @@ import { getToken } from '../../utils/localStorage';
 // const url = process.env.NODE_ENV === 'development' ? process.env.SERVER_URL_DEV : process.env.SERVER_URL_PRODUCT;
 
 const axiosInstance = axios.create({
-  baseURL: 'https://pending-manager.herokuapp.com/api' || process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api': 'https://pending-manager.herokuapp.com/api',
+  baseURL: "http://localhost:8080/api" || "https://budget-planner-hflj.onrender.com/api"
 });
 
 axiosInstance.interceptors.request.use(

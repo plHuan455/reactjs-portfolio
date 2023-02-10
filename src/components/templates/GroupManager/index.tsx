@@ -30,6 +30,7 @@ export interface GroupManagerProps {
   onUpdateFormClose: () => void;
   onChangeSearchValue?: (value: string) => void;
   onGroupCardClick?: (slug: string) => void;
+  onGroupSelect?: (group: GroupTypes) => void;
   onGroupDelete?: (groupSlug: string) => void;
   onGroupUpdate?: (groupSlug: string) => void;
   onUpdateGroupSubmit: (values: GroupCreateFields) => void;
@@ -45,6 +46,7 @@ const GroupManager: React.FC<GroupManagerProps> = ({
   onChangeSearchValue,
   onAddGroupClick,
   onGroupCardClick,
+  onGroupSelect,
   onGroupDelete,
   onGroupUpdate,
   onUpdateGroupSubmit
@@ -88,11 +90,14 @@ const GroupManager: React.FC<GroupManagerProps> = ({
                 "t-groupManager_card"
               )
             }
-            key={`group-list-${index}`}
+            key={`group-list-${value.id}`}
           >
             <GroupCard
               {...value}
               onAvatarClick={onGroupCardClick}
+              onSelect={() => {
+                onGroupSelect && onGroupSelect(value);
+              }}
               onDelete={() => {
                 if (onGroupDelete) onGroupDelete(value.slug);
               }}

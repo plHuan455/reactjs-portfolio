@@ -2,6 +2,10 @@ import CreatePendingForm, { PendingFields } from "~organisms/CreatePendingForm"
 import {  useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from 'yup';
+import { useMutation } from "@tanstack/react-query";
+import { createPendingService } from "~services/pending";
+import { useAppSelector } from "../../store";
+import { toast } from "react-toastify";
 
 export interface PendingCreateContainerProps {
   onCancelClick?: () => void;
@@ -21,6 +25,8 @@ const schema = yup.object({
 }).required();
 
 const PendingCreateContainer: React.FC<PendingCreateContainerProps> = ({ onCancelClick }) => {
+  const { currentGroup } = useAppSelector(state => state.system);
+
   const method = useForm<PendingFields>({
     mode: 'onSubmit', 
     defaultValues: { 
@@ -32,7 +38,28 @@ const PendingCreateContainer: React.FC<PendingCreateContainerProps> = ({ onCance
 
     resolver: yupResolver(schema),
   });
-  return <CreatePendingForm title="Tạo chi tiêu" method={method} onSubmit={() => {}} onCancelClick={onCancelClick} />
+
+  const {mutate: createPendingMutate, isLoading: isPendingCreating} = useMutation({
+    mutationKey: ['pending-create-create-pending'],
+    mutationFn: createPendingService,
+  })
+
+  const handleCreate = (values: PendingFields) => {
+    if(!currentGroup) {
+      toast.error('Vui làm chọn một nhóm');
+      return;
+    }
+
+    createPendingMutate({
+      groupId: currentGroup?.id,
+      bank: values.bank,
+      content: values.content,
+      date: String(''),
+      money: String(values.money)
+    })
+  }
+
+  return <CreatePendingForm title="Tạo chi tiêu" method={method} onSubmit={handleCreate} onCancelClick={onCancelClick} />
 }
 
 export default PendingCreateContainer

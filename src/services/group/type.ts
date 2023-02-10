@@ -5,7 +5,7 @@ export interface CreateGroupParams {
 }
 
 export interface GroupPayloadTypes {
-  id?: string;
+  _id?: string;
   name?: string;
   description?: string;
   avatarImg?: string;
@@ -19,5 +19,11 @@ export interface UpdateGroupParams {
 }
 
 export interface MemberTypes {
+  email?: string;
+  id?: string;
+  createdAt?: string;
+  username?: string;
+  userId?: string;
   fullname: string;
+  isAdmin?: boolean;
 }

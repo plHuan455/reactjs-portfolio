@@ -9,11 +9,15 @@ import { GroupCreateFields } from "~templates/GroupCreateForm";
 import { groupCreateSchema } from "~containers/GroupCreateContainer/GroupCreateFormContainer";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
+import { useAppDispatch } from "../../store";
+import { setCurrentGroup } from "../../store/system";
 
 interface ManagerContainerProps { }
 
 const ManagerContainer: React.FC<ManagerContainerProps> = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const [searchValue, setSearchValue] = useState<string>('');
   const [selectedUpdateGroupSlug, setSelectedUpdateGroupSlug] = useState<string>();
   const [isShowUpdateForm, setIsShowUpdateForm] = useState<boolean>(false);
@@ -30,7 +34,7 @@ const ManagerContainer: React.FC<ManagerContainerProps> = () => {
     queryFn: getGroupsService, 
     refetchOnMount: true,
   })
-
+  
   const {mutate: updateGroupMutate, isLoading: updateGroupLoading} = useMutation({
     mutationKey: ['create-group'],
     mutationFn: updateGroupService,
@@ -44,7 +48,7 @@ const ManagerContainer: React.FC<ManagerContainerProps> = () => {
 
   const convertGroup = useMemo<GroupTypes[] | undefined>(() => {
     return groupsData?.map(group => ({
-      id: group.id ?? '',
+      id: group._id ?? '',
       avatarSrc: group.avatarImg ?? '',
       description: group.description ?? '',
       memberList: group.members?.map(value => {
@@ -79,6 +83,10 @@ const ManagerContainer: React.FC<ManagerContainerProps> = () => {
       updateGroupMutate({data: values, slug: selectedUpdateGroupSlug})  
   }
 
+  const handleSelectGroup = (group: GroupTypes) => {
+    dispatch(setCurrentGroup({id: group.id, name: group.name, description: group.description, slug: group.slug}))
+  }
+
   return (
     <GroupManager
       isUpdateFormLoading={isGroupLoading}
@@ -92,6 +100,7 @@ const ManagerContainer: React.FC<ManagerContainerProps> = () => {
       onGroupCardClick={(slug) => {
         if (slug) navigate(renderPageUrl('GROUP_DETAIL', slug));
       }}
+      onGroupSelect={handleSelectGroup}
       onGroupUpdate={(slug) => {setSelectedUpdateGroupSlug(slug); setIsShowUpdateForm(true)}}
       onGroupDelete={(slug) => groupDeleteMutate(slug)}
       onUpdateGroupSubmit={handleGroupUpdate}

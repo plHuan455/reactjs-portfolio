@@ -13,6 +13,6 @@ export const signUpService = async (data: SignUpParamsTypes): Promise<DefaultPay
 }
 
 export const getUserInfoService = async (): Promise<UserInfoPayloadTypes> => {
-  const response = await axiosInstance.get('/user/info');
+  const response = await axiosInstance.get('/user');
   return response.data.data;
 }

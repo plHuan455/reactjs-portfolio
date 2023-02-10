@@ -28,7 +28,10 @@ const DropdownControl: React.FC<DropdownControlProps> = ({ isDisabled, dropdownL
         <div
           className="m-dropdownControl_dropdownList_item"
           key={`dropdownControl-item-${idx}`}
-          onClick={() => { if (onItemClick) onItemClick(value.value) }}
+          onClick={() => { 
+            setIsShow(false);
+            if (onItemClick) onItemClick(value.value) 
+          }}
         >
           {value.label}
         </div>

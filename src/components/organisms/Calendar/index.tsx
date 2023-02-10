@@ -10,6 +10,7 @@ export interface NoteType {
   noteNode: React.ReactNode;
 }
 export interface CalendarProps {
+  viewDate: Date,
   dayWeeks?: string[];
   selectedDate: Date;
   isShowMonth?: boolean;
@@ -19,9 +20,11 @@ export interface CalendarProps {
   onArrowRightClick?: (date: Date) => void;
   onChange?: (date: Date) => void;
   onHeaderClick?: () => void;
+  onChangeViewDate: (date: Date) => void;
 }
 
 const Calendar: React.FC<CalendarProps> = ({
+  viewDate,
   dayWeeks = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
   selectedDate = new Date(),
   isShowMonth,
@@ -31,10 +34,9 @@ const Calendar: React.FC<CalendarProps> = ({
   onHeaderClick,
   onArrowLeftClick,
   onArrowRightClick,
+  onChangeViewDate,
 }) => {
-  const [calendarViewDate, setCalendarViewDate] = useState<Date>(selectedDate);
-
-  const dateList = useMemo(() => getDateList(calendarViewDate), [calendarViewDate]);
+  const dateList = useMemo(() => getDateList(viewDate), [viewDate]);
 
   const convertNoteListHash = useMemo(() => {
     let noteListHash: { [key: string]: React.ReactNode } = {};
@@ -43,17 +45,17 @@ const Calendar: React.FC<CalendarProps> = ({
       noteListHash[noteWithoutTime.getTime()] = note.noteNode;
     })
     return noteListHash;
-  }, [noteList, calendarViewDate]);
+  }, [noteList, viewDate]);
 
   const handleArrowLeftClick = () => {
     let newDate;
     if (isShowMonth) {
-      newDate = getFirstDateInMonth(new Date(calendarViewDate.getFullYear() - 1, calendarViewDate.getMonth(), calendarViewDate.getDate()));
+      newDate = getFirstDateInMonth(new Date(viewDate.getFullYear() - 1, viewDate.getMonth(), viewDate.getDate()));
     }
     else {
-      newDate = getFirstDateInMonth(new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() - 1, calendarViewDate.getDate()));
+      newDate = getFirstDateInMonth(new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, viewDate.getDate()));
     }
-    setCalendarViewDate(newDate);
+    onChangeViewDate(newDate);
 
     if (onArrowLeftClick) onArrowLeftClick(newDate);
   }
@@ -61,12 +63,12 @@ const Calendar: React.FC<CalendarProps> = ({
   const handleArrowRightClick = () => {
     let newDate;
     if (isShowMonth) {
-      newDate = getFirstDateInMonth(new Date(calendarViewDate.getFullYear() + 1, calendarViewDate.getMonth(), calendarViewDate.getDate()));
+      newDate = getFirstDateInMonth(new Date(viewDate.getFullYear() + 1, viewDate.getMonth(), viewDate.getDate()));
     }
     else {
-      newDate = getFirstDateInMonth(new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() + 1, calendarViewDate.getDate()))
+      newDate = getFirstDateInMonth(new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, viewDate.getDate()))
     }
-    setCalendarViewDate(newDate);
+    onChangeViewDate(newDate);
 
     if (onArrowRightClick) onArrowRightClick(newDate);
   }
@@ -76,19 +78,19 @@ const Calendar: React.FC<CalendarProps> = ({
   }
 
   const handleItemClick = (date: Date) => {
-    if (isShowMonth) setCalendarViewDate(date);
+    if (isShowMonth) onChangeViewDate(date);
     if (onChange) onChange(date);
   }
 
   const handleMonthClick = (month: number) => {
-    setCalendarViewDate(new Date(calendarViewDate.getFullYear(), month - 1, calendarViewDate.getDate()));
+    onChangeViewDate(new Date(viewDate.getFullYear(), month - 1, viewDate.getDate()));
     if (onHeaderClick) onHeaderClick();
   }
 
   return <div className="o-calendar">
     <div className="o-calendar_header">
       <div className="o-calendar_header_text" onClick={handleHeaderClick}>
-        <Text modifiers={['28x36', '600', 'black']}>{`${isShowMonth ? '' : `Tháng ${calendarViewDate.getMonth() + 1} `}Năm ${calendarViewDate.getFullYear()}`}</Text>
+        <Text modifiers={['28x36', '600', 'black']}>{`${isShowMonth ? '' : `Tháng ${viewDate.getMonth() + 1} `}Năm ${viewDate.getFullYear()}`}</Text>
         {isLoading && <div className="o-calendar_header_loading">
           <Loading size="32x32" />
         </div>}
@@ -127,7 +129,7 @@ const Calendar: React.FC<CalendarProps> = ({
               'o-calendar_item',
               idx % 7 === 0 && 'noBl',
               isADate(selectedDate, value) && 'selected',
-              value.getMonth() !== calendarViewDate.getMonth() && 'outMonth',
+              value.getMonth() !== viewDate.getMonth() && 'outMonth',
               isADate(new Date(), value) && 'today'
             )}
             key={`calendar-date-${idx}`}

@@ -20,6 +20,6 @@ export interface SignUpParamsTypes {
 export interface UserInfoPayloadTypes {
   id?: string;
   username?: string;
-  fullName?: string;
+  fullname?: string;
   email?: string;
 }

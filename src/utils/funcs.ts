@@ -135,3 +135,11 @@ export const convertMinutes = (minutes: string) => {
   if(minutesNum < 0) return 0;
   return minutesNum;
 }
+
+export const getLocalStorageItem = (key: string) => {
+  const data = localStorage.getItem(key);
+  if(data) {
+    return JSON.parse(data);
+  }
+  return undefined
+}

@@ -6,6 +6,7 @@ import { Col, Row } from '~organisms/Container';
 import Button from '~atoms/Button';
 import { numberToMoney } from '../../../utils/funcs';
 import Text from '~atoms/Text';
+import { LoadingButton } from '@mui/lab';
 
 export interface PendingFields {
   content: string;
@@ -15,13 +16,14 @@ export interface PendingFields {
 }
 
 export interface CreatePendingFormProps {
+  isFormLoading?: boolean;
   title: string;
   method: UseFormReturn<PendingFields>;
   onCancelClick?: () => void;
   onSubmit: (value: PendingFields) => void;
 }
 
-const CreatePendingForm: React.FC<CreatePendingFormProps> = ({ title, method, onCancelClick, onSubmit }) => {
+const CreatePendingForm: React.FC<CreatePendingFormProps> = ({ isFormLoading, title, method, onCancelClick, onSubmit }) => {
   return <div className="o-createPendingForm">
     <div className="o-createPendingForm_title">
       <Text type="h1" modifiers={['20x24', 'darkLiver', '600', 'center']}>{title}</Text>
@@ -53,8 +55,10 @@ const CreatePendingForm: React.FC<CreatePendingFormProps> = ({ title, method, on
                 <Input
                   error={fieldState?.error?.message}
                   label="Số tiền"
-                  value={numberToMoney(value)}
-                  onChange={(value) => onChange(Number(value.replace(/\./g, '')))}
+                  value={value}
+                  onChange={onChange}
+                  type="number"
+                  onFocus={(e) => e.target.select()}
                   onBlur={onBlur}
                   placeholder="Nhập nội dung"
                   id="create-pending-content"
@@ -101,7 +105,9 @@ const CreatePendingForm: React.FC<CreatePendingFormProps> = ({ title, method, on
                 <Button modifiers={['noBg']} onClick={() => {if(onCancelClick) onCancelClick()}}>Hủy</Button>
               </div>
               <div className="o-createPendingForm_button_add">
-                <Button type='submit' variant='pendingManager'>Tạo</Button>
+                <LoadingButton loading={isFormLoading} variant='contained' type='submit'>
+                  Tạo
+                </LoadingButton>
               </div>
             </div>
           </Col>

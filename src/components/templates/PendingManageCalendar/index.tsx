@@ -9,23 +9,28 @@ import Container from "../../organisms/Container";
 import Modal from "../../organisms/Modal";
 
 export interface PendingManageNote {
+  id: string;
   money: number;
   content: string;
   bank: string;
   date: Date;
 }
 interface PendingManageCalendarProps extends Omit<CalendarProps, 'noteList'> {
+  isShowDetailModal?: boolean;
   noteList?: PendingManageNote[];
+  onAddPendingClick?: () => void;
+  onCloseDetailModal?: () => void;
 }
 
 const PendingManageCalendar: React.FC<PendingManageCalendarProps> = ({
   noteList = [],
+  isShowDetailModal,
   selectedDate = new Date(),
   onChange,
+  onCloseDetailModal,
+  onAddPendingClick,
   ...args
 }) => {
-  const [isShowModal, setIsShowModal] = useState<boolean>(false);
-  const [isShowModalForm, setIsShowModalForm] = useState<boolean>(false);
   const { isMobile, isTablet } = useMatchMedia();
   const isDesktop = !(isMobile || isTablet);
 
@@ -68,12 +73,12 @@ const PendingManageCalendar: React.FC<PendingManageCalendarProps> = ({
   }, [noteList, isDesktop]);
 
   const noteInSelectedDateList = useMemo(() => {
-    if (isShowModal) {
+    if (isShowDetailModal) {
       return noteList.filter(note => isADate(note.date, selectedDate));
     }
 
     return [];
-  }, [selectedDate, isShowModal]);
+  }, [selectedDate, isShowDetailModal]);
 
   return <div className="t-pendingManageCalendar">
     <Container>
@@ -82,14 +87,13 @@ const PendingManageCalendar: React.FC<PendingManageCalendarProps> = ({
         selectedDate={selectedDate}
         onChange={(date) => {
           if (onChange) onChange(date);
-          setIsShowModal(true);
         }}
         noteList={convertNoteList}
       />
     </Container>
     <Modal
-      isOpen={isShowModal}
-      handleClose={() => setIsShowModal(false)}
+      isOpen={Boolean(isShowDetailModal)}
+      handleClose={() => onCloseDetailModal && onCloseDetailModal()}
       modifiers='pendingList'
     >
       <div className="t-pendingManageCalendar_modal">
@@ -101,12 +105,12 @@ const PendingManageCalendar: React.FC<PendingManageCalendarProps> = ({
             </Text>
           </div>
           <div className="t-pendingManageCalendar_modal_titleButton">
-            <Button modifiers={['14x16']} onClick={() => {setIsShowModalForm(true); setIsShowModal(false)}} variant='pendingManager'>+ Thêm</Button>
+            <Button modifiers={['14x16']} onClick={() => {onAddPendingClick && onAddPendingClick(); onCloseDetailModal && onCloseDetailModal()}} variant='pendingManager'>+ Thêm</Button>
           </div>
         </div>
         <div className="t-pendingManageCalendar_date">
           <Text type="h2" modifiers={['lightSlateGray', '20x24', '600', 'center']}>
-            {`(${addZero(selectedDate.getDate())}/${addZero(selectedDate.getMonth())}/${selectedDate.getFullYear()})`}
+            {`(${addZero(selectedDate.getDate())}/${addZero(selectedDate.getMonth() + 1)}/${selectedDate.getFullYear()})`}
           </Text>
         </div>
         
@@ -145,14 +149,6 @@ const PendingManageCalendar: React.FC<PendingManageCalendarProps> = ({
           </tbody>
         </table>
       </div>
-    </Modal>
-
-    <Modal
-      isOpen={isShowModalForm}
-      handleClose={() => {setIsShowModalForm(false)}}
-      modifiers='addPending'
-    >
-      <PendingCreateContainer onCancelClick={() => { setIsShowModal(true); setIsShowModalForm(false) }}/>
     </Modal>
   </div>
 }

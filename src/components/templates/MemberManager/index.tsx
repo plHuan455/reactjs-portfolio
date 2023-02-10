@@ -29,6 +29,7 @@ export interface MemberManagerProps {
   disabledMemberHash?: { [key: string]: true };
   onTableRowShowChange?: (value: number) => void;
   onChangeSearchValue?: (value: string) => void;
+  onAddMemberBtnClick?: () => void;
   onMemberMenuControlItemClick: (value: MemberTypes, type: MemberMenuControlType) => void;
 }
 
@@ -39,6 +40,7 @@ const MemberManager: React.FC<MemberManagerProps> = ({
   memberList,
   tableRowShow = 8,
   disabledMemberHash = {},
+  onAddMemberBtnClick,
   onTableRowShowChange,
   onChangeSearchValue,
   onMemberMenuControlItemClick,
@@ -58,7 +60,9 @@ const MemberManager: React.FC<MemberManagerProps> = ({
         />
       </div>
       <div className="t-memberManager_button">
-        <Button variant='group'><Icon modifiers={['16x16', 'white']}>{BiPlus}</Icon><Text modifiers={['14x18', 'white']}>Thêm thành viên</Text></Button>
+        <Button variant='group' onClick={onAddMemberBtnClick}>
+          <Icon modifiers={['16x16', 'white']}>{BiPlus}</Icon><Text modifiers={['14x18', 'white']}>Thêm thành viên</Text>
+        </Button>
       </div>
     </div>
 

@@ -4,9 +4,11 @@ export interface {{pascalCase name}}Props {
 }
 
 const {{pascalCase name}}: React.FC<{{pascalCase name}}Props> = () => {
-  return <div className="{{classNameComponent type}}{{camelCase name}}">
-    {{pascalCase name}} test
-  </div>
+  return (
+    <div className="{{classNameComponent type}}{{camelCase name}}">
+      {{pascalCase name}} test
+    </div>
+  )
 };
 
 {{pascalCase name}}.defaultProps = {

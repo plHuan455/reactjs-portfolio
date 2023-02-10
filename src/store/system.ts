@@ -2,22 +2,37 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { signInService } from '~services/auth';
 import { SignInPayloadTypes } from '~services/auth/type';
 import { RootState } from '.';
+import { getLocalStorageItem } from '../utils/funcs';
 import { getToken, removeToken, storeToken } from '../utils/localStorage';
+
+
+export const LOCAL_STORAGE_USER = 'current-user';
+export const LOCAL_STORAGE_SELECTED_GROUP = 'current-group';
 
 interface UserTypes {
   username: string;
   fullName: string;
   email: string;
 }
+
+interface CurrentGroupTypes {
+  id: string;
+  name: string;
+  description: string;
+  slug: string;
+}
 interface SystemState {
   history: string[];
   user?: UserTypes,
+  currentGroup?: CurrentGroupTypes;
   token?: string;
 }
 
 const initialState: SystemState = {
   history: [],
   token: getToken() ?? undefined,
+  currentGroup: getLocalStorageItem(LOCAL_STORAGE_SELECTED_GROUP),
+  user: getLocalStorageItem(LOCAL_STORAGE_USER),
 };
 
 export const systemSlice = createSlice({
@@ -45,6 +60,12 @@ export const systemSlice = createSlice({
       return $state;
     },
 
+    setCurrentGroup($state, action: PayloadAction<CurrentGroupTypes>){
+      $state.currentGroup = action.payload;
+      localStorage.setItem(LOCAL_STORAGE_SELECTED_GROUP, JSON.stringify(action.payload));
+      return $state;
+    },
+
     signOut($state) {
       $state.user = undefined;
       $state.token = undefined;
@@ -61,7 +82,7 @@ export const systemSlice = createSlice({
 }
 );
 
-export const { addHistory, popHistory, addUser, signOut, signIn } = systemSlice.actions;
+export const { addHistory, popHistory, addUser, setCurrentGroup, signOut, signIn } = systemSlice.actions;
 
 export const getSystemUser = (state: RootState) => state.system.user;
 export const getSystemHistory = (state: RootState) => state.system.history;

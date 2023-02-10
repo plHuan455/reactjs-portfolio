@@ -27,7 +27,7 @@ const GroupCreateFormContainer: React.FC<GroupCreateFormContainerProps> = () => 
     resolver: yupResolver(groupCreateSchema),
   });
   const {mutate: createGroupMutate, isLoading} = useMutation({
-    mutationKey: ['create-group'],
+    mutationKey: ['group-create-create-group'],
     mutationFn: createGroupService,
     onError: () => {
       toast.error('Tạo nhóm không thành công');
@@ -35,6 +35,7 @@ const GroupCreateFormContainer: React.FC<GroupCreateFormContainerProps> = () => 
     onSuccess: () => {
       queryClient.invalidateQueries(['get-groups']);
       toast.success('Tạo nhóm thành công');
+      navigate(renderPageUrl('GROUP_MANAGER'))
       method.reset();
     }
   });

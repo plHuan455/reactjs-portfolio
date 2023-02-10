@@ -1,7 +1,8 @@
 export type TemplateCodes = 
 | 'HOME'
 | 'TEST'
-| 'VOCABULARIES' 
+| 'VOCABULARIES'
+| 'VOCABULARIES_CREATE'
 | 'BANK_MANAGER' 
 | 'BANK_MANAGER_DETAIL'
 | 'BANK_MANAGER_ADD'
@@ -14,6 +15,7 @@ export type TemplateCodes =
 const urlHash: {[key in TemplateCodes]: string} = {
   HOME: '/trang-chu',
   VOCABULARIES: '/tu-vung',
+  VOCABULARIES_CREATE: '/tu-vung/tao-moi',
   TEST: '/test',
   BANK_MANAGER: '/quan-ly-chi-tieu',
   BANK_MANAGER_DETAIL: '/quan-ly-chi-tieu/chi-tiet',
