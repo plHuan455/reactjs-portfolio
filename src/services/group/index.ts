@@ -23,7 +23,7 @@ export const updateGroupService = async (data: UpdateGroupParams): Promise<Defau
 }
 
 export const deleteGroupService = async (slug: string): Promise<DefaultPayloadTypes> => {
-  const response = await axiosInstance.delete(`/group/delete-group/${slug}`);
+  const response = await axiosInstance.delete(`/group/${slug}`);
   return response.data;
 }
 

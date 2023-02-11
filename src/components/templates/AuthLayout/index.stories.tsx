@@ -11,5 +11,5 @@ const meta: Meta = {
 export default meta;
 
 export const normal: Story = ({...args}) => {
-  return <AuthLayout onHeaderControlClick={() => {}} {...args} />
+  return <AuthLayout backBtnTitle='' onHeaderControlClick={() => {}} {...args} />
 };

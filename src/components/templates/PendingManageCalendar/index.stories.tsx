@@ -13,7 +13,9 @@ export const normal: Story = () => {
   const [isShowMonthSelect, setIsShowMonthSelect] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
-  return <PendingManageCalendar 
+  return <PendingManageCalendar
+      viewDate={new Date}
+      onChangeViewDate={() => {}}
       selectedDate={selectedDate}
       noteList={calendarNoteListDummy}
       onHeaderClick={()=> setIsShowMonthSelect(preState => !preState)}

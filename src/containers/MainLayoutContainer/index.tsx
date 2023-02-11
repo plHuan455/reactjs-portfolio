@@ -24,8 +24,6 @@ export default function MainLayoutContainer({ children }: MainLayoutContainerPro
   const [isShowSearchList, setIsShowSearchList] = useState<boolean>(false);
   const debounceSearchValue = useDebounce(headerSearchValue, 1000);
 
-  console.log(currentUser)
-
   const menuList = useMemo(() => {
     return [
       { 

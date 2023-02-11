@@ -65,6 +65,7 @@ const ManagerContainer: React.FC<ManagerContainerProps> = () => {
     mutationFn: deleteGroupService,
     onSuccess: () => {
       queryClient.invalidateQueries(['get-groups']);
+      toast.success('Xóa nhóm thành công')
     }
   });
 

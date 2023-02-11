@@ -13,6 +13,8 @@ import { toast } from "react-toastify";
 import ModalBase from "~organisms/ModalBase";
 import useDebounce from "~hooks/useDebounce";
 import { BsCheckLg } from "react-icons/bs";
+import PendingDetail, { PendingDetailTypes } from "~templates/PendingDetail";
+import { isADate } from "../../utils/funcs";
 
 interface CalendarContainerProps {
 }
@@ -34,8 +36,8 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
   const queryClient = useQueryClient();
   const { currentGroup } = useAppSelector(state => state.system);
 
-  const [isOpenDetailModal, setIsOpenDetailModal] = useState<boolean>(false);
   const [isOpenCreatePendingModal, setIsOpenCreatePendingModal] = useState<boolean>(false);
+  const [isOpenPendingDetailModal, setIsOpenPendingDetailModal] = useState<boolean>(false);
   const [isShowMonthSelect, setIsShowMonthSelect] = useState<boolean>(false);
   const [calendarViewDate, setCalendarViewDate] = useState<Date>(new Date());
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
@@ -83,9 +85,23 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
     })) ?? []
   }, [pendingData])
 
+  const convertedPendingDetailList = useMemo<PendingDetailTypes[]>(() => {
+    if (isOpenPendingDetailModal) {
+      return pendingData?.filter(pending => isADate(new Date(pending.date ?? ''), selectedDate)).map(value => ({
+        id: value._id ?? '',
+        bank: value.bank ?? '',
+        content: value.content ?? '',
+        date: new Date(value.date ?? ''),
+        money: value.money ?? 0
+      })) ?? [];
+    }
+
+    return [];
+  }, [selectedDate, isOpenPendingDetailModal]);
+
   const handleCreate = (values: PendingFields) => {
     if(!currentGroup) {
-      toast.error('Vui làm chọn một nhóm');
+      toast.error('Vui lòng chọn một nhóm');
       return;
     }
 
@@ -110,15 +126,14 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
   return (
     <>
       <PendingManageCalendar
-        isShowDetailModal={isOpenDetailModal}
         viewDate={calendarViewDate}
         selectedDate={selectedDate}
         noteList={convertedNoteList}
         onHeaderClick={()=> setIsShowMonthSelect(preState => !preState)}
         isShowMonth={isShowMonthSelect}
-        onChange={(date) => {setSelectedDate(date); setIsOpenDetailModal(true)}}
+        onChange={(date) => {setSelectedDate(date); setIsOpenPendingDetailModal(true)}}
         onChangeViewDate={(date) => setCalendarViewDate(date)}
-        onCloseDetailModal={() => setIsOpenDetailModal(false)}
+        onCloseDetailModal={() => setIsOpenPendingDetailModal(false)}
         onAddPendingClick={handleOpenCreatePendingModal}
       />
       <CustomModal
@@ -127,6 +142,17 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
         modifiers='addPending'
       >
         <CreatePendingForm isFormLoading={isPendingCreating} title="Tạo chi tiêu" method={method} onSubmit={handleCreate} onCancelClick={() => setIsOpenCreatePendingModal(false)} />
+      </CustomModal>
+      <CustomModal
+        isOpen={isOpenPendingDetailModal}
+        handleClose={() => {setIsOpenPendingDetailModal(false)}}
+        modifiers='pendingList'
+      >
+        <PendingDetail
+          currDate={selectedDate}
+          onAddPendingClick={() => {setIsOpenPendingDetailModal(false); handleOpenCreatePendingModal()}}
+          pendingList={convertedPendingDetailList} 
+        />
       </CustomModal>
     </>
   )

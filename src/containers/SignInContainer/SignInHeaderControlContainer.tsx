@@ -6,7 +6,7 @@ interface SignInHeaderControlContainerProps {}
 
 const SignInHeaderControlContainer: React.FC<SignInHeaderControlContainerProps> = () => {
   const navigate = useNavigate();
-  return <HeaderControl onClick={() => navigate(-1)} />
+  return <HeaderControl backBtnTitle="" onClick={() => navigate(-1)} />
 }
 
 export default SignInHeaderControlContainer

@@ -16,7 +16,10 @@ export const Normal: Story<GroupManagerProps> = ({ ...args }) => {
 
 Normal.args = {
   groupList: [
-    {avatarSrc: 'test',
+    {
+      id: "1",
+      slug: '123',
+      avatarSrc: 'test',
       name: 'test',
       description: 'test',
       memberList: [{username: 'plhuan'}],

@@ -48,10 +48,15 @@
     @include adjust-flex(center, center);
     flex-grow: 1;
     cursor: pointer;
+    height: 30%;
 
     &_wrapper {
-      height: 88%;
+      height: 100%;
       aspect-ratio: 1 / 1;
+      @include mobile-down {
+        width: rem(90);
+        height: rem(90);
+      }
     }
 
     &_img {
