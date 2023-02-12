@@ -29,7 +29,7 @@ const MenuBase: React.FC<MenuBaseProps> = ({
       </Button>
       <Menu className="o-menuBase" open={Boolean(anchorEl)} anchorEl={anchorEl} onClose={() => setAnchorEl(undefined)}>
         {menuList.map(value => (
-          <MenuItem onClick={() => onMenuItemClick && onMenuItemClick(value.value)}>
+          <MenuItem key={`o-menuBase-${value.value}`} onClick={() => onMenuItemClick && onMenuItemClick(value.value)}>
             <Box sx={{display: 'flex', flexWrap: 'nowrap', textAlign: 'center'}}>
               <Box 
                 sx={{

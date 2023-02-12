@@ -16,6 +16,7 @@ export interface PendingFields {
 }
 
 export interface CreatePendingFormProps {
+  submitButtonLabel?: string;
   isFormLoading?: boolean;
   title: string;
   method: UseFormReturn<PendingFields>;
@@ -23,7 +24,7 @@ export interface CreatePendingFormProps {
   onSubmit: (value: PendingFields) => void;
 }
 
-const CreatePendingForm: React.FC<CreatePendingFormProps> = ({ isFormLoading, title, method, onCancelClick, onSubmit }) => {
+const CreatePendingForm: React.FC<CreatePendingFormProps> = ({ isFormLoading, submitButtonLabel, title, method, onCancelClick, onSubmit }) => {
   return <div className="o-createPendingForm">
     <div className="o-createPendingForm_title">
       <Text type="h1" modifiers={['20x24', 'darkLiver', '600', 'center']}>{title}</Text>
@@ -106,7 +107,7 @@ const CreatePendingForm: React.FC<CreatePendingFormProps> = ({ isFormLoading, ti
               </div>
               <div className="o-createPendingForm_button_add">
                 <LoadingButton loading={isFormLoading} variant='contained' type='submit'>
-                  Tạo
+                  {submitButtonLabel ?? 'Tạo'}
                 </LoadingButton>
               </div>
             </div>

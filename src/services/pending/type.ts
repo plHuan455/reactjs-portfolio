@@ -6,6 +6,8 @@ export interface CreatePendingParams {
   bank: string;
 }
 
+export type UpdatePendingParams = Omit<CreatePendingParams, 'groupId'>
+
 export interface PendingResponse {
   _id?: string;
   content?: string;

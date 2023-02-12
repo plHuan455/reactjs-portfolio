@@ -21,101 +21,125 @@ export interface PendingDetailProps {
   pendingList: PendingDetailTypes[];
   currDate: Date;
   onAddPendingClick: () => void;
+  onDeleteClick?: (pendingId: string) => void;
+  onUpdateClick?: (pendingId: string) => void;
 }
 
 const PendingDetail: React.FC<PendingDetailProps> = ({
   pendingList,
   currDate,
   onAddPendingClick,
+  onDeleteClick,
+  onUpdateClick,
 }) => {
   const [pageSize, setPageSize] = useState<number>(20);
 
-  const columns: GridColDef[] = [
-    {
-      field: 'stt',
-      headerName: 'Stt',
-      maxWidth: 50, align: "center",
-      headerAlign: 'center',
-      renderCell: ({ value }) => (
-        <Typography variant='body2' sx={{ width: '100%',  }}>
-          {value}
-        </Typography>
-      )
-    },
-    {
-      field: 'content',
-      headerName: 'Nội dung',
-      flex: 3,
-      align: 'center',
-      renderCell: ({ value }) => (
-        <Typography 
-        variant='body2' 
-        sx={{ 
-          width: '100%',
-          ...textOverflowMixin(3)
-          // ...test(2)
-        }}>
-          {value}
-        </Typography>
-      )
-    },
-    {
-      field: 'money',
-      headerName: 'Số tiền',
-      flex: 2,
-      align: 'center',
-      renderCell: (params) => {
-        return (
-          <Typography
-            variant='body2'
-            sx={{
-              color: params.value < 0 ? "rgb(220, 53, 69)" : "rgb(25, 135, 84)",
-              fontWeight: 600,
-              width: "100%",
-            }}
-          >
-            {params.value > 0 ? `+${numberToMoney(params.value)}` : numberToMoney(params.value)}
+  const columns = useMemo<GridColDef[]>(() => {
+    return [
+      {
+        field: 'stt',
+        headerName: 'Stt',
+        maxWidth: 50, 
+        align: "center",
+        headerAlign: 'center',
+        renderCell: ({ value }) => (
+          <Typography variant='body2' sx={{ width: '100%', textAlign: 'center' }}>
+            {value}
           </Typography>
         )
-      }
-    },
-    {
-      field: 'bank',
-      headerName: 'Nguồn tiền',
-      flex: 2,
-      align: 'center',
-      renderCell: ({ value }) => (
-        <Typography variant='body2' sx={{ width: '100%'}}>
-          {value}
-        </Typography>
-      )
-    },
-    {
-      field: 'time',
-      headerName: 'Thời gian',
-      flex: 1,
-      align: 'center',
-      renderCell: ({ value }) => (
-        <Typography variant='body2' sx={{ width: '100%'}}>
-          {value}
-        </Typography>
-      )
-    },
-    {
-      field: 'menu',
-      headerName: 'Hành động',
-      flex: 1,
-      align: 'center',
-      renderCell: ({ value }) => (
-        <MenuBase 
-          menuList={[
-            {value: 'update', label: 'Cập nhật', icon: <UpdateIcon />},
-            {value: 'delete', label: 'Xóa', icon: <DeleteIcon />},
-          ]}
-        />
-      )
-    },
-  ];
+      },
+      {
+        field: 'content',
+        headerName: 'Nội dung',
+        flex: 3,
+        align: 'center',
+        renderCell: ({ value }) => (
+          <Typography 
+          variant='body2' 
+          sx={{ 
+            width: '100%',
+            ...textOverflowMixin(3)
+            // ...test(2)
+          }}>
+            {value}
+          </Typography>
+        )
+      },
+      {
+        field: 'money',
+        headerName: 'Số tiền',
+        flex: 2,
+        align: 'center',
+        renderCell: (params) => {
+          return (
+            <Typography
+              variant='body2'
+              sx={{
+                color: params.value < 0 ? "rgb(220, 53, 69)" : "rgb(25, 135, 84)",
+                fontWeight: 600,
+                width: "100%",
+              }}
+            >
+              {params.value > 0 ? `+${numberToMoney(params.value)}` : numberToMoney(params.value)}
+            </Typography>
+          )
+        }
+      },
+      {
+        field: 'bank',
+        headerName: 'Nguồn tiền',
+        flex: 2,
+        align: 'center',
+        renderCell: ({ value }) => (
+          <Typography variant='body2' sx={{ width: '100%'}}>
+            {value}
+          </Typography>
+        )
+      },
+      {
+        field: 'time',
+        headerName: 'Thời gian',
+        flex: 1,
+        align: 'center',
+        renderCell: ({ value }) => (
+          <Typography variant='body2' sx={{ width: '100%'}}>
+            {value}
+          </Typography>
+        )
+      },
+      {
+        field: 'menu',
+        headerName: 'Hành động',
+        flex: 1,
+        align: 'center',
+        headerAlign: 'center',
+        renderCell: ({ value }) => (
+          <Box sx={{
+            '& .MuiButton-root': {
+              padding: (theme) => theme.spacing(4),
+              margin: (theme) => theme.spacing(-4),
+            },
+            '& .MuiSvgIcon-root': {
+              fontSize: (theme) => theme.spacing(16)
+            }
+          }}>
+            <MenuBase 
+              menuList={[
+                {value: 'update', label: 'Cập nhật', icon: <UpdateIcon />},
+                {value: 'delete', label: 'Xóa', icon: <DeleteIcon />},
+              ]}
+              onMenuItemClick={(optionValue) => {
+                switch(optionValue) {
+                  case 'update': return onUpdateClick && onUpdateClick(value);
+                  case 'delete': return onDeleteClick && onDeleteClick(value)
+                }
+              }}
+            />
+          </Box>
+        )
+      },
+    ]
+  }, [pendingList]) 
 
   const rows = useMemo(() => {
     return pendingList.map((value, index) => ({
@@ -124,7 +148,8 @@ const PendingDetail: React.FC<PendingDetailProps> = ({
       content: value.content,
       money: value.money,
       time: `${addZero(value.date.getHours())}:${addZero(value.date.getMinutes())}`,
-      bank: value.bank
+      bank: value.bank,
+      menu: value.id
     }))
   }, [pendingList])
 
