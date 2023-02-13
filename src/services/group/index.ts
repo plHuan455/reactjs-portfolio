@@ -2,8 +2,8 @@ import axiosInstance from "~services/common/instance";
 import { DefaultPayloadTypes } from "~services/type";
 import { CreateGroupParams, GroupPayloadTypes, MemberTypes, UpdateGroupParams } from "./type";
 
-export const getGroupsService = async (): Promise<GroupPayloadTypes[]> => {
-  const response = await axiosInstance.get('/group');
+export const getGroupsService = async (search?: string): Promise<GroupPayloadTypes[]> => {
+  const response = await axiosInstance.get(`/group`, {params: {search}});
   return response.data.data;
 }
 
@@ -18,7 +18,7 @@ export const createGroupService = async (data: CreateGroupParams): Promise<Defau
 }
 
 export const updateGroupService = async (data: UpdateGroupParams): Promise<DefaultPayloadTypes> => {
-  const response = await axiosInstance.put(`/group/create/${data.slug}`, data.data);
+  const response = await axiosInstance.put(`/group/${data.slug}`, data.data);
   return response.data;
 }
 

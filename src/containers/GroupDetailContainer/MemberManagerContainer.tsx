@@ -23,15 +23,15 @@ const MemberManagerContainer: React.FC<MemberManagerContainerProps> = () => {
   const [isOpenAddMemberModal, setIsOpenAddMemberModal] = useState<boolean>(false);
 
   const { data: groupData } = useQuery({
-    queryKey: ['member-manager-get-group'],
+    queryKey: ['member-manager-get-group', slug],
     queryFn: () => getGroupBySlug(slug ?? ''),
     enabled: Boolean(slug)
   })
 
   const { data: membersData, isLoading: isMemberGetting } = useQuery({
-    queryKey: ['member-manager-get-members'],
-    queryFn: () => getMembersService(groupData?.slug ?? ''),
-    enabled: Boolean(groupData?.slug)
+    queryKey: ['member-manager-get-members', slug],
+    queryFn: () => getMembersService(slug ?? ''),
+    enabled: Boolean(slug)
   })
 
   const method = useForm<AddMemberFormFields>({
@@ -88,6 +88,7 @@ const MemberManagerContainer: React.FC<MemberManagerContainerProps> = () => {
       <MemberManager
         title={groupData?.name ?? ''}
         memberList={convertedMembers}
+        baseMoney={groupData?.baseMoney}
         searchValue={searchValue}
         searchPlaceholder='Tìm thành viên ...'
         tableRowShow={tableRows}

@@ -30,15 +30,17 @@ const ManagerContainer: React.FC<ManagerContainerProps> = () => {
   })
 
   const {data: groupsData, isLoading: isGroupLoading} = useQuery({
-    queryKey: ['get-groups'],  
-    queryFn: getGroupsService, 
+    queryKey: ['group-manager-get-groups'],  
+    queryFn: () => getGroupsService(), 
     refetchOnMount: true,
   })
   
   const {mutate: updateGroupMutate, isLoading: updateGroupLoading} = useMutation({
-    mutationKey: ['create-group'],
+    mutationKey: ['group-manager-update-group'],
     mutationFn: updateGroupService,
     onSuccess: () => {
+      queryClient.invalidateQueries(['group-manager-get-groups']);
+      queryClient.invalidateQueries(['main-layout-get-groups']);
       toast.success('Cập nhật thành công');
     },
     onError: () => {
@@ -64,7 +66,8 @@ const ManagerContainer: React.FC<ManagerContainerProps> = () => {
     mutationKey: ['group-delete'],
     mutationFn: deleteGroupService,
     onSuccess: () => {
-      queryClient.invalidateQueries(['get-groups']);
+      queryClient.invalidateQueries(['group-manager-get-groups']);
+      queryClient.invalidateQueries(['main-layout-get-groups']);
       toast.success('Xóa nhóm thành công')
     }
   });

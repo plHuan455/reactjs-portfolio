@@ -1,4 +1,5 @@
 
+import { Box, Typography } from '@mui/material';
 import { BiPlus } from 'react-icons/bi';
 import { HiOutlineDotsHorizontal, HiOutlineTable } from 'react-icons/hi';
 import Button from '~atoms/Button';
@@ -7,7 +8,7 @@ import { NumberInput } from '~atoms/Input';
 import Text from '~atoms/Text';
 import DropdownControl from '~molecules/DropdownControl';
 import SearchInput from '~molecules/SearchInput';
-import { mapModifiers } from '../../../utils/funcs';
+import { mapModifiers, numberToMoney } from '../../../utils/funcs';
 
 
 export type MemberMenuControlType = 'delete';
@@ -23,6 +24,7 @@ export interface MemberTypes {
 export interface MemberManagerProps {
   title: string;
   searchValue: string;
+  baseMoney?: number;
   searchPlaceholder?: string;
   memberList: MemberTypes[];
   tableRowShow?: number;
@@ -36,6 +38,7 @@ export interface MemberManagerProps {
 const MemberManager: React.FC<MemberManagerProps> = ({
   title,
   searchValue,
+  baseMoney,
   searchPlaceholder,
   memberList,
   tableRowShow = 8,
@@ -49,6 +52,12 @@ const MemberManager: React.FC<MemberManagerProps> = ({
     <div className="t-memberManager_title">
       <Text type='h2' modifiers={['20x24', '500', 'black']}>{title}</Text>
     </div>
+    {baseMoney !== undefined && (
+      <Box sx={{ display: 'flex' }}>
+        <Typography>Tổng tiền: </Typography>
+        <Typography sx={{ ml: (theme) => theme.spacing(4), color: '#198754' }}>{numberToMoney(baseMoney)} VNĐ</Typography>
+      </Box>
+    )}
     <div className="t-memberManager_controlBar">
       <div className="t-memberManager_controlBar_search">
         <SearchInput

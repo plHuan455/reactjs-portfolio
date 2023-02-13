@@ -9,20 +9,31 @@ import { searchListDummy } from '~assets/dataDummy/groupDummy';
 import { SearchItemTypes } from '~molecules/SearchInput';
 import { MdOutlineGroup } from 'react-icons/md';
 import { BsCalendar3 } from 'react-icons/bs';
-import { useAppSelector } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { useQuery } from '@tanstack/react-query';
+import { getGroupsService } from '~services/group';
+import { setCurrentGroup } from '../../store/system';
+import { toast } from 'react-toastify';
 
 export interface MainLayoutContainerProps {
   children: JSX.Element;
 }
 
 export default function MainLayoutContainer({ children }: MainLayoutContainerProps) {
+  const dispatch = useAppDispatch();
+
   const { currentGroup, user: currentUser } = useAppSelector((state) => state.system);
 
   const [headerSearchValue, setHeaderSearchValue] = useState<string>('');
   const {isMobile, isTablet} = useMatchMedia();
   const [isSlideBarCompact, setIsSlideBarCompact] = useState<boolean>(isMobile || isTablet);
   const [isShowSearchList, setIsShowSearchList] = useState<boolean>(false);
-  const debounceSearchValue = useDebounce(headerSearchValue, 1000);
+  const debounceSearchValue = useDebounce(headerSearchValue, 500);
+
+  const { data: groupData, isLoading: isGroupGetting } = useQuery({
+    queryKey: ['main-layout-get-groups', debounceSearchValue],
+    queryFn: () => getGroupsService(debounceSearchValue),
+  })
 
   const menuList = useMemo(() => {
     return [
@@ -50,10 +61,31 @@ export default function MainLayoutContainer({ children }: MainLayoutContainerPro
           ]
       },
     ]
-  }, [currentUser])
+  }, [currentUser]);
+
+  const convertedSearchData = useMemo<SearchItemTypes[]>(()=> {
+    return groupData?.map(value => ({
+      title: value.name ?? '',
+      avatarSrc: value.avatarImg,
+      description: value.description,
+      id: value._id
+    })) ?? []
+  }, [groupData])
 
   const handleHeaderSearchItemClick = (value: SearchItemTypes) => {
+    const foundGroup = groupData?.find(group => group._id === value.id);
+    if(!foundGroup) {
+      toast.error('Không tìm thấy nhóm');
+      return;
+    }
+    
     setIsShowSearchList(false);
+    dispatch(setCurrentGroup({
+      id: foundGroup._id ?? '',
+      description: foundGroup.description ?? '',
+      name: foundGroup.name ?? '',
+      slug: foundGroup.slug ?? ''
+    }))
   }
 
   return (
@@ -63,9 +95,10 @@ export default function MainLayoutContainer({ children }: MainLayoutContainerPro
       isDesktopDown={isMobile || isTablet}
       isSlideBarCompact={isSlideBarCompact}
       headerSearchValue={headerSearchValue}
+      isSearchLoading={isGroupGetting}
       isHeaderShowSearchList={isShowSearchList}
       headerGroupLabel={currentGroup?.name}
-      headerSearchList={searchListDummy}
+      headerSearchList={convertedSearchData}
       menuItems={menuList}
       headerSearchPlaceholder='Tìm và chọn để thay đổi nhóm'
       onHeaderSearchChange={(value) => setHeaderSearchValue(value)}

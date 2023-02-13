@@ -2,7 +2,7 @@ export interface CreatePendingParams {
   content: string;
   groupId: string;
   date: string;
-  money: string;
+  money: number;
   bank: string;
 }
 

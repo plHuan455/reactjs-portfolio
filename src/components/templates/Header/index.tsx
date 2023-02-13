@@ -7,6 +7,7 @@ export interface HeaderProps {
   searchValue: string;
   searchPlaceholder?: string;
   searchList?: SearchItemTypes[];
+  isSearchLoading?: boolean;
   isShowSearchList?: boolean;
   onCloseSearchList?: () => void;
   onOpenSearchList?: () => void;
@@ -19,6 +20,7 @@ const Header: React.FC<HeaderProps> = ({
   isShowSearchList, 
   searchValue, 
   searchList, 
+  isSearchLoading,
   searchPlaceholder, 
   onCloseSearchList, 
   onOpenSearchList, 
@@ -30,6 +32,7 @@ const Header: React.FC<HeaderProps> = ({
       <div className="t-header_wrapper">
         <div className="t-header_searchBar">
           <SearchInput
+            isLoading={isSearchLoading}
             value={searchValue} onChange={onSearchChange}
             isShowSearchList={isShowSearchList}
             searchList={searchList}

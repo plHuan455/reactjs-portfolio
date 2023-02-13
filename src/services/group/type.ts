@@ -2,6 +2,7 @@ export interface CreateGroupParams {
   avatarImg: string;
   description: string;
   name: string;
+  baseMoney: number;
 }
 
 export interface GroupPayloadTypes {
@@ -9,6 +10,7 @@ export interface GroupPayloadTypes {
   name?: string;
   description?: string;
   avatarImg?: string;
+  baseMoney?: number;
   members?: MemberTypes[];
   slug?: string;
 }

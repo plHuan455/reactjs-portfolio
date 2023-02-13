@@ -14,8 +14,11 @@ import ModalBase from "~organisms/ModalBase";
 import useDebounce from "~hooks/useDebounce";
 import { BsCheckLg } from "react-icons/bs";
 import PendingDetail, { PendingDetailTypes } from "~templates/PendingDetail";
-import { isADate } from "../../utils/funcs";
+import { isADate, numberToMoney } from "../../utils/funcs";
 import { UpdatePendingParams } from "~services/pending/type";
+import { Box, Typography } from "@mui/material";
+import { getGroupBySlug } from "~services/group";
+import Container from "~organisms/Container";
 
 interface CalendarContainerProps {
 }
@@ -70,8 +73,14 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
     resolver: yupResolver(schema),
   });
 
+  const { data: groupData, isLoading: isGroupGetting} = useQuery({
+    queryKey:['bank-manager-detail-get-group'],
+    queryFn: () => getGroupBySlug(currentGroup?.slug ?? ''),
+    enabled: Boolean(currentGroup?.slug)
+  })
+
   const { data: pendingData, isLoading: isPendingGetting } = useQuery({
-    queryKey: ['bank-manager-detail-get-pending', calendarViewDateDebounce],
+    queryKey: ['bank-manager-detail-get-pending', calendarViewDateDebounce, currentGroup],
     queryFn: () => getPendingService(calendarViewDate.getMonth() + 1, calendarViewDate.getFullYear(), currentGroup?.id ?? ''),
     enabled: Boolean(currentGroup?.id)
   })
@@ -82,6 +91,7 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
     onSuccess: () => {
       toast.success('Tạo chi tiêu thành công');
       queryClient.invalidateQueries({ queryKey: ['bank-manager-detail-get-pending'] });
+      queryClient.invalidateQueries({ queryKey: ['bank-manager-detail-get-group'] });
       setIsOpenCreatePendingModal(false);
       setIsOpenPendingDetailModal(true);
     },
@@ -99,6 +109,7 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
       setSelectedPendingUpdateModal(undefined);
       setIsOpenPendingDetailModal(true);
       queryClient.invalidateQueries({queryKey: ['bank-manager-detail-get-pending']});
+      queryClient.invalidateQueries({queryKey: ['bank-manager-detail-get-group']});
     },
     onError: () => {
       toast.error('Cập nhật chi tiêu thất bại');
@@ -112,7 +123,9 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
       toast.success('Xóa chi tiêu thành công');
       queryClient.invalidateQueries({
         queryKey: ['bank-manager-detail-get-pending']
-      })
+      });
+      queryClient.invalidateQueries({queryKey: ['bank-manager-detail-get-group']});
+
     },
     onError: () => {
       toast.error('Xóa chi tiêu thất bại');
@@ -157,7 +170,7 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
       bank: values.bank,
       content: values.content,
       date: dateTime.toISOString(),
-      money: String(values.money)
+      money: values.money
     })
   }
 
@@ -191,7 +204,7 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
         bank: values.bank,
         content: values.content,
         date: pendingDate.toISOString(),
-        money: String(values.money),
+        money: values.money,
       }
     })
   }
@@ -202,6 +215,12 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
 
   return (
     <>
+      <Container>
+        <Box sx={{ display: 'flex', mb: (theme) => theme.spacing(12) }}>
+          <Typography>Tổng tiền: </Typography>
+          <Typography sx={{ ml: (theme) => theme.spacing(4), color: '#198754' }}>{numberToMoney(groupData?.baseMoney ?? 0)} VNĐ</Typography>
+        </Box>
+      </Container>
       <PendingManageCalendar
         viewDate={calendarViewDate}
         selectedDate={selectedDate}
@@ -212,6 +231,7 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
         onChangeViewDate={(date) => setCalendarViewDate(date)}
         onCloseDetailModal={() => setIsOpenPendingDetailModal(false)}
         onAddPendingClick={handleOpenCreatePendingModal}
+        isLoading={isPendingGetting}
       />
       <CustomModal
         isOpen={isOpenCreatePendingModal}

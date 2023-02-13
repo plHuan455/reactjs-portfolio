@@ -175,7 +175,7 @@ const PendingDetail: React.FC<PendingDetailProps> = ({
 
       <Box
         sx={{
-          height: 480,
+          height: 400,
           width: '100%',
           "& .MuiDataGrid-columnHeaderTitle": { fontWeight: 600 },
           mt: (theme) => theme.spacing(12),

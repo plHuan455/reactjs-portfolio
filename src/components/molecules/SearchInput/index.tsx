@@ -6,6 +6,8 @@ import Text from '~atoms/Text';
 import { mapModifiers } from '../../../utils/funcs';
 import useClickOutside from '~hooks/useClickOutside';
 import { useRef } from 'react';
+import Loading from '~atoms/Loading';
+import {Box} from '@mui/material';
 
 export interface SearchItemTypes {
   id?: string;
@@ -17,6 +19,7 @@ export interface SearchItemTypes {
 type SearchModifiers = 'hasBorder';
 
 export interface SearchInputProps extends Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'onChange'> {
+  isLoading?: boolean;
   value: string;
   searchList?: SearchItemTypes[];
   isShowSearchList?: boolean;
@@ -29,7 +32,8 @@ export interface SearchInputProps extends Omit<React.DetailedHTMLProps<React.Inp
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({ 
-  value, 
+  value,
+  isLoading,
   isShowSearchList,
   modifiers,
   isNoIcon,
@@ -69,7 +73,10 @@ const SearchInput: React.FC<SearchInputProps> = ({
           <Text modifiers={['14x16', 'sonicSilver']}>Tìm thấy {searchList.length} kết quả</Text>
         </div>
         <div className="m-searchInput_searchList_items">
-          {searchList?.map((searchItem, idx) => 
+          {isLoading && <Box sx={{width: '50%', margin: 'auto'}}>
+            <Loading modifiers='page' />
+          </Box>}
+          {!isLoading && searchList?.map((searchItem, idx) => 
             <div className="m-searchInput_searchList_item" key={`search-item-${idx}`} onClick={() => {if(onSearchItemClick) onSearchItemClick(searchItem)}}>
               <div className="m-searchInput_searchAvatar">
                 <img className="m-searchInput_searchAvatar_img" src={searchItem.avatarSrc ?? ''} />
