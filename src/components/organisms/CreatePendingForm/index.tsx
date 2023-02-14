@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { number } from 'yup';
 import { UseFormReturn, FormProvider, Controller } from 'react-hook-form'
 import { Input, TimeInput } from '~atoms/Input';
 import { Col, Row } from '~organisms/Container';
 import Button from '~atoms/Button';
-import { numberToMoney } from '../../../utils/funcs';
+import { numberToMoney, numberToRand } from '../../../utils/funcs';
 import Text from '~atoms/Text';
 import { LoadingButton } from '@mui/lab';
+import InputMoney from '~molecules/InputMoney';
 
 export interface PendingFields {
   content: string;
@@ -25,6 +26,7 @@ export interface CreatePendingFormProps {
 }
 
 const CreatePendingForm: React.FC<CreatePendingFormProps> = ({ isFormLoading, submitButtonLabel, title, method, onCancelClick, onSubmit }) => {
+
   return <div className="o-createPendingForm">
     <div className="o-createPendingForm_title">
       <Text type="h1" modifiers={['20x24', 'darkLiver', '600', 'center']}>{title}</Text>
@@ -32,7 +34,7 @@ const CreatePendingForm: React.FC<CreatePendingFormProps> = ({ isFormLoading, su
     
     <FormProvider {...method}>
       <form className="o-createPendingForm_form" onSubmit={method.handleSubmit(onSubmit)}>
-        <Row colGap='24'>
+        <Row colGap='24' rowGap='12'>
           <Col colSpan='12'>
             <Controller
               name="content"
@@ -53,16 +55,11 @@ const CreatePendingForm: React.FC<CreatePendingFormProps> = ({ isFormLoading, su
             <Controller
               name="money"
               render={({ field: { onChange, onBlur, value }, fieldState }) =>
-                <Input
-                  error={fieldState?.error?.message}
-                  label="Số tiền"
+                <InputMoney
+                  options={[]}
+                  label={"Số tiền"}
                   value={value}
                   onChange={onChange}
-                  type="number"
-                  onFocus={(e) => e.target.select()}
-                  onBlur={onBlur}
-                  placeholder="Nhập nội dung"
-                  id="create-pending-content"
                 />
               }
             />

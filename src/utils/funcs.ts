@@ -98,7 +98,17 @@ export const isADate = (date1: Date, date2: Date): boolean => {
 }
 
 export const numberToMoney = (num: number): string => {
-  return new Intl.NumberFormat().format(num).replace(/\,/, '.')
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+/**
+ * 
+ * @param num 
+ * @param range //e.g: 1, 2, 3, ...
+ */
+export const numberToRand = (num: number, range: number): number => {
+  const str = `${num}${Array(range).fill('0').join('')}`;
+  return Number(str.substring(0, range))
 }
 
 export const addZero = (num: number):string => {

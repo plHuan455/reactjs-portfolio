@@ -19,6 +19,8 @@ import { UpdatePendingParams } from "~services/pending/type";
 import { Box, Typography } from "@mui/material";
 import { getGroupBySlug } from "~services/group";
 import Container from "~organisms/Container";
+import Section from "~templates/Section";
+import ExpenditureSummary from "~templates/ExpenditureSummary";
 
 interface CalendarContainerProps {
 }
@@ -74,7 +76,7 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
   });
 
   const { data: groupData, isLoading: isGroupGetting} = useQuery({
-    queryKey:['bank-manager-detail-get-group'],
+    queryKey:['bank-manager-detail-get-group', currentGroup],
     queryFn: () => getGroupBySlug(currentGroup?.slug ?? ''),
     enabled: Boolean(currentGroup?.slug)
   })
@@ -142,8 +144,20 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
     })) ?? []
   }, [pendingData])
 
-  const convertedPendingDetailList = useMemo<PendingDetailTypes[]>(() => {
-    if (isOpenPendingDetailModal) {
+  const {income, expenses} = useMemo(() => {
+    return pendingData?.reduce<{income: number, expenses: number}>(
+      (currentValue, value) => {
+        const money = value.money ?? 0;
+        return {
+          income: money > 0 ? currentValue.income + money : currentValue.income,
+          expenses: money < 0 ? currentValue.expenses + money : currentValue.expenses
+        }
+      },
+      {income: 0, expenses: 0}
+    ) ?? {income: 0, expenses: 0}
+  }, [pendingData])
+
+  const convertedPendingDetailList = useMemo(() => {
       return pendingData?.filter(pending => isADate(new Date(pending.date ?? ''), selectedDate)).map(value => ({
         id: value._id ?? '',
         bank: value.bank ?? '',
@@ -151,10 +165,9 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
         date: new Date(value.date ?? ''),
         money: value.money ?? 0
       })) ?? [];
-    }
-
-    return [];
   }, [selectedDate, isOpenPendingDetailModal, pendingData]);
+
+
 
   const handleCreate = (values: PendingFields) => {
     if (!currentGroup) {
@@ -164,7 +177,6 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
 
     const dateTime = new Date(selectedDate);
     dateTime.setHours(values.time[0], values.time[1]);
-
     createPendingMutate({
       groupId: currentGroup?.id,
       bank: values.bank,
@@ -189,7 +201,7 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
     const pendingDate = new Date(foundPending.date ?? Date.now());
     updatePendingMethod.setValue('content', foundPending.content ?? '')
     updatePendingMethod.setValue('bank', foundPending.bank ?? '')
-    updatePendingMethod.setValue('money', Number(foundPending.money ?? 0))
+    updatePendingMethod.setValue('money', foundPending.money ?? 0)
     updatePendingMethod.setValue('time', [pendingDate.getHours(), pendingDate.getMinutes()]);
   }
 
@@ -204,7 +216,7 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
         bank: values.bank,
         content: values.content,
         date: pendingDate.toISOString(),
-        money: values.money,
+        money: Number(values.money),
       }
     })
   }
@@ -233,6 +245,13 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
         onAddPendingClick={handleOpenCreatePendingModal}
         isLoading={isPendingGetting}
       />
+      <Section >
+        <ExpenditureSummary
+          date={calendarViewDate}
+          expenses={expenses}
+          income={income}
+        />
+      </Section>
       <CustomModal
         isOpen={isOpenCreatePendingModal}
         handleClose={() => { setIsOpenCreatePendingModal(false) }}
