@@ -13,18 +13,25 @@ export interface VocabularyCreateEditType {
 }
 
 export interface VocabularyCreateEditProps {
+  isLoading?: boolean;
   title: string;
-  method: UseFormReturn<VocabularyCreateEditType>
+  submitLabel?: string;
+  method: UseFormReturn<VocabularyCreateEditType>,
+  onSubmit: (values : VocabularyCreateEditType) => void;
 }
 
 const VocabularyCreateEdit: React.FC<VocabularyCreateEditProps> = ({
+  isLoading,
+  submitLabel = 'Tạo từ vựng',
   title,
-  method
+  method,
+  onSubmit,
 }) => {
   return (
     <Box className="t-vocabularyCreateEdit">
+      <Typography sx={{fontWeight: 600, fontSize: rem(20)}}>{title}</Typography>
       <FormProvider {...method}>
-        <FormGroup sx={{mt: rem(24)}}>
+        <FormGroup sx={{mt: rem(24)}} onSubmit={method.handleSubmit(onSubmit)}>
           <Box>
             <Controller
               name="word" 
@@ -55,10 +62,24 @@ const VocabularyCreateEdit: React.FC<VocabularyCreateEditProps> = ({
               )}
             />
           </Box>
+          <Box sx={{mt: rem(24)}}>
+            <Controller
+              name="image" 
+              render={({field: {value, onChange}, fieldState}) => (
+                <TextField value={value} onChange={onChange} label="Link hình ảnh" variant="outlined" fullWidth placeholder='https://picsum.photos/300/300'
+                  error={Boolean(fieldState.error?.message)} helperText={fieldState.error?.message}
+                />
+              )}
+            />
+          </Box>
 
-          <Box>
-            <LoadingButton>
-              Tạo từ vựng
+          <Box sx={{textAlign: 'right', mt: rem(16)}}>
+            <LoadingButton
+              loading={isLoading}
+              sx={{backgroundColor: 'rgb(45, 104, 254)', color: 'white', '&:hover': { backgroundColor: 'rgb(109, 150, 253)'}}}
+              onClick={() => method.handleSubmit(onSubmit)()}
+            >
+              {submitLabel}
             </LoadingButton>
           </Box>
         </FormGroup>

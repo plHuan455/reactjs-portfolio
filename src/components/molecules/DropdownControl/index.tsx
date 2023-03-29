@@ -16,6 +16,7 @@ export interface DropdownControlProps {
 const DropdownControl: React.FC<DropdownControlProps> = ({ isDisabled, dropdownList = [], children, onItemClick }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isShow, setIsShow] = useState<boolean>(false);
+  console.log(isShow)
 
   useClickOutside(dropdownRef, () => setIsShow(false));
 

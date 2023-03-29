@@ -12,11 +12,13 @@ export interface MenuItemTypes {
 export interface MenuBaseProps {
   menuList: MenuItemTypes[];
   onMenuItemClick?: (value: string) => void;
+  onClose?: () => void;
 }
 
 const MenuBase: React.FC<MenuBaseProps> = ({
   menuList,
   onMenuItemClick,
+  onClose,
 }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement>();
   return (
@@ -27,7 +29,7 @@ const MenuBase: React.FC<MenuBaseProps> = ({
       }}>
         <MoreVertIcon sx={{color: "#4C5863"}}/>
       </Button>
-      <Menu className="o-menuBase" open={Boolean(anchorEl)} anchorEl={anchorEl} onClose={() => setAnchorEl(undefined)}>
+      <Menu className="o-menuBase" open={Boolean(anchorEl)} anchorEl={anchorEl} onClose={() => {setAnchorEl(undefined); onClose && onClose()}}>
         {menuList.map(value => (
           <MenuItem key={`o-menuBase-${value.value}`} onClick={() => onMenuItemClick && onMenuItemClick(value.value)}>
             <Box sx={{display: 'flex', flexWrap: 'nowrap', textAlign: 'center'}}>

@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import VocabularyContainer from "~containers/VocabularyContainer";
+import Section from "~templates/Section";
 
 interface VocabularyProps {
 }
@@ -7,7 +8,9 @@ interface VocabularyProps {
 const Vocabulary: React.FC<VocabularyProps> = () => {
   return (
     <Box className="p-vocabulary">
-      <VocabularyContainer />
+      <Section>
+        <VocabularyContainer />
+      </Section>
     </Box>
   )
 }

@@ -7,6 +7,7 @@ export interface AutoCompleteOptionTypes {
 }
 
 export interface AutoCompleteBaseProps {
+  multiple?: boolean;
   value: AutoCompleteOptionTypes[];
   options: AutoCompleteOptionTypes[];
   label?: string;
@@ -15,6 +16,7 @@ export interface AutoCompleteBaseProps {
 }
 
 const AutoCompleteBase: React.FC<AutoCompleteBaseProps> = ({
+  multiple = true,
   value,
   options,
   label,

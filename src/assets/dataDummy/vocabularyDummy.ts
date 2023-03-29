@@ -2,7 +2,7 @@ import { VocabularyTypes } from "~templates/VocabularyList";
 
 export const vocabularyListDummy: VocabularyTypes[] = [
   {
-    id: 1,
+    id: '1',
     image: 'https://picsum.photos/300/300',
     mean: 'Thông tin',
     word: 'Information',
@@ -10,7 +10,7 @@ export const vocabularyListDummy: VocabularyTypes[] = [
     description: 'Sed porttitor lectus nibh. Nulla quis lorem ut libero malesuada feugiat. Vestibulum a'
   },
   {
-    id: 2,
+    id: '2',
     image: 'https://picsum.photos/300/300',
     mean: 'Thông tin',
     word: 'Information',
@@ -18,7 +18,7 @@ export const vocabularyListDummy: VocabularyTypes[] = [
     description: 'Sed porttitor lectus nibh. Nulla quis lorem ut libero malesuada feugiat. Vestibulum a'
   },
   {
-    id: 3,
+    id: '3',
     image: 'https://picsum.photos/300/300',
     mean: 'Thông tin',
     word: 'Information',
@@ -26,7 +26,7 @@ export const vocabularyListDummy: VocabularyTypes[] = [
     description: 'Sed porttitor lectus nibh. Nulla quis lorem ut libero malesuada feugiat. Vestibulum a'
   },
   {
-    id: 4,
+    id: '4',
     image: 'https://picsum.photos/300/300',
     mean: 'Thông tin',
     word: 'Information',
@@ -34,7 +34,7 @@ export const vocabularyListDummy: VocabularyTypes[] = [
     description: 'Sed porttitor lectus nibh. Nulla quis lorem ut libero malesuada feugiat. Vestibulum a'
   },
   {
-    id: 5,
+    id: '5',
     image: 'https://picsum.photos/300/300',
     mean: 'Thông tin',
     word: 'Information',
@@ -42,7 +42,7 @@ export const vocabularyListDummy: VocabularyTypes[] = [
     description: 'Sed porttitor lectus nibh. Nulla quis lorem ut libero malesuada feugiat. Vestibulum a'
   },
   {
-    id: 6,
+    id: '6',
     image: 'https://picsum.photos/300/300',
     mean: 'Thông tin',
     word: 'Information',

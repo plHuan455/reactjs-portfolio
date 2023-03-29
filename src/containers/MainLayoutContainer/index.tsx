@@ -50,7 +50,7 @@ export default function MainLayoutContainer({ children }: MainLayoutContainerPro
       },
       { label: 'Từ vựng', menuIcon: RiTestTubeFill, href: renderPageUrl('VOCABULARIES'), subItems: [
         { label: 'Danh sách từ vựng', href: renderPageUrl('VOCABULARIES')},
-        { label: 'Tạo từ vựng', href: renderPageUrl('VOCABULARIES_CREATE')}
+        { label: 'Luyện tập', href: renderPageUrl('VOCABULARIES_TRAIN')},
       ] },
       {
         label: 'Tài khoản', menuIcon: BiUser, subItems: currentUser ? 

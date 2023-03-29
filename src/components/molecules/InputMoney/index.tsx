@@ -98,7 +98,7 @@ const InputMoney: React.FC<InputMoneyProps> = ({
           renderInput={(params) => {
             return(
             <Box sx={{ position: 'relative' }}>
-              <TextField {...params} size="small"/>
+              <TextField {...params} size="small" id={id}/>
               <Box sx={{ width: rem(28), height: '100%', position: 'absolute', left: 0, top: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Button
                   sx={{
