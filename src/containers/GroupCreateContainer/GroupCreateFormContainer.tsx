@@ -16,6 +16,7 @@ export const groupCreateSchema = yup.object({
   name: yup.string().required('Vui lòng nhập tên nhóm!'),
   description: yup.string(),
   avatarImg: yup.string(),
+  baseMoney: yup.number(),
 }).required();
 
 const GroupCreateFormContainer: React.FC<GroupCreateFormContainerProps> = () => {
@@ -23,18 +24,20 @@ const GroupCreateFormContainer: React.FC<GroupCreateFormContainerProps> = () => 
   const navigate = useNavigate();
   const method = useForm<GroupCreateFields>({
     mode: 'onBlur',
-    defaultValues: { name: '', description: '', avatarImg: '' },
+    defaultValues: { name: '', description: '', avatarImg: '', baseMoney: 0 },
     resolver: yupResolver(groupCreateSchema),
   });
   const {mutate: createGroupMutate, isLoading} = useMutation({
-    mutationKey: ['create-group'],
+    mutationKey: ['group-create-create-group'],
     mutationFn: createGroupService,
     onError: () => {
       toast.error('Tạo nhóm không thành công');
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['get-groups']);
+      queryClient.invalidateQueries({queryKey: ['get-groups']});
+      queryClient.invalidateQueries({ queryKey: ['main-layout-get-groups'] });
       toast.success('Tạo nhóm thành công');
+      navigate(renderPageUrl('GROUP_MANAGER'))
       method.reset();
     }
   });

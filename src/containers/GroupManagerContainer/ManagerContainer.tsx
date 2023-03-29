@@ -5,15 +5,20 @@ import { createGroupService, deleteGroupService, getGroupsService, updateGroupSe
 import GroupManager, { GroupTypes } from "~templates/GroupManager";
 import { renderPageUrl } from "../../navigation";
 import { useForm } from "react-hook-form";
-import { GroupCreateFields } from "~templates/GroupCreateForm";
+import GroupCreateForm, { GroupCreateFields } from "~templates/GroupCreateForm";
 import { groupCreateSchema } from "~containers/GroupCreateContainer/GroupCreateFormContainer";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
+import { useAppDispatch } from "../../store";
+import { setCurrentGroup } from "../../store/system";
+import CustomModal from "~organisms/Modal";
 
 interface ManagerContainerProps { }
 
 const ManagerContainer: React.FC<ManagerContainerProps> = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const [searchValue, setSearchValue] = useState<string>('');
   const [selectedUpdateGroupSlug, setSelectedUpdateGroupSlug] = useState<string>();
   const [isShowUpdateForm, setIsShowUpdateForm] = useState<boolean>(false);
@@ -26,15 +31,17 @@ const ManagerContainer: React.FC<ManagerContainerProps> = () => {
   })
 
   const {data: groupsData, isLoading: isGroupLoading} = useQuery({
-    queryKey: ['get-groups'],  
-    queryFn: getGroupsService, 
+    queryKey: ['group-manager-get-groups'],  
+    queryFn: () => getGroupsService(), 
     refetchOnMount: true,
   })
-
+  
   const {mutate: updateGroupMutate, isLoading: updateGroupLoading} = useMutation({
-    mutationKey: ['create-group'],
+    mutationKey: ['group-manager-update-group'],
     mutationFn: updateGroupService,
     onSuccess: () => {
+      queryClient.invalidateQueries(['group-manager-get-groups']);
+      queryClient.invalidateQueries(['main-layout-get-groups']);
       toast.success('Cập nhật thành công');
     },
     onError: () => {
@@ -44,7 +51,7 @@ const ManagerContainer: React.FC<ManagerContainerProps> = () => {
 
   const convertGroup = useMemo<GroupTypes[] | undefined>(() => {
     return groupsData?.map(group => ({
-      id: group.id ?? '',
+      id: group._id ?? '',
       avatarSrc: group.avatarImg ?? '',
       description: group.description ?? '',
       memberList: group.members?.map(value => {
@@ -60,7 +67,9 @@ const ManagerContainer: React.FC<ManagerContainerProps> = () => {
     mutationKey: ['group-delete'],
     mutationFn: deleteGroupService,
     onSuccess: () => {
-      queryClient.invalidateQueries(['get-groups']);
+      queryClient.invalidateQueries(['group-manager-get-groups']);
+      queryClient.invalidateQueries(['main-layout-get-groups']);
+      toast.success('Xóa nhóm thành công')
     }
   });
 
@@ -71,6 +80,7 @@ const ManagerContainer: React.FC<ManagerContainerProps> = () => {
       method.setValue('name', updateGroup.name ?? '');
       method.setValue('description', updateGroup.description ?? '');
       method.setValue('avatarImg', updateGroup.avatarImg ?? '');
+      method.setValue('baseMoney', updateGroup.baseMoney ?? 0);
     }
   }, [selectedUpdateGroupSlug])
 
@@ -79,23 +89,46 @@ const ManagerContainer: React.FC<ManagerContainerProps> = () => {
       updateGroupMutate({data: values, slug: selectedUpdateGroupSlug})  
   }
 
+  const handleSelectGroup = (group: GroupTypes) => {
+    dispatch(setCurrentGroup({id: group.id, name: group.name, description: group.description, slug: group.slug}))
+  }
+
   return (
-    <GroupManager
-      isUpdateFormLoading={isGroupLoading}
-      updateMethod={method}
-      groupList={convertGroup ?? []}
-      searchValue={searchValue}
-      isShowUpdateForm={isShowUpdateForm}
-      onChangeSearchValue={(value) => setSearchValue(value)}
-      onUpdateFormClose={() => setIsShowUpdateForm(false)}
-      onAddGroupClick={() => navigate(renderPageUrl('GROUP_CREATE'))}
-      onGroupCardClick={(slug) => {
-        if (slug) navigate(renderPageUrl('GROUP_DETAIL', slug));
-      }}
-      onGroupUpdate={(slug) => {setSelectedUpdateGroupSlug(slug); setIsShowUpdateForm(true)}}
-      onGroupDelete={(slug) => groupDeleteMutate(slug)}
-      onUpdateGroupSubmit={handleGroupUpdate}
-    />
+    <>
+      <GroupManager
+        groupList={convertGroup ?? []}
+        searchValue={searchValue}
+        onChangeSearchValue={(value) => setSearchValue(value)}
+        onAddGroupClick={() => navigate(renderPageUrl('GROUP_CREATE'))}
+        onGroupCardClick={(slug) => {
+          if (slug) navigate(renderPageUrl('GROUP_DETAIL', slug));
+        }}
+        onGroupSelect={handleSelectGroup}
+        onGroupUpdate={(slug) => {setSelectedUpdateGroupSlug(slug); setIsShowUpdateForm(true)}}
+        onGroupDelete={(slug) => groupDeleteMutate(slug)}
+      />
+
+      
+    <CustomModal
+      isOpen={isShowUpdateForm}
+      modifiers='addPending'
+      handleClose={() => setIsShowUpdateForm(false)}
+    >
+      <div className="t-groupManager_modal">
+        {/* <FormProvider {...updateMethod}>
+
+        </FormProvider> */}
+        <GroupCreateForm
+          method={method}
+          onSubmit={handleGroupUpdate}
+          title="Cập nhật nhóm"
+          buttonText="Cập nhật"
+          isFormLoading={isGroupLoading}
+          onCancel={() => setIsShowUpdateForm(false)}
+        />
+      </div>
+    </CustomModal>
+    </>
   )
 }
 

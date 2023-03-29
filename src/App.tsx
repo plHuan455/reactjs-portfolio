@@ -16,11 +16,16 @@ function App() {
   const dispatch = useAppDispatch();
   const token = useAppSelector(getSystemToken);
   useHistory();
+
   const {isLoading} = useQuery({  
-    queryKey: ['get-user-info'], 
+    queryKey: ['app-get-user'], 
     queryFn: getUserInfoService,
     onSuccess: (data) => {
-      dispatch(addUser(data));
+      dispatch(addUser({
+        email: data.email ?? '',
+        fullName: data.fullname ?? '',
+        username: data.username ?? '',
+      }));
     },
     onError:() => {
       dispatch(signOut());

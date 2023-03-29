@@ -11,6 +11,8 @@ export default {
 export const normal: Story = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   return <Calendar
+    viewDate={new Date()}
+    onChangeViewDate={() => {}}
     selectedDate={selectedDate}
     onChange={(date) => setSelectedDate(date)}
   />

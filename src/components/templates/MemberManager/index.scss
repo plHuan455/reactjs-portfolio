@@ -5,11 +5,12 @@
   background-color: $white;
 
   &_title { 
-    padding: rem(24) 0;
+    padding: rem(18) 0 rem(12) 0;
   }
 
   &_controlBar {
     @include adjust-flex(flex-start, center);
+    margin-top: rem(18);  
 
     &_search {
       flex-grow: 1;

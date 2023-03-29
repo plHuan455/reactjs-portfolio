@@ -15,7 +15,9 @@ export interface MainLayoutProps {
   isSlideBarCompact: boolean;
   headerSearchValue: string;
   headerSearchPlaceholder?: string;
+  headerGroupLabel?: string;
   headerSearchList?: SearchItemTypes[];
+  isSearchLoading?: boolean;
   isHeaderShowSearchList?: boolean;
   onSlideBarCompact?: (isCompact: boolean) => void;
   onSlideBarClickOutside?: () => void;
@@ -30,6 +32,8 @@ export default function MainLayout({
   headerSearchPlaceholder,
   isDesktopDown,
   headerSearchList = [],
+  headerGroupLabel = "",
+  isSearchLoading,
   isSlideBarCompact,
   titleIconName, 
   slideBarTitle, 
@@ -57,12 +61,14 @@ export default function MainLayout({
       </div>
       <div className="t-mainLayout_content">
         <div className={mapModifiers('t-mainLayout_content_header', !isSlideBarCompact && !isDesktopDown && 'fullSlideBar')}>
-          <Header 
+          <Header
+            groupLabel={headerGroupLabel}
             searchValue={headerSearchValue} 
             searchPlaceholder={headerSearchPlaceholder}
             isShowSearchList={isHeaderShowSearchList}
             onCloseSearchList={onHeaderCloseSearchList}
             searchList={headerSearchList}
+            isSearchLoading={isSearchLoading}
             onSearchChange={onHeaderSearchChange}
             onOpenSearchList={onHeaderOpenSearchList}
             onSearchItemClick={onHeaderSearchItemClick}

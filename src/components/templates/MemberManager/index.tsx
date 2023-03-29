@@ -1,4 +1,5 @@
 
+import { Box, Typography } from '@mui/material';
 import { BiPlus } from 'react-icons/bi';
 import { HiOutlineDotsHorizontal, HiOutlineTable } from 'react-icons/hi';
 import Button from '~atoms/Button';
@@ -7,7 +8,7 @@ import { NumberInput } from '~atoms/Input';
 import Text from '~atoms/Text';
 import DropdownControl from '~molecules/DropdownControl';
 import SearchInput from '~molecules/SearchInput';
-import { mapModifiers } from '../../../utils/funcs';
+import { mapModifiers, numberToMoney } from '../../../utils/funcs';
 
 
 export type MemberMenuControlType = 'delete';
@@ -23,22 +24,26 @@ export interface MemberTypes {
 export interface MemberManagerProps {
   title: string;
   searchValue: string;
+  baseMoney?: number;
   searchPlaceholder?: string;
   memberList: MemberTypes[];
   tableRowShow?: number;
   disabledMemberHash?: { [key: string]: true };
   onTableRowShowChange?: (value: number) => void;
   onChangeSearchValue?: (value: string) => void;
+  onAddMemberBtnClick?: () => void;
   onMemberMenuControlItemClick: (value: MemberTypes, type: MemberMenuControlType) => void;
 }
 
 const MemberManager: React.FC<MemberManagerProps> = ({
   title,
   searchValue,
+  baseMoney,
   searchPlaceholder,
   memberList,
   tableRowShow = 8,
   disabledMemberHash = {},
+  onAddMemberBtnClick,
   onTableRowShowChange,
   onChangeSearchValue,
   onMemberMenuControlItemClick,
@@ -47,6 +52,12 @@ const MemberManager: React.FC<MemberManagerProps> = ({
     <div className="t-memberManager_title">
       <Text type='h2' modifiers={['20x24', '500', 'black']}>{title}</Text>
     </div>
+    {baseMoney !== undefined && (
+      <Box sx={{ display: 'flex' }}>
+        <Typography>Tổng tiền: </Typography>
+        <Typography sx={{ ml: (theme) => theme.spacing(4), color: '#198754' }}>{numberToMoney(baseMoney)} VNĐ</Typography>
+      </Box>
+    )}
     <div className="t-memberManager_controlBar">
       <div className="t-memberManager_controlBar_search">
         <SearchInput
@@ -58,7 +69,9 @@ const MemberManager: React.FC<MemberManagerProps> = ({
         />
       </div>
       <div className="t-memberManager_button">
-        <Button variant='group'><Icon modifiers={['16x16', 'white']}>{BiPlus}</Icon><Text modifiers={['14x18', 'white']}>Thêm thành viên</Text></Button>
+        <Button variant='group' onClick={onAddMemberBtnClick}>
+          <Icon modifiers={['16x16', 'white']}>{BiPlus}</Icon><Text modifiers={['14x18', 'white']}>Thêm thành viên</Text>
+        </Button>
       </div>
     </div>
 

@@ -21,33 +21,25 @@ export interface GroupTypes {
 }
 
 export interface GroupManagerProps {
-  updateMethod: UseFormReturn<GroupCreateFields>;
   groupList: GroupTypes[];
   searchValue: string;
-  isShowUpdateForm: boolean;
-  isUpdateFormLoading?: boolean;
   onAddGroupClick?: () => void;
-  onUpdateFormClose: () => void;
   onChangeSearchValue?: (value: string) => void;
   onGroupCardClick?: (slug: string) => void;
+  onGroupSelect?: (group: GroupTypes) => void;
   onGroupDelete?: (groupSlug: string) => void;
   onGroupUpdate?: (groupSlug: string) => void;
-  onUpdateGroupSubmit: (values: GroupCreateFields) => void;
 }
 
 const GroupManager: React.FC<GroupManagerProps> = ({
   groupList,
-  updateMethod,
   searchValue,
-  isShowUpdateForm,
-  isUpdateFormLoading,
-  onUpdateFormClose,
   onChangeSearchValue,
   onAddGroupClick,
   onGroupCardClick,
+  onGroupSelect,
   onGroupDelete,
   onGroupUpdate,
-  onUpdateGroupSubmit
 }) => {
   return <div className="t-groupManager">
     <div className="t-groupManager_header">
@@ -88,11 +80,14 @@ const GroupManager: React.FC<GroupManagerProps> = ({
                 "t-groupManager_card"
               )
             }
-            key={`group-list-${index}`}
+            key={`group-list-${value.id}`}
           >
             <GroupCard
               {...value}
               onAvatarClick={onGroupCardClick}
+              onSelect={() => {
+                onGroupSelect && onGroupSelect(value);
+              }}
               onDelete={() => {
                 if (onGroupDelete) onGroupDelete(value.slug);
               }}
@@ -104,26 +99,6 @@ const GroupManager: React.FC<GroupManagerProps> = ({
         ))}
       </div>
     </Container>
-
-    <CustomModal
-      isOpen={isShowUpdateForm}
-      modifiers='addPending'
-      handleClose={onUpdateFormClose}
-    >
-      <div className="t-groupManager_modal">
-        {/* <FormProvider {...updateMethod}>
-
-        </FormProvider> */}
-        <GroupCreateForm
-          method={updateMethod}
-          onSubmit={onUpdateGroupSubmit}
-          title="Cập nhật nhóm"
-          buttonText="Cập nhật"
-          isFormLoading={isUpdateFormLoading}
-          onCancel={onUpdateFormClose}
-        />
-      </div>
-    </CustomModal>
   </div>
 };
 

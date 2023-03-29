@@ -11,7 +11,9 @@ const meta: Meta = {
 export default meta;
 
 export const Normal: Story<{{pascalCase name}}Props> = ({ ...args }) => {
-  return <{{pascalCase name}} { ...args } />
+  return (
+    <{{pascalCase name}} { ...args } />
+  )
 };
 
 Normal.args = {

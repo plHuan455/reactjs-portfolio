@@ -11,6 +11,7 @@ export interface GroupCreateFields {
   name: string;
   description: string;
   avatarImg: string;
+  baseMoney: number;
 }
 
 export interface GroupCreateFormProps {
@@ -42,8 +43,8 @@ const GroupCreateForm: React.FC<GroupCreateFormProps> = ({
         <form className="t-groupCreateForm_form" onSubmit={method.handleSubmit(onSubmit)}>
           <Row colGap="24" rowGap="12">
             <Col colSpan="8" sm="9">
-              <Row rowGap="12">
-                <Col colSpan="12">
+              <Row rowGap="12" colGap="24">
+                <Col colSpan="12" sm="8">
                   <Controller
                     name="name"
                     render={({ field: { onChange, onBlur, value }, fieldState }) =>
@@ -54,6 +55,22 @@ const GroupCreateForm: React.FC<GroupCreateFormProps> = ({
                         onChange={onChange}
                         onBlur={onBlur}
                         placeholder="Nhập tên nhóm ..."
+                        id="group-create-name"
+                      />
+                    }
+                  />
+                </Col>
+                <Col colSpan="12" sm="4">
+                  <Controller
+                    name="baseMoney"
+                    render={({ field: { onChange, onBlur, value }, fieldState }) =>
+                      <Input
+                        error={fieldState?.error?.message}
+                        label="Số tiền cơ bản"
+                        value={value}
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        placeholder="Số tiền khởi đầu của nhóm"
                         id="group-create-name"
                       />
                     }

@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import { store } from './store'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 
 const queryClient = new QueryClient({
@@ -18,15 +19,26 @@ const queryClient = new QueryClient({
   }
 });
 
+const theme = createTheme({
+  palette: {
+    text: {
+      primary: '#4C5863',
+      secondary: '#3498db',
+    },
+  },
+  spacing: (pixel: number) => `${pixel / 16}rem`,
+})
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </QueryClientProvider>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </QueryClientProvider>
       </Provider>
+    </ThemeProvider>
   </React.StrictMode>
 )

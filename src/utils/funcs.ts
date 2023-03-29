@@ -98,7 +98,17 @@ export const isADate = (date1: Date, date2: Date): boolean => {
 }
 
 export const numberToMoney = (num: number): string => {
-  return new Intl.NumberFormat().format(num).replace(/\,/, '.')
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+/**
+ * 
+ * @param num 
+ * @param range //e.g: 1, 2, 3, ...
+ */
+export const numberToRand = (num: number, range: number): number => {
+  const str = `${num}${Array(range).fill('0').join('')}`;
+  return Number(str.substring(0, range))
 }
 
 export const addZero = (num: number):string => {
@@ -134,4 +144,12 @@ export const convertMinutes = (minutes: string) => {
   if(minutesNum > 59) return 59;
   if(minutesNum < 0) return 0;
   return minutesNum;
+}
+
+export const getLocalStorageItem = (key: string) => {
+  const data = localStorage.getItem(key);
+  if(data) {
+    return JSON.parse(data);
+  }
+  return undefined
 }

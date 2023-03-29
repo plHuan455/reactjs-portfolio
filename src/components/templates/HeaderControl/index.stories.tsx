@@ -11,5 +11,5 @@ const meta: Meta = {
 export default meta;
 
 export const normal: Story = ({...args}) => {
-  return <HeaderControl onClick={() => {}} {...args} />
+  return <HeaderControl backBtnTitle='' onClick={() => {}} {...args} />
 };

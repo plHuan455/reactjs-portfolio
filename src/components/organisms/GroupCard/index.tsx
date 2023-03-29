@@ -20,6 +20,7 @@ export interface GroupCardProps {
   description: string;
   memberList: GroupMember[];
   onAvatarClick?: (slug: string) => void;
+  onSelect?: () => void;
   onDelete?: () => void;
   onUpdate?: () => void;
 }
@@ -31,6 +32,7 @@ const GroupCard: React.FC<GroupCardProps> = ({
    memberList = [],
    avatarSrc,
    onAvatarClick,
+   onSelect,
    onDelete,
    onUpdate,
 }) => {
@@ -52,12 +54,16 @@ const GroupCard: React.FC<GroupCardProps> = ({
         <div className="o-groupCard_menuIcon">
         <DropdownControl
           dropdownList={[
+            { label: 'Chọn', value: 'select'},
             { label: 'Cập nhật', value: 'update'},
             { label: 'Xóa nhóm', value: 'delete'},
           ]}
           onItemClick={(type) => {
-            if(type === 'delete' && onDelete) onDelete(); 
-            if(type === 'update' && onUpdate) onUpdate();
+            switch (type) { 
+              case 'select': return onSelect && onSelect();
+              case 'delete': return onDelete && onDelete();
+              case 'update': return onUpdate && onUpdate();
+            }
           }}
         >
           <Icon modifiers={['24x25', 'columbiaBlue']}>{BsThreeDotsVertical}</Icon>
