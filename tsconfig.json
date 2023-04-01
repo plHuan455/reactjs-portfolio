@@ -23,6 +23,7 @@
       "~assets/*": ["./src/assets/*"],
       "~pages/*": ["./src/pages/*"],
       "~containers/*": ["./src/containers/*"],
+      "~mixin": ["./src/styles/mixins.ts"],
       "~hooks/*": ["./src/hooks/*"],
       "~services/*": ["./src/services/*"],
     }

@@ -40,7 +40,7 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: $track-color;
+    background-color: $track-color;
     border-radius: rem($border-radius-track);
   }
 

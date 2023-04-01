@@ -24,3 +24,12 @@ export const resetButton: SxProps<Theme> = {
   minWidth: 0,
   padding: 0
 }
+
+
+export const fontFamilyMixin = (font?: 'jost'):SxProps<Theme> => {
+  if(font === 'jost') 
+  return {
+    fontFamily: 'Jost, sans-serif'
+  }
+  return {}
+}

@@ -15,6 +15,7 @@ export default defineConfig({
       "~assets": path.resolve(__dirname, 'src/assets'),
       "~pages": path.resolve(__dirname, 'src/pages'),
       "~containers": path.resolve(__dirname, 'src/containers'),
+      "~mixin": path.resolve(__dirname, 'src/styles/mixins.ts'),
       "~hooks": path.resolve(__dirname, 'src/hooks'),
       "~services": path.resolve(__dirname, 'src/services'),
     },

@@ -1,15 +1,15 @@
 .t-section {
-  padding-top: rem(40);
-  padding-bottom: rem(40);
+  padding-top: rem(80);
+  padding-bottom: rem(80);
 
   @include tablet-down {
-    padding-top: rem(32);
-    padding-bottom: rem(32);
+    padding-top: rem(72);
+    padding-bottom: rem(72);
   }
 
   @include mobile-down {
-    padding-top: rem(20);
-    padding-bottom: rem(20);
+    padding-top: rem(50);
+    padding-bottom: rem(50);
   }
   
   

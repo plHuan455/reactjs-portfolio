@@ -1,58 +1,39 @@
-import React from 'react';
-import SearchInput, { SearchItemTypes } from '~molecules/SearchInput';
-import Container from '~organisms/Container';
+import { Box, Button, List, ListItem } from '@mui/material';
+import { fontFamilyMixin, rem } from '~mixin';
+import ContainerBase from '~organisms/Container';
 
-export interface HeaderProps {
-  groupLabel: string;
-  searchValue: string;
-  searchPlaceholder?: string;
-  searchList?: SearchItemTypes[];
-  isSearchLoading?: boolean;
-  isShowSearchList?: boolean;
-  onCloseSearchList?: () => void;
-  onOpenSearchList?: () => void;
-  onSearchChange?: (value: string) => void;
-  onSearchItemClick?: (value: SearchItemTypes) => void;
+const Header: React.FC = () => {
+  return (
+    <Box className="t-header" sx={{ ...fontFamilyMixin('jost'), pt: rem(32)}}>
+      <ContainerBase sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Box sx={{ color: 'white', fontSize: rem(18), fontWeight: 800 }} >
+          AGENCY
+        </Box>
+        <List sx={{ fontSize: rem(18), fontWeight: 700, color: 'white', display: 'flex', '& .MuiListItem-root': { cursor: 'pointer'} }}>
+          <ListItem>Home</ListItem>
+          <ListItem>Skills</ListItem>
+          <ListItem>Experience</ListItem>
+          <ListItem>Education</ListItem>
+        </List>
+        <Button
+          sx={{
+            fontSize: rem(18),
+            fontWeight: 700,
+            color: '#FFAD60',
+            borderRadius: rem(8),
+            px: rem(33),
+            py: rem(16),
+            border: `${rem(2)} solid #FFAD60`,
+            '&:hover': {
+              backgroundColor: '#ffad6017'
+            }
+          }}
+        >
+          Contact Me
+        </Button>
+      </ContainerBase>
+    </Box>
+  )
 }
 
-const Header: React.FC<HeaderProps> = ({
-  groupLabel,
-  isShowSearchList, 
-  searchValue, 
-  searchList, 
-  isSearchLoading,
-  searchPlaceholder, 
-  onCloseSearchList, 
-  onOpenSearchList, 
-  onSearchChange,
-  onSearchItemClick,
-}) => {
-  return <div className="t-header">
-    <Container>
-      <div className="t-header_wrapper">
-        <div className="t-header_searchBar">
-          <SearchInput
-            isLoading={isSearchLoading}
-            value={searchValue} onChange={onSearchChange}
-            isShowSearchList={isShowSearchList}
-            searchList={searchList}
-            onCloseSearchList={onCloseSearchList}
-            onOpenSearchList={onOpenSearchList}
-            modifiers='hasBorder'
-            placeholder={searchPlaceholder}
-            onSearchItemClick={onSearchItemClick}
-          />
-        </div>
-        <div className="t-header_group">
-          Nhóm hiện tại: {groupLabel}
-        </div>
-      </div>
-    </Container>
-  </div>
-};
-
-Header.defaultProps = {
-};
-
 export default Header;
-

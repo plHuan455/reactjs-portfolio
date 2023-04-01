@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { mapModifiers } from '../../../utils/funcs';
+import { Container } from '@mui/material';
+import { SxProps } from "@mui/material";
+import { Theme } from "@mui/material/styles";
 
 type Spacing = '0' | '12' | '24' | '32';
 
@@ -20,6 +23,7 @@ export interface CusColProps {
 
 export interface ContainerProps {
   children: React.ReactNode;
+  sx?: SxProps<Theme>;
 }
 
 export const Row: React.FC<CusRowProps> = ( {colGap = '0', rowGap = '0', children }) => {
@@ -34,12 +38,17 @@ export const Col: React.FC<CusColProps> = ({ sm, md, lg, xs, colSpan, children }
   </div>
 }
 
-const Container: React.FC<ContainerProps> = ({ children }: ContainerProps) => {
+const ContainerBase: React.FC<ContainerProps> = ({ sx, children }: ContainerProps) => {
   return (
-    <div className="o-container">
+    <Container className="o-container" sx={{
+      ...sx,
+      maxWidth: {
+        sm: '95%'
+      }
+    }}>
       {children}
-    </div>
+    </Container>
   );
 }
 
-export default Container
+export default ContainerBase

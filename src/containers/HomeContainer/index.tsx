@@ -1,12 +1,19 @@
-import { useState } from 'react';
-import SearchInput from '../../components/molecules/SearchInput';
-import Container from '../../components/organisms/Container';
+import Banner from '~templates/Banner';
+import Section from '~templates/Section';
+import Skill from '~templates/Skill';
 
 export interface HomeContainerProps {
 }
 
 export default function HomeContainer (props: HomeContainerProps) {
   return (
-    <div>test</div>
+    <>
+      <Section modifiers={['noPt', 'noPb']}>
+        <Banner />
+      </Section>
+      <Section modifiers={['noPb']}>
+        <Skill />
+      </Section>
+    </>
   );
 }
