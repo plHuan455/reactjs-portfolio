@@ -505,4 +505,11 @@
   &-slideOutUp {
     animation-name: slideOutUp;
   }
+
+  &-floating {
+    animation-name: floating;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-duration: 2s;
+  }
 }

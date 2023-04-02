@@ -50,7 +50,7 @@ const WordTrainCard: React.FC<WordTrainCardProps> = ({
   }
 
   return (
-    <Box className="m-wordTrainCard" sx={{ backgroundColor: 'white', borderRadius: rem(8), position: 'relative', zIndex: isShowImg ? 11 : 10, ...baseBoxShadow }}>
+    <Box className="m-wordTrainCard" sx={{ backgroundColor: 'white', borderRadius: rem(8), position: 'relative', zIndex: isShowImg ? 11 : 10, boxShadow: baseBoxShadow }}>
       <Box sx={{ padding: rem(12) }}>
         <Typography sx={{ fontSize: rem(16), lineHeight: rem(20), color: '#324054' }}>
           {word}    
@@ -95,7 +95,7 @@ const WordTrainCard: React.FC<WordTrainCardProps> = ({
           top: "100%", aspectRatio: '4 / 3',
           left: 0,
           width: "100%",
-          ...baseBoxShadow,
+          boxShadow: baseBoxShadow,
           '& img': {
             objectFit: 'cover', width: '100%', height: '100%'
           }

@@ -11,6 +11,8 @@ html {
   @include mobile-down {
     font-size: 12px;
   }
+
+  scroll-behavior: smooth;
 }
 
 * {

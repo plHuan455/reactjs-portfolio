@@ -219,19 +219,19 @@
 
 @keyframes swing {
   20% {
-    transform: rotate3d(0, 0, 1, 15deg);
+    transform: rotate3d(0, 0, 1, 6deg);
   }
 
   40% {
-    transform: rotate3d(0, 0, 1, -10deg);
+    transform: rotate3d(0, 0, 1, -6deg);
   }
 
   60% {
-    transform: rotate3d(0, 0, 1, 5deg);
+    transform: rotate3d(0, 0, 1, 4deg);
   }
 
   80% {
-    transform: rotate3d(0, 0, 1, -5deg);
+    transform: rotate3d(0, 0, 1, -3deg);
   }
 
   to {
@@ -1634,5 +1634,20 @@
   97%,
   100% {
     transform: translateY(0);
+  }
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0) rotate(0);//[0, 39, 0], rotate: [0, 8, 0],
+  }
+
+  50% {
+    transform: translateY(39px) rotate(8deg);//[0, 39, 0], rotate: [0, 8, 0],
+  }
+
+  100% {
+    transform: translateY(0) rotate(0);//[0, 39, 0], rotate: [0, 8, 0],
+
   }
 }

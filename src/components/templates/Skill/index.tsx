@@ -1,65 +1,58 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
 import LazyLoad from 'react-lazyload';
-import React, { useMemo } from 'react';
-import iconHtml from '~assets/icons/ic_html.svg';
-import iconJs from '~assets/icons/ic_js.svg';
-import iconCss from '~assets/icons/ic_css.svg';
-import iconJquery from '~assets/icons/ic_jquery.svg';
-import iconTypescript from '~assets/icons/ic_typescript.svg';
-import iconReactJs from '~assets/icons/ic_react.svg';
-import iconReactNative from '~assets/icons/ic_reactNative.svg';
-import iconBootstrap from '~assets/images/bootstrap.png';
-import iconMui from '~assets/images/mui.png';
-import iconRedux from '~assets/icons/ic_redux.svg';
-import iconTailwindCss from '~assets/icons/ic_tailwind.svg';
-import iconSass from '~assets/images/sass.png';
+import iconGitlab from '~assets/icons/ic_gitlab.svg';
+import iconGit from '~assets/icons/ic_git.svg';
 import { rem } from '~mixin';
 import ContainerBase from '~organisms/Container';
-import SkillList, { SkillItemTypes } from '~organisms/SkillList';
+import SkillList, { SkillItemTypes } from '~molecules/SkillList';
+import skillData from '~assets/dataDummy/skillDummy';
+import { useMemo } from 'react';
 
 export interface SkillProps {
 }
 
 const Skill: React.FC<SkillProps> = () => {
-
   const skillList1 = useMemo<SkillItemTypes[]>(() => {
     return [
-      { imgSrc: iconHtml, label: 'HTML', imgScale: 0.8},
-      { imgSrc: iconCss, label: 'CSS', imgScale: 0.7},
-      { imgSrc: iconJs, label: 'JAVASCRIPT', objectFit: 'cover'},
-      { imgSrc: iconTypescript, label: 'TYPESCRIPT', imgScale: 0.65},
+      skillData.html,
+      skillData.css,
+      skillData.javascript,
+      skillData.typescript,
+      skillData.reactjs,
+      skillData.redux,
+      skillData.reactNative,
+      skillData.nodejs,
+      skillData.jquery,
     ]
   }, [])
+
   const skillList2 = useMemo<SkillItemTypes[]>(() => {
     return [
-      { imgSrc: iconReactJs, label: 'REACTJS', imgScale: 0.8},
-      { imgSrc: iconRedux, label: 'REDUX', imgScale: 0.6},
-      { imgSrc: iconReactNative, label: 'REACT NATIVE', imgScale: 0.85},
-      { imgSrc: iconJquery, label: 'JQUERY', imgScale: 0.67},
-      { imgSrc: iconSass, label: 'SCSS', imgScale: 0.8},
-      { imgSrc: iconMui, label: 'MATERIALUI', imgScale: 0.8},
-      { imgSrc: iconTailwindCss, label: 'TAILWINDCSS', imgScale: 0.8},
-      { imgSrc: iconBootstrap, label: 'BOOTSTRAP', imgScale: 0.85, objectFit: 'contain'},
+      skillData.sass,
+      skillData.muiui,
+      skillData.tailwindcss,
+      skillData.bootstrap,
     ]
   }, [])
+
   const skillList3 = useMemo<SkillItemTypes[]>(() => {
     return [
+      { imgSrc: iconGit, label: 'GIT', imgScale: 0.8 },
+      { imgSrc: iconGitlab, label: 'GITLAB', imgScale: 0.75 },
     ]
   }, [])
 
   return (
-    <Box className="t-skill" sx={{color: 'white'}}>
+    <Box className="t-skill" sx={{ color: 'white' }}>
       <ContainerBase>
-        <Typography sx={{fontSize: rem(32), fontWeight: 700}}>Skills</Typography>
-        <Box>
-          <LazyLoad height={400}>
-            <SkillList skillList={skillList1} />
-          </LazyLoad>
+        <Typography sx={{ fontSize: rem(24), fontWeight: 700 }}>Skills</Typography>
+        <Box className='animate animate-fadeInRight' sx={{ borderBottom: `${rem(2)} solid #c48850cd`, py: rem(18) }}>
+          <SkillList skillList={skillList1} />
         </Box>
-        <Box>
+        <Box className='animate animate-fadeInLeft' sx={{ borderBottom: `${rem(2)} solid #c48850cd`, py: rem(24) }}>
           <SkillList skillList={skillList2} />
         </Box>
-        <Box>
+        <Box className='animate animate-fadeInRight'>
           <SkillList skillList={skillList3} />
         </Box>
       </ContainerBase>
