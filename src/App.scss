@@ -1,5 +1,7 @@
 @import 'slick-carousel/slick/slick-theme.css';
 @import 'slick-carousel/slick/slick.css';
+@import 'yet-another-react-lightbox/styles.css';
+@import "yet-another-react-lightbox/plugins/thumbnails.css";
 //Utils
 @import "styles/common";
 
@@ -24,6 +26,7 @@
 @import "components/organisms/Modal";
 @import "components/organisms/GroupCard";
 @import "components/organisms/CreatePendingForm";
+@import "components/organisms/LightBoxBase";
 
 //Templates
 @import "components/templates/MainLayout";

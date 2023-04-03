@@ -7,6 +7,7 @@ import ContainerBase from '~organisms/Container';
 import SkillList, { SkillItemTypes } from '~molecules/SkillList';
 import skillData from '~assets/dataDummy/skillDummy';
 import { useMemo } from 'react';
+import SectionTitle from '~molecules/SectionTitle';
 
 export interface SkillProps {
 }
@@ -45,14 +46,14 @@ const Skill: React.FC<SkillProps> = () => {
   return (
     <Box className="t-skill" sx={{ color: 'white' }}>
       <ContainerBase>
-        <Typography sx={{ fontSize: rem(24), fontWeight: 700 }}>Skills</Typography>
-        <Box className='animate animate-fadeInRight' sx={{ borderBottom: `${rem(2)} solid #c48850cd`, py: rem(18) }}>
+        <SectionTitle title='Skills' subtitle='Skills in using languages, frameworks, and tools' sx={{pb: rem(40)}}/>
+        <Box sx={{ borderBottom: `${rem(2)} solid #c48850cd`, pb: rem(18) }}>
           <SkillList skillList={skillList1} />
         </Box>
-        <Box className='animate animate-fadeInLeft' sx={{ borderBottom: `${rem(2)} solid #c48850cd`, py: rem(24) }}>
+        <Box sx={{ borderBottom: `${rem(2)} solid #c48850cd`, py: rem(24) }}>
           <SkillList skillList={skillList2} />
         </Box>
-        <Box className='animate animate-fadeInRight'>
+        <Box>
           <SkillList skillList={skillList3} />
         </Box>
       </ContainerBase>

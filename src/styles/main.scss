@@ -15,6 +15,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background-color: #1D1B1B;
+}
+
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent; //issue click in mobile flash background highligh
@@ -66,6 +70,7 @@ ol {
 .grecaptcha-badge {
   visibility: hidden;
 }
+
 
 @each $offset in $offsets {
   @for $spacing from -20 through 100 {

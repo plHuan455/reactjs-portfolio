@@ -21,7 +21,7 @@ const SkillList: React.FC<SkillListProps> = ({
 }) => {
   const {textSize, width} = useMemo(() => {
     switch(size) {
-      case 'normal': return { textSize: rem(14), width: rem(108)};
+      case 'normal': return { textSize: rem(12), width: rem(100)};
       case 'small': return { textSize: rem(8), width: rem(40)};
     }
   }, [size])

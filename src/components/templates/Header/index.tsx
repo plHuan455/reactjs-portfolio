@@ -7,7 +7,7 @@ const Header: React.FC = () => {
   return (
     <Box className="t-header" sx={{ ...fontFamilyMixin('jost'), pt: rem(20), position: 'sticky' }}>
       <ContainerBase sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Box sx={{ color: 'white', fontSize: rem(18), fontWeight: 800 }} >
+        <Box sx={{ color: 'white', fontSize: rem(18), fontWeight: 800, minWidth: rem(193) }} >
           AGENCY
         </Box>
         <List

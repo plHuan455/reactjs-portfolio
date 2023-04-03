@@ -50,7 +50,6 @@ const CarouselBase: React.FC<CarouselBaseProps> = ({children}) => {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    autoplay: true,
     slidesToScroll: 1,
     nextArrow: <CustomArrow variant='right' />,
     prevArrow: <CustomArrow variant='left' />,
