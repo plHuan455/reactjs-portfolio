@@ -15,23 +15,23 @@ export default function MainLayout({ children }: MainLayoutProps) {
     <Box
       className="t-mainLayout"
       sx={{
-        backgroundColor: '#1D1B1B',
+        backgroundColor: '#1b0722',
         position: 'relative',
         overflow: 'hidden'
       }}
     >
-      <Box sx={{position: 'absolute', top: rem(400)}}>
+      <Box sx={{position: 'absolute', top: rem(800)}}>
         <img src={bgNeonOrange} alt=''/>
       </Box>
-      <Box sx={{position: 'absolute', top: rem(1248), right: 0, zIndex: 0}}>
+      <Box sx={{position: 'absolute', top: rem(1648), right: 0, zIndex: 0}}>
         <img src={bgNeonBlue} alt=''/>
       </Box>
-      <Box sx={{position: 'absolute', top: rem(2400), right: 0, zIndex: 0}}>
+      <Box sx={{position: 'absolute', top: rem(3000), right: 0, zIndex: 0}}>
         <img src={bgNeonBlue} alt=''/>
       </Box>
-      <header>
+      <Box sx={{position: 'absolute', top: 0, width: '100%', zIndex: 100}}>
         <Header />
-      </header>
+      </Box>
       <main className="t-mainLayout_content_main">
         <Suspense fallback={<Loading size='page' />}>
           {children}

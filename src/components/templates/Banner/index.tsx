@@ -1,88 +1,117 @@
-import { Box, Typography, Button } from '@mui/material';
-import React from 'react';
+import { Box, Typography, Button, duration } from '@mui/material';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import icon1 from '~assets/icons/ic_1.svg';
-import icon2 from '~assets/icons/ic_2.svg';
-import icon3 from '~assets/icons/ic_3.svg';
-import icon4 from '~assets/icons/ic_4.svg';
+import mountainImg from '~assets/images/front-mountain.png'
+import mountainRightImg from '~assets/images/front-mountain-right.png'
+import mountainRightBgImg from '~assets/images/mountain-bg.png'
+import mountainBackImg from '~assets/images/back-mountain.png'
+import moonImg from '~assets/images/moon.png'
+import bannerDivisionImg from '~assets/images/banner-division.png'
 import { fontFamilyMixin, rem } from '~mixin';
-import Container from '~organisms/Container';
+import useThrottle from '~hooks/useThrottle';
 
 export interface BannerProps {
 }
 
 const Banner: React.FC<BannerProps> = () => {
+  const [windowScrollY, setWindowScrollY] = useState<number>(0);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  // const textRef = useRef<HTMLDivElement>(null);
+  // const backMountainRef = useRef<HTMLDListElement>(null);
+  // const moonRef = useRef<HTMLDListElement>(null);
+
+  useEffect(() => {
+    const scrollEventHandler = (e: Event) => {
+      const value = window.scrollY;
+      if(containerRef.current && value > containerRef.current?.clientHeight) {
+        return;
+      }
+      setWindowScrollY(value);
+    }
+    window.addEventListener('scroll',scrollEventHandler);
+
+    return () => window.removeEventListener('scroll', scrollEventHandler);
+  }, [])
+
   return (
-    <Box className="t-banner" sx={{ color: 'white', pt: rem(80) }}>
-      <Container sx={{ position: 'relative' }}>
-        <Box sx={{ position: 'absolute', left: { xs: 0, md: rem(50) }, '& img': {width: {xs: rem(60), md: 'unset'}} }}>
-          <motion.div
-            animate={{
-              y: [0, 39, 0],
-              rotate: [0, 8, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <img src={icon1} alt='' />
-          </motion.div>
-        </Box>
-        <Box sx={{ position: 'absolute', bottom: 0, left: { xs: 0, md: rem(50) }, '& img': {width: {xs: rem(40), md: 'unset'}} }}>
-          <motion.div
-            animate={{
-              x: [0, 30, 0],
-              y: [0, 20, 0],
-              rotate: [0, 90, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <img src={icon2} alt='' />
-          </motion.div>
-        </Box>
-        <Box sx={{ position: 'absolute', right: { xs: 0, md: rem(50) }, '& img': { width: { xs: rem(60), md: 'unset' } } }}>
-          <motion.div
-            animate={{
-              x: [0, -10, 0],
-              y: [0, 39, 0],
-              rotate: [0, 60, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <img src={icon3} alt='' />
-          </motion.div>
-        </Box>
-        <Box sx={{ position: 'absolute', right: { xs: 0, md: rem(50) }, bottom: 0, '& img': {width: {xs: rem(60), md: 'unset'}} }}>
-          <motion.div
-            animate={{
-              y: [0, 39, 0],
-              rotate: [0, 30, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <img src={icon4} alt='' />
-          </motion.div>
-        </Box>
-        <Box sx={{ position: 'relative', zIndex: 1, pb: rem(40) }}>
+    <Box className="t-banner" sx={{ color: 'white', position: 'relative', overflow: 'hidden' }} ref={containerRef}>
+      <Box
+        sx={{
+          width: '100vw',
+          zIndex: 1,
+          position: 'relative',
+          '& img': {
+            width: '100%'
+          }
+        }}
+      >
+        <img src={mountainRightBgImg} alt="" />
+      </Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          width: '100vw',
+          zIndex: 1,
+          transform: `translateY(${windowScrollY * 2}px)`,
+          '& img': {
+            width: '100%',
+          }
+        }}
+      >
+        <img src={moonImg} alt="" />
+      </Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          width: '100vw',
+          zIndex: 1,
+          transform: `translateY(${windowScrollY}px)`,
+          '& img': {
+            width: '100%',
+          }
+        }}
+      >
+        <img src={mountainBackImg} alt="" />
+      </Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          width: '100vw',
+          top: 0,
+          zIndex: 1,
+          '& img': {
+            width: '100%'
+          }
+        }}
+      >
+        <img src={mountainImg} alt="" />
+      </Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          width: '100vw',
+          zIndex: 3,
+          '& img': {
+            width: '100%',
+          }
+        }}
+      >
+        <img src={mountainRightImg} alt="" />
+      </Box>
+      <Box sx={{position: 'absolute', zIndex: 2, top: 0, width: '100%'}} className="animate animate-textMountain">
+        <Box sx={{transform: `translateX(${windowScrollY * 2}px)`}}>
           <Typography
             sx={{
               textAlign: 'center',
-              fontSize: rem(58), fontWeight: 700,
-              lineHeight: rem(80),
+              fontSize: rem(52), 
+              fontWeight: 800,
+              lineHeight: rem(72),
+              pt: rem(220),
+              pr: rem(40),
               ...fontFamilyMixin('jost'),
               '& .t-banner_name': { color: '#96CEB4' }
             }}
@@ -91,16 +120,29 @@ const Banner: React.FC<BannerProps> = () => {
             Hi, I’m <span className="t-banner_name">Huan</span>,<br />
             Front-end Developer
           </Typography>
-          <Typography sx={{ mt: rem(28), textAlign: 'center', fontSize: rem(21) }} variant='body1'>
+          <Typography sx={{ mt: rem(28), textAlign: 'center', fontSize: rem(16), lineHeight: rem(22) }} variant='body1'>
             we are a design studio that has completed various projects in the field<br /> of technology to perfection.
           </Typography>
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: rem(50) }}>
-            <Button sx={{ fontSize: rem(18), borderRadius: rem(8), color: 'white', fontWeight: 700, backgroundColor: '#4C40F7', px: rem(30), py: rem(18) }}>
-              Get Started
-            </Button>
-          </Box>
         </Box>
-      </Container>
+      </Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          width: '100vw',
+          bottom: rem(-100),
+          zIndex: 4,
+          '& img': {
+            width: '100%'
+          }
+        }}
+      >
+        <img src={bannerDivisionImg} alt="" />
+      </Box>
+      {/* <Box sx={{ display: 'flex', justifyContent: 'center', mt: rem(50) }}>
+        <Button sx={{ fontSize: rem(18), borderRadius: rem(8), color: 'white', fontWeight: 700, backgroundColor: '#4C40F7', px: rem(30), py: rem(18) }}>
+          Get Started
+        </Button>
+      </Box> */}
     </Box>
   )
 };

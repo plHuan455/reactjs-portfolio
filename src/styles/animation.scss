@@ -512,4 +512,10 @@
     animation-timing-function: ease-in-out;
     animation-duration: 2s;
   }
+
+  &-textMountain {
+    animation-name: textMountain;
+    animation-fill-mode: both;
+    animation-duration: 1s;
+  }
 }

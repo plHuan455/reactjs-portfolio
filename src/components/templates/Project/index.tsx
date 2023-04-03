@@ -43,9 +43,9 @@ const Project: React.FC<ProjectProps> = ({
       <ContainerBase>
         <SectionTitle title='Projects' subtitle='Projects I have participated in' sx={{pb: rem(96)}}/>
         <Box sx={{
-          '& .t-project_item:nth-child(n+2)': {
-            mt: rem(120)
-          }
+          // '& .t-project_item:nth-child(n+2)': {
+          //   mt: rem(120)
+          // }
         }}>
           {projectList.map((value, index) => (
             <Box key={`key-project-${value.name}`} className='t-project_item'>

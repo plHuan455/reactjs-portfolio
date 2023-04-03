@@ -93,13 +93,13 @@ const AboutMe: React.FC<AboutMeProps> = ({
           {description}
         </Box>
         <Box className="t-aboutMe_contactInfo" sx={{mt: rem(30), display: 'flex', justifyContent: 'space-between', flexDirection: {xs: 'column', md: 'row'}}}>
-          <Box sx={{'& .t-aboutMe_contactItem:nth-child(n+2)': { mt: rem(8)}, '& .t-aboutMe_contactItem_label': {width: {xs: phoneExpand ? 200 : undefined, md: undefined}}}}>
+          <Box sx={{'& .t-aboutMe_contactItem_label': {width: {xs: phoneExpand ? 200 : undefined, md: undefined}}}}>
             <ContactInfo label="Name" value={name} />
             <ContactInfo label="Birthday" value={birthday} />
             <ContactInfo label="Location" value={location} />
             <ContactInfo label="Gender" value={gender} />
           </Box>
-          <Box sx={{mt: {xs: rem(8), md: 0}, '& .t-aboutMe_contactItem:nth-child(n+2)': { mt: rem(8)}, '& .t-aboutMe_contactItem_label': {width: phoneExpand ? 200 : undefined}}}>
+          <Box sx={{mt: {xs: rem(8), md: 0}, '& .t-aboutMe_contactItem_label': {width: phoneExpand ? 200 : undefined}}}>
             <ContactInfo label="Email" value={email} hasCopy />
             <ContactInfo label={`Phone${phoneExpand !== undefined ? ` (${phoneExpand})`: ''}`} value={phone} hasCopy/>
           </Box>
