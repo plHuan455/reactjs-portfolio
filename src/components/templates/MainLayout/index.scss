@@ -1,2 +1,6 @@
 .t-mainLayout {
+  &_content_main {
+    position: relative;
+    z-index: 2;
+  }
 }
