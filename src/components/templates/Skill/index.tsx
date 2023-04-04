@@ -3,7 +3,7 @@ import LazyLoad from 'react-lazyload';
 import iconGitlab from '~assets/icons/ic_gitlab.svg';
 import iconGit from '~assets/icons/ic_git.svg';
 import { rem } from '~mixin';
-import ContainerBase from '~organisms/Container';
+import ContainerBase from '~organisms/ContainerBase';
 import SkillList, { SkillItemTypes } from '~molecules/SkillList';
 import skillData from '~assets/dataDummy/skillDummy';
 import { useMemo } from 'react';

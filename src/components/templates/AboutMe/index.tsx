@@ -1,108 +1,95 @@
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import React, { useState } from 'react';
-import { Box, Typography } from '@mui/material';
-import ContainerBase from '~organisms/Container';
+import { Box, Grid, List, ListItem, Typography } from '@mui/material';
+import skypeIcon from '~assets/icons/ic_skype.svg';
+import ContainerBase from '~organisms/ContainerBase';
 import SectionTitle from '~molecules/SectionTitle';
 import { SxProps } from "@mui/material";
 import { Theme } from "@mui/material/styles";
-import { rem } from '~mixin';
+import { fontFamilyMixin, rem } from '~mixin';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ContactCard from '~organisms/ContactCard';
+import EmailIcon from '@mui/icons-material/Email';
+
+export interface ContactCardTypes {
+  title: string;
+  value: string;
+  icon: string | JSX.Element;
+  desc?: string;
+  color?: string;
+  hideCopyBtn?: boolean;
+}
+
+export interface InfoTypes {
+  label: string;
+  value: string;
+}
 
 export interface AboutMeProps {
   name: string;
   work: string;
   description: React.ReactNode;
-  birthday: string;
-  location: string;
-  gender: string;
-  email: string;
-  phone: string;
-  phoneExpand?: string;
-}
-
-interface ContactInfoProps {
-  label: string;
-  value: string;
-  sx?: SxProps<Theme>;
-  hasCopy?: boolean;
-  onClick?: () => void;
-}
-
-const ContactInfo: React.FC<ContactInfoProps> = ({
-  label,
-  value,
-  sx,
-  hasCopy,
-  onClick,
-}) => {
-  const [isCopied, setIsCopied] = useState<boolean>(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(value);
-    setIsCopied(true);
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 5000)
-  }
-  return (
-    <Box className="t-aboutMe_contactItem" sx={{display: 'flex', alignItems: 'center', gap: rem(20), ...sx}}>
-      <Typography className="t-aboutMe_contactItem_label" sx={{color: '#D2D3D4', fontSize: rem(16), lineHeight: rem(18), width: rem(100), fontWeight: 700}}>
-        {label}:
-      </Typography>
-      <Box sx={{display: 'flex', alignItems: 'center', gap: rem(8), color: 'rgba(255, 255, 255, 0.8)',}}>
-        <Typography 
-          sx={{ fontSize: rem(14), lineHeight: rem(16), cursor: onClick ? 'pointer' : undefined}}
-          onClick={onClick}  
-        >
-          {value}
-        </Typography>
-        {hasCopy && (
-          <Box sx={{cursor: 'pointer', color: isCopied ? 'rgba(124, 124, 124, 0.526)' : undefined}} onClick={handleCopy}>
-            <ContentCopyIcon sx={{fontSize: rem(14)}}/>
-          </Box>
-        )}
-      </Box>
-    </Box>
-  )
+  infoList: InfoTypes[];
+  contactList: ContactCardTypes[];
 }
 
 const AboutMe: React.FC<AboutMeProps> = ({
   name,
   work,
   description,
-  birthday,
-  location,
-  gender,
-  email,
-  phone,
-  phoneExpand,
+  contactList,
+  infoList,
 }) => {
   return (
     <Box className="t-aboutMe">
       <ContainerBase>
-        <SectionTitle title="About" subtitle='Information about me' sx={{pb: rem(50)}}/>
-        <Typography sx={{fontSize: rem(16), lineHeight: rem(20), fontWeight: 800, color: '#FFAD60'}}>
-          About me
-        </Typography>
-        <Typography sx={{mt: rem(8), fontSize: rem(36), lineHeight: rem(40), color: 'white', fontWeight: 800, textTransform: 'capitalize'}}>
-          {name}
-        </Typography>
-        <Typography sx={{mt: rem(8), color: '#FFAD60', fontSize: rem(16), lineHeight: rem(20), fontWeight: 800}}>
-          {work}
-        </Typography>
-        <Box sx={{mt: rem(30), color: 'rgba(213, 213, 213, 0.8)', fontSize: rem(14), lineHeight: rem(18)}}>
-          {description}
-        </Box>
-        <Box className="t-aboutMe_contactInfo" sx={{mt: rem(30), display: 'flex', justifyContent: 'space-between', flexDirection: {xs: 'column', md: 'row'}}}>
-          <Box sx={{'& .t-aboutMe_contactItem:nth-child(n+2)': { mt: rem(8)}, '& .t-aboutMe_contactItem_label': {width: {xs: phoneExpand ? 200 : undefined, md: undefined}}}}>
-            <ContactInfo label="Name" value={name} />
-            <ContactInfo label="Birthday" value={birthday} />
-            <ContactInfo label="Location" value={location} />
-            <ContactInfo label="Gender" value={gender} />
+        <SectionTitle title="About" subtitle='Information about me' sx={{ pb: rem(50) }} />
+        <Box sx={{ display: 'flex', gap: rem(28), flexDirection: {xs: 'column', md: 'row'} }}>
+          <Box sx={{ width: {xs: '100%', md: '50%'} }}>
+            <Typography sx={{ fontSize: rem(16), lineHeight: rem(20), fontWeight: 800, color: '#FFAD60', textAlign: {xs: 'center', md: 'start'} }}>
+              About me
+            </Typography>
+            <Typography sx={{ mt: rem(8), fontSize: rem(36), lineHeight: rem(40), color: 'white', fontWeight: 800, textTransform: 'capitalize', textAlign: {xs: 'center', md: 'start'} }}>
+              {name}
+            </Typography>
+            <Typography sx={{ mt: rem(8), color: '#FFAD60', fontSize: rem(16), lineHeight: rem(20), fontWeight: 800, textAlign: {xs: 'center', md: 'start'} }}>
+              {work}
+            </Typography>
+            <Box sx={{ mt: rem(30), color: 'rgba(213, 213, 213, 0.8)', fontSize: rem(14), lineHeight: rem(18), '& p': {textAlign: {xs: 'center', md: 'start'}} }}>
+              {description}
+            </Box>
+            <List sx={{ mt: rem(22), '& .MuiListItem-root ~ .MuiListItem-root': {mt: rem(9)}}}>
+              {infoList.map(value => (
+                <ListItem sx={{ display: 'flex', gap: rem(8), alignItems: 'center', padding: 0, justifyContent: { xs: 'center', md: 'flex-start'} }}>
+                  <Typography sx={{ color: '#d5d5d5', fontSize: rem(16), lineHeight: rem(18), fontWeight: 700, ...fontFamilyMixin('jost') }}>
+                    {value.label}:
+                  </Typography>
+                  <Typography sx={{ color: '#d5d5d5', fontSize: rem(14), lineHeight: rem(18), fontWeight: 400, ...fontFamilyMixin('jost') }}>
+                    {value.value}
+                  </Typography>
+                </ListItem>
+              ))}
+            </List>
           </Box>
-          <Box sx={{mt: {xs: rem(8), md: 0}, '& .t-aboutMe_contactItem:nth-child(n+2)': { mt: rem(8)}, '& .t-aboutMe_contactItem_label': {width: phoneExpand ? 200 : undefined}}}>
-            <ContactInfo label="Email" value={email} hasCopy />
-            <ContactInfo label={`Phone${phoneExpand !== undefined ? ` (${phoneExpand})`: ''}`} value={phone} hasCopy/>
-          </Box>
+          <Grid 
+            sx={{ width: { md: '50%'}, mt: { xs: rem(18), sm: 0} }} 
+            container 
+            columnSpacing={28} 
+            rowSpacing={44} 
+            justifyContent='center'
+          >
+            {contactList.map(value => (
+              (<Grid item xs={6} sm={4} md={6} key={`key-aboutMe-contact-item-${value.title}`}>
+                <ContactCard
+                  title={value.title}
+                  value={value.value}
+                  desc={value.desc}
+                  color={value.color ?? 'orange'}
+                  icon={value.icon}
+                />
+              </Grid>)
+            ))}
+          </Grid>
         </Box>
       </ContainerBase>
     </Box>

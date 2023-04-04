@@ -26,8 +26,18 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
   onImageClick,
 }) => {
   return (
-    <Box className="o-projectDetail" sx={{ display: 'flex', gap: rem(50), flexDirection: isRevertRow ? 'row-reverse' : undefined }}>
-      <Box className="t-project_carousel" sx={{ width: `calc(676 / 1210 * 100%)` }}>
+    <Box
+      className="o-projectDetail"
+      sx={{
+        display: 'flex',
+        gap: rem(50),
+        flexDirection: {
+          xs: 'column-reverse',
+          sm: isRevertRow ? 'row-reverse' : 'row'
+        }
+      }}
+    >
+      <Box className="t-project_carousel" sx={{ width: {xs: '100%', sm: `calc(676 / 1210 * 100%)`} }}>
         <CarouselBase>
           {imgSrcList.map((value, index) => (
             <Box
@@ -59,7 +69,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                   right: rem(24),
                   top: rem(24),
                   padding: rem(8),
-                  backgroundColor: '#3a3a3a' ,
+                  backgroundColor: '#3a3a3a',
                   '&: hover': {
                     backgroundColor: '#131313',
                   }

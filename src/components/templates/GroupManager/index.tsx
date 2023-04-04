@@ -4,7 +4,7 @@ import Button from '~atoms/Button';
 import Icon from '~atoms/Icon';
 import Text from '~atoms/Text';
 import SearchInput from '~molecules/SearchInput';
-import Container from '~organisms/Container';
+import Container from '~organisms/ContainerBase';
 import GroupCard, { GroupMember } from '~organisms/GroupCard';
 import CustomModal from '~organisms/Modal';
 import { mapModifiers } from '../../../utils/funcs';

@@ -20,30 +20,17 @@
 @import "components/molecules/DropdownControl";
 
 //Organisms
-@import "components/organisms/Container/";
-@import "components/organisms/SlideBar";
-@import "components/organisms/Calendar";
+@import "components/organisms/ContainerBase";
 @import "components/organisms/Modal";
-@import "components/organisms/GroupCard";
-@import "components/organisms/CreatePendingForm";
 @import "components/organisms/LightBoxBase";
 
 //Templates
 @import "components/templates/MainLayout";
 @import "components/templates/AuthLayout";
 @import "components/templates/Section";
-@import "components/templates/PendingManageCalendar";
-@import "components/templates/GroupCreateForm";
-@import "components/templates/SignInForm";
-@import "components/templates/SignUpForm";
-@import "components/templates/HeaderControl";
 @import "components/templates/GroupManager";
 @import "components/templates/Header";
 @import "components/templates/MemberManager";
 
 //Pages
 @import "pages/Home";
-@import "pages/BankManagerDetail";
-@import "pages/GroupCreate/";
-@import "pages/SignIn/";
-@import "pages/SignUp/";
