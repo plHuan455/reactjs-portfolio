@@ -4,7 +4,7 @@ import useMatchMedia from "../../../hooks/useMatchMedia";
 import { addZero, convertMoney, isADate, numberToMoney } from "../../../utils/funcs";
 import Text from "../../atoms/Text";
 import Calendar, { CalendarProps, NoteType } from "../../organisms/Calendar";
-import Container from "../../organisms/Container";
+import Container from "../../organisms/ContainerBase";
 import Modal from "../../organisms/Modal";
 
 export interface PendingManageNote {

@@ -17,9 +17,6 @@ const Banner: React.FC<BannerProps> = () => {
   const [windowScrollY, setWindowScrollY] = useState<number>(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  // const textRef = useRef<HTMLDivElement>(null);
-  // const backMountainRef = useRef<HTMLDListElement>(null);
-  // const moonRef = useRef<HTMLDListElement>(null);
 
   useEffect(() => {
     const scrollEventHandler = (e: Event) => {
@@ -42,7 +39,11 @@ const Banner: React.FC<BannerProps> = () => {
           zIndex: 1,
           position: 'relative',
           '& img': {
-            width: '100%'
+            width: '100%',
+            height: {
+              xs: rem(500),
+              sm: 'unset',
+            }
           }
         }}
       >
@@ -51,7 +52,10 @@ const Banner: React.FC<BannerProps> = () => {
       <Box
         sx={{
           position: 'absolute',
-          top: 0,
+          top: {
+            xs: rem(50), 
+            sm: 0,
+          },
           width: '100vw',
           zIndex: 1,
           transform: `translateY(${windowScrollY * 2}px)`,
@@ -71,6 +75,10 @@ const Banner: React.FC<BannerProps> = () => {
           transform: `translateY(${windowScrollY}px)`,
           '& img': {
             width: '100%',
+            height: {
+              xs: rem(500),
+              sm: 'unset',
+            }
           }
         }}
       >
@@ -83,7 +91,11 @@ const Banner: React.FC<BannerProps> = () => {
           top: 0,
           zIndex: 1,
           '& img': {
-            width: '100%'
+            width: '100%',
+            height: {
+              xs: rem(500),
+              sm: 'unset',
+            }
           }
         }}
       >
@@ -97,6 +109,10 @@ const Banner: React.FC<BannerProps> = () => {
           zIndex: 3,
           '& img': {
             width: '100%',
+            height: {
+              xs: rem(500),
+              sm: 'unset',
+            }
           }
         }}
       >
@@ -107,11 +123,29 @@ const Banner: React.FC<BannerProps> = () => {
           <Typography
             sx={{
               textAlign: 'center',
-              fontSize: rem(52), 
+              fontSize: {
+                xs: rem(30),
+                sm: rem(36),
+                md: rem(44),
+                lg: rem(52),
+              },
               fontWeight: 800,
-              lineHeight: rem(72),
-              pt: rem(220),
-              pr: rem(40),
+              lineHeight: {
+                xs: rem(48),
+                sm: rem(56),
+                md: rem(65),
+                lg: rem(72),
+              },
+              pt: {
+                xs: rem(200),
+                sm: rem(128),
+                md: rem(174),
+                lg: rem(220),
+              },
+              pr: {
+                xs: rem(78),
+                sm: rem(40),
+              },
               ...fontFamilyMixin('jost'),
               '& .t-banner_name': { color: '#96CEB4' }
             }}
@@ -120,7 +154,7 @@ const Banner: React.FC<BannerProps> = () => {
             Hi, I’m <span className="t-banner_name">Huan</span>,<br />
             Front-end Developer
           </Typography>
-          <Typography sx={{ mt: rem(28), textAlign: 'center', fontSize: rem(16), lineHeight: rem(22) }} variant='body1'>
+          <Typography sx={{ mt: rem(28), textAlign: 'center', fontSize: rem(16), lineHeight: rem(22), display: {xs: 'none', sm: 'block'} }} variant='body1'>
             we are a design studio that has completed various projects in the field<br /> of technology to perfection.
           </Typography>
         </Box>

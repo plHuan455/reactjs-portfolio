@@ -1,14 +1,8 @@
 import { Box, Button } from '@mui/material';
 import React, { useState } from 'react';
 import { rem } from '~mixin';
-import ContainerBase from '~organisms/Container';
+import ContainerBase from '~organisms/ContainerBase';
 import ProjectDetail from '~organisms/ProjectDetail';
-import metanodeSrc2 from '~assets/images/metanode-2.png';
-import metanodeSrc4 from '~assets/images/metanode-4.png';
-import metanodeSrc6 from '~assets/images/metanode-6.png';
-import novaLand1 from '~assets/images/novaland-1.png';
-import novaLand2 from '~assets/images/novaland-2.png';
-import novaLand3 from '~assets/images/novaland-3.png';
 import icon5 from "~assets/icons/ic_5.svg";
 import SectionTitle from '~molecules/SectionTitle';
 // import "yet-another-react-lightbox/styles.css";
@@ -41,14 +35,17 @@ const Project: React.FC<ProjectProps> = ({
         <img src={icon5} alt="" />
       </Box>
       <ContainerBase>
-        <SectionTitle title='Projects' subtitle='Projects I have participated in' sx={{pb: rem(96)}}/>
+        <SectionTitle title='Projects' subtitle='Projects I have participated in' sx={{ pb: { xs: rem(44), sm: rem(96)} }} />
         <Box sx={{
-          // '& .t-project_item:nth-child(n+2)': {
-          //   mt: rem(120)
-          // }
+          '& .t-project_item ~ .t-project_item': {
+            mt: rem(120)
+          }
         }}>
           {projectList.map((value, index) => (
-            <Box key={`key-project-${value.name}`} className='t-project_item'>
+            <Box
+              key={`key-project-${value.name}`}
+              className='t-project_item'
+            >
               <ProjectDetail
                 isRevertRow={index % 2 !== 0}
                 name={value.name}

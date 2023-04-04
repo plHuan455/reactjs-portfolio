@@ -1,7 +1,7 @@
 import { Box, Button, List, ListItem } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { fontFamilyMixin, rem } from '~mixin';
-import ContainerBase from '~organisms/Container';
+import ContainerBase from '~organisms/ContainerBase';
 
 const Header: React.FC = () => {
   return (
@@ -20,7 +20,11 @@ const Header: React.FC = () => {
               '& .MuiListItem-root': {
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
-                '&:hover': { color: '#9a9090' },
+                borderRadius: rem(16),
+                '&:hover': { 
+                  color: '#1b0722',
+                  backgroundColor: '#ffffff',
+                },
               },
             }}>
             <ListItem>Home</ListItem>

@@ -18,7 +18,7 @@ import { isADate, numberToMoney } from "../../utils/funcs";
 import { UpdatePendingParams } from "~services/pending/type";
 import { Box, Typography } from "@mui/material";
 import { getGroupBySlug } from "~services/group";
-import Container from "~organisms/Container";
+import ContainerBase from "~organisms/ContainerBase";
 import Section from "~templates/Section";
 import ExpenditureSummary from "~templates/ExpenditureSummary";
 
@@ -227,12 +227,12 @@ const CalendarContainer: React.FC<CalendarContainerProps> = () => {
 
   return (
     <>
-      <Container>
+      <ContainerBase>
         <Box sx={{ display: 'flex', mb: (theme) => theme.spacing(12) }}>
           <Typography>Tổng tiền: </Typography>
           <Typography sx={{ ml: (theme) => theme.spacing(4), color: '#198754' }}>{numberToMoney(groupData?.baseMoney ?? 0)} VNĐ</Typography>
         </Box>
-      </Container>
+      </ContainerBase>
       <PendingManageCalendar
         viewDate={calendarViewDate}
         selectedDate={selectedDate}

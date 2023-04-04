@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Box, Button } from '@mui/material';
 import Slider, { Settings, CustomArrowProps } from "react-slick";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { rem, resetButton, baseBoxShadow } from '~mixin';
+import useOnScreen from '~hooks/useOnScreen';
 
 export interface CarouselBaseProps {
   children: React.ReactNode;
+  settings?: Settings;
 }
 
 interface ArrowProps extends CustomArrowProps {
@@ -44,16 +46,21 @@ const CustomArrow: React.FC<ArrowProps> = ({onClick, style, className, variant})
 }
 
 
-const CarouselBase: React.FC<CarouselBaseProps> = ({children}) => {
-  const settings: Settings  = {
+const CarouselBase: React.FC<CarouselBaseProps> = ({children, settings}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const defaultSettings: Settings  = {
     dots: true,
     infinite: true,
     speed: 500,
+    autoplay: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <CustomArrow variant='right' />,
     prevArrow: <CustomArrow variant='left' />,
+    ...settings
   }
+
   return (
     <Box 
       className="o-carouselBase"
@@ -65,9 +72,10 @@ const CarouselBase: React.FC<CarouselBaseProps> = ({children}) => {
         '& .slick-dots li.slick-active button:before': {
           color: 'white'
         }
-      }}  
+      }}
+      ref={containerRef}
     >
-      <Slider {...settings}>
+      <Slider {...defaultSettings}>
         {children}
       </Slider>
     </Box>

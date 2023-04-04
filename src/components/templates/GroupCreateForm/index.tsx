@@ -4,7 +4,7 @@ import { IoMdClose } from 'react-icons/io';
 import {Input} from "../../atoms/Input";
 import { Controller, FormProvider, UseFormReturn } from "react-hook-form";
 import Button from "../../atoms/Button";
-import Container, { Col, Row } from "../../organisms/Container";
+import Container, { Col, Row } from "../../organisms/ContainerBase";
 import placeholderImg from "../../../assets/images/placeholderImage.jpeg";
 
 export interface GroupCreateFields {
