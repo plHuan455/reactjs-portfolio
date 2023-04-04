@@ -14,7 +14,7 @@ const Footer: React.FC<FooterProps> = ({sx}) => {
     <Box className="t-footer" sx={sx}>
       <ContainerBase>
         <Typography sx={{color: '#a5a5a5', textAlign: 'right', py: rem(24)}}>
-          © 2023 Pham Long Huan's Personal Website, All Rights Reserved
+          © 2023 PLHuan's Personal Website, All Rights Reserved
         </Typography>
       </ContainerBase>
     </Box>

@@ -9,7 +9,7 @@ const Header: React.FC = () => {
       <Box sx={{ ...fontFamilyMixin('jost'), pt: rem(20) }}>
         <ContainerBase sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Box sx={{ color: 'white', fontSize: rem(18), fontWeight: 800, minWidth: rem(193) }} >
-            AGENCY
+            PLHuan
           </Box>
           <List
             sx={{
