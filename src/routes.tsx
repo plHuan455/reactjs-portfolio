@@ -23,14 +23,4 @@ interface RouteType {
 export const routes: RouteType[] = [
   {path: '', element: <MainLayoutContainer><HomPage /></MainLayoutContainer>},
   {path: renderPageUrl("HOME"), element: <MainLayoutContainer><HomPage /></MainLayoutContainer> },
-  {path: renderPageUrl('HOME', ':slug'), element: <MainLayoutContainer><HomPage /></MainLayoutContainer>},
-  {path: renderPageUrl('VOCABULARIES'), element: <MainLayoutContainer><VocabularyPage /></MainLayoutContainer>},
-  {path: renderPageUrl('VOCABULARIES_TRAIN'), element: <MainLayoutContainer><VocabularyTrainPage /></MainLayoutContainer>},
-  {path: renderPageUrl('BANK_MANAGER_DETAIL'), element:<MainLayoutContainer><BankManagerDetailPage /></MainLayoutContainer>},
-  {path: renderPageUrl('BANK_MANAGER_ADD'), element:<MainLayoutContainer><BankManagerCreatePage /></MainLayoutContainer>},
-  {path: renderPageUrl('GROUP_MANAGER'), isPrivate: true, element:<MainLayoutContainer><GroupManagerPage /></MainLayoutContainer>},
-  {path: renderPageUrl('GROUP_DETAIL')+'/:slug', element:<MainLayoutContainer><GroupDetailPage /></MainLayoutContainer>},
-  {path: renderPageUrl('GROUP_CREATE'), element:<MainLayoutContainer><GroupCreatePage /></MainLayoutContainer>},
-  {path: renderPageUrl('SIGN_IN'), element:<AuthLayoutContainer><SignInPage /></AuthLayoutContainer>},
-  {path: renderPageUrl('SIGN_UP'), element:<AuthLayoutContainer><SignUpPage /></AuthLayoutContainer>},
 ];

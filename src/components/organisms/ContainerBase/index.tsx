@@ -43,7 +43,7 @@ const ContainerBase: React.FC<ContainerProps> = ({ sx, children }: ContainerProp
     <Container className="o-container" sx={{
       ...sx,
       maxWidth: {
-        sx: '95%',
+        xs: '95%',
         sm: '90%',
         lg: '1180px'
       }

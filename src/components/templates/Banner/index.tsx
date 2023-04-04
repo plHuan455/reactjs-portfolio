@@ -21,12 +21,12 @@ const Banner: React.FC<BannerProps> = () => {
   useEffect(() => {
     const scrollEventHandler = (e: Event) => {
       const value = window.scrollY;
-      if(containerRef.current && value > containerRef.current?.clientHeight) {
+      if (containerRef.current && value > containerRef.current?.clientHeight) {
         return;
       }
       setWindowScrollY(value);
     }
-    window.addEventListener('scroll',scrollEventHandler);
+    window.addEventListener('scroll', scrollEventHandler);
 
     return () => window.removeEventListener('scroll', scrollEventHandler);
   }, [])
@@ -53,8 +53,8 @@ const Banner: React.FC<BannerProps> = () => {
         sx={{
           position: 'absolute',
           top: {
-            xs: rem(50), 
-            sm: 0,
+            xs: rem(50),
+            sm: rem(10),
           },
           width: '100vw',
           zIndex: 1,
@@ -75,6 +75,7 @@ const Banner: React.FC<BannerProps> = () => {
           transform: `translateY(${windowScrollY}px)`,
           '& img': {
             width: '100%',
+            filter: 'brightness(0.65)',
             height: {
               xs: rem(500),
               sm: 'unset',
@@ -118,8 +119,15 @@ const Banner: React.FC<BannerProps> = () => {
       >
         <img src={mountainRightImg} alt="" />
       </Box>
-      <Box sx={{position: 'absolute', zIndex: 2, top: 0, width: '100%'}} className="animate animate-textMountain">
-        <Box sx={{transform: `translateX(${windowScrollY * 2}px)`}}>
+      <Box sx={{ position: 'absolute', zIndex: 2, top: 0, width: '100%' }} className="animate animate-textMountain">
+        <Box
+          sx={{
+            transform: `translateX(${windowScrollY * 2}px)`,
+            pr: {
+              xs: rem(78),
+              sm: rem(40),
+            },
+          }}>
           <Typography
             sx={{
               textAlign: 'center',
@@ -139,12 +147,8 @@ const Banner: React.FC<BannerProps> = () => {
               pt: {
                 xs: rem(200),
                 sm: rem(128),
-                md: rem(174),
+                md: rem(160),
                 lg: rem(220),
-              },
-              pr: {
-                xs: rem(78),
-                sm: rem(40),
               },
               ...fontFamilyMixin('jost'),
               '& .t-banner_name': { color: '#96CEB4' }
@@ -154,8 +158,8 @@ const Banner: React.FC<BannerProps> = () => {
             Hi, I’m <span className="t-banner_name">Huan</span>,<br />
             Front-end Developer
           </Typography>
-          <Typography sx={{ mt: rem(28), textAlign: 'center', fontSize: rem(16), lineHeight: rem(22), display: {xs: 'none', sm: 'block'} }} variant='body1'>
-            we are a design studio that has completed various projects in the field<br /> of technology to perfection.
+          <Typography sx={{ mt: rem(28), textAlign: 'center', fontSize: rem(16), lineHeight: rem(22), display: { xs: 'none', sm: 'block' } }} variant='body1'>
+            Let's explore more information about me and<br /> the projects I have worked on in the past.
           </Typography>
         </Box>
       </Box>
@@ -163,7 +167,10 @@ const Banner: React.FC<BannerProps> = () => {
         sx={{
           position: 'absolute',
           width: '100vw',
-          bottom: rem(-100),
+          bottom: {
+            xs: rem(-45),
+            md: rem(-100),
+          },
           zIndex: 4,
           '& img': {
             width: '100%'

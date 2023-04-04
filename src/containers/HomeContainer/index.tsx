@@ -13,10 +13,10 @@ export default function HomeContainer (props: HomeContainerProps) {
       <Section modifiers={['noPt']}>
         <Banner />
       </Section>
-      <Section id={"skills"}>
+      <Section id="skills">
         <Skill />
       </Section>
-      <Section id={"projects"}>
+      <Section id="projects">
         <ProjectContainer />
       </Section>
       <Section id="about">
