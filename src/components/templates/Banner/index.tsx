@@ -175,7 +175,8 @@ const Banner: React.FC<BannerProps> = () => {
           width: '100vw',
           bottom: {
             xs: rem(-45),
-            md: rem(-100),
+            md: rem(-68),
+            lg: rem(-105),
           },
           zIndex: 4,
           '& img': {
