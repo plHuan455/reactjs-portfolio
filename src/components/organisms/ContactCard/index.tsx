@@ -135,7 +135,7 @@ const ContactCard: React.FC<ContactCardProps> = ({
           {value}
         </Typography>
         {hasCopy && <Button sx={{ml: rem(4), ...resetButton}} onClick={handleClickCopy}>
-          <ContentCopyIcon sx={{color: isCopied ? '#9e9e9ea1' : '#5d5c5c', fontSize: rem(14), cursor: 'pointer'}}/>
+          <ContentCopyIcon sx={{color: isCopied ? '#9e9e9ea1' : '#5d5c5c', fontSize: rem(18), cursor: 'pointer'}}/>
         </Button>}
       </Box>  
     </Box>

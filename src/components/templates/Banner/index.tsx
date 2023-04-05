@@ -1,5 +1,5 @@
 import { Box, Typography, Button, duration } from '@mui/material';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useTransition } from 'react';
 import { motion } from 'framer-motion';
 import mountainImg from '~assets/images/front-mountain.png'
 import mountainRightImg from '~assets/images/front-mountain-right.png'
@@ -9,12 +9,14 @@ import moonImg from '~assets/images/moon.png'
 import bannerDivisionImg from '~assets/images/banner-division.png'
 import { fontFamilyMixin, rem } from '~mixin';
 import useThrottle from '~hooks/useThrottle';
+// import useThrottle from '~hooks/useThrottle';
 
 export interface BannerProps {
 }
 
 const Banner: React.FC<BannerProps> = () => {
   const [windowScrollY, setWindowScrollY] = useState<number>(0);
+  const [isPending, startTransition] = useTransition();
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -24,7 +26,9 @@ const Banner: React.FC<BannerProps> = () => {
       if (containerRef.current && value > containerRef.current?.clientHeight) {
         return;
       }
-      setWindowScrollY(value);
+      startTransition(() => {
+        setWindowScrollY(value);
+      });
     }
     window.addEventListener('scroll', scrollEventHandler);
 
@@ -58,11 +62,12 @@ const Banner: React.FC<BannerProps> = () => {
           },
           width: '100vw',
           zIndex: 1,
-          transform: `translateY(${windowScrollY * 2}px)`,
           '& img': {
             width: '100%',
           }
         }}
+
+        style={{transform: `translateY(${windowScrollY * 2}px)`}}
       >
         <img src={moonImg} alt="" />
       </Box>
@@ -72,7 +77,6 @@ const Banner: React.FC<BannerProps> = () => {
           top: 0,
           width: '100vw',
           zIndex: 1,
-          transform: `translateY(${windowScrollY}px)`,
           '& img': {
             width: '100%',
             filter: 'brightness(0.65)',
@@ -82,6 +86,7 @@ const Banner: React.FC<BannerProps> = () => {
             }
           }
         }}
+        style={{transform: `translateY(${windowScrollY}px)`}}
       >
         <img src={mountainBackImg} alt="" />
       </Box>
@@ -122,12 +127,13 @@ const Banner: React.FC<BannerProps> = () => {
       <Box sx={{ position: 'absolute', zIndex: 2, top: 0, width: '100%' }} className="animate animate-textMountain">
         <Box
           sx={{
-            transform: `translateX(${windowScrollY * 2}px)`,
             pr: {
-              xs: rem(78),
-              sm: rem(40),
+              xs: rem(60),
+              sm: rem(16),
             },
-          }}>
+          }}
+          style={{transform: `translateX(${windowScrollY * 2}px)` }}
+          >
           <Typography
             sx={{
               textAlign: 'center',

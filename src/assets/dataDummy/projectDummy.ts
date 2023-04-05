@@ -7,6 +7,7 @@ import novaLand3 from '~assets/images/novaland-3.png';
 import novacommerce1 from '~assets/images/novacommerce-1.png';
 import novacommerce2 from '~assets/images/novacommerce-2.png';
 import novacommerce3 from '~assets/images/novacommerce-3.png';
+import novacommerce4 from '~assets/images/novacommerce-4.png';
 import { ProjectItemTypes } from '~templates/Project';
 
 export const projectDummy: ProjectItemTypes[] = [
@@ -30,7 +31,7 @@ export const projectDummy: ProjectItemTypes[] = [
     name: "Nova Commerce" ,
     description: 'Websites that provide information about businesses, projects, recruitment information, and events',
     technology: 'React + Typescript, Redux, SCSS, Bootstrap, ESLint, Storybook.',
-    imgSrcList: [novacommerce1, novacommerce2, novacommerce3],
+    imgSrcList: [novacommerce4, novacommerce2, novacommerce3],
     teamSize: '8 members, 5 front-end, 3 back-end',
     color: '#a0fc7a',
   },

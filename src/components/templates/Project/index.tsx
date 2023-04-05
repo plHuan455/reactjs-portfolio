@@ -44,7 +44,7 @@ const Project: React.FC<ProjectProps> = ({
           {projectList.map((value, index) => (
             <Box
               key={`key-project-${value.name}`}
-              className='t-project_item'
+              className='t-project_item animate animate-fadeInRight'
             >
               <ProjectDetail
                 isRevertRow={index % 2 !== 0}
