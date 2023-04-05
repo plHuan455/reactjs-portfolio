@@ -60,7 +60,7 @@ const AboutMe: React.FC<AboutMeProps> = ({
             </Box>
             <List sx={{ mt: rem(22), '& .MuiListItem-root ~ .MuiListItem-root': {mt: rem(9)}}}>
               {infoList.map(value => (
-                <ListItem sx={{ display: 'flex', gap: rem(8), alignItems: 'center', padding: 0, justifyContent: { xs: 'center', md: 'flex-start'} }}>
+                <ListItem key={`key-aboutMe-contact-${value.label}`} sx={{ display: 'flex', gap: rem(8), alignItems: 'center', padding: 0, justifyContent: { xs: 'center', md: 'flex-start'} }}>
                   <Typography sx={{ color: '#d5d5d5', fontSize: rem(16), lineHeight: rem(18), fontWeight: 700, ...fontFamilyMixin('jost') }}>
                     {value.label}:
                   </Typography>
