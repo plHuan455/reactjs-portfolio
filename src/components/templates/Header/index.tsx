@@ -19,7 +19,7 @@ const Header: React.FC<HomeProps> = () => {
 
   return (
     <header className="t-header">
-      {/* <Box sx={{ ...fontFamilyMixin('jost'), pt: rem(20) }}>
+      <Box sx={{ ...fontFamilyMixin('jost'), pt: rem(20) }}>
         <ContainerBase sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Box sx={{ color: 'white', fontSize: rem(22), fontWeight: 800, minWidth: rem(193) }} >
             PLHuan
@@ -32,7 +32,7 @@ const Header: React.FC<HomeProps> = () => {
               fontSize: rem(18),
               fontWeight: 700,
               color: 'white',
-              display: { xs: 'none', sm: 'none'},
+              display: { xs: 'none', sm: 'flex'},
               '& .MuiListItem-root': {
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
@@ -49,7 +49,7 @@ const Header: React.FC<HomeProps> = () => {
             <ListItem onClick={() => handleMenuClick('about')}>About Me</ListItem>
           </List>
         </ContainerBase>
-      </Box> */}
+      </Box>
     </header>
   )
 }

@@ -37,6 +37,8 @@ const Project: React.FC<ProjectProps> = ({
       <ContainerBase>
         <SectionTitle title='Projects' subtitle='Projects I have participated in' sx={{ pb: { xs: rem(44), sm: rem(96)} }} />
         <Box sx={{
+          maxWidth: '100%',
+          overflow: 'hidden',
           '& .t-project_item ~ .t-project_item': {
             mt: rem(120)
           }
@@ -45,6 +47,9 @@ const Project: React.FC<ProjectProps> = ({
             <Box
               key={`key-project-${value.name}`}
               className='t-project_item animate animate-fadeInRight'
+              sx={{
+                maxWidth: '100%',
+              }}
             >
               <ProjectDetail
                 isRevertRow={index % 2 !== 0}

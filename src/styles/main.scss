@@ -1,7 +1,6 @@
 html,
 body {
   font-family: $font-jost;
-  overflow-x: hidden;
   margin: 0;
 
   @include scroll-bars(4, #436656a8, #1D1B1B)  
