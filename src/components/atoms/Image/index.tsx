@@ -1,16 +1,27 @@
 import * as React from 'react';
+import { Box } from '@mui/material';
 import { mapModifiers } from '../../../utils/funcs';
+import { SxProps } from "@mui/material";
+import { Theme } from "@mui/material/styles";
 
 export interface ImageProps {
+  sx?: SxProps<Theme>;
+  sxImg?: SxProps<Theme>;
   src: string;
   alt?: string;
-  ratio?: Ratio;
 }
 
-export default function Image ({src, ratio, alt = ''}: ImageProps) {
+const Image: React.FC<ImageProps> = ({ sx, src, alt='' }) => {
   return (
-    <div className={mapModifiers('a-image', ratio??'')}>
+    <Box className='a-image' sx={{
+      '& img': {
+        width: '100%',
+      },
+      ...sx,
+    }}>
       <img src={src} alt={alt} />
-    </div>
+    </Box>
   );
 }
+
+export default Image;

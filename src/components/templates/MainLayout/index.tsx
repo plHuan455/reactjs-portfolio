@@ -7,12 +7,15 @@ import bgNeonBlue from '~assets/icons/ic_neon_blue.svg';
 import { rem } from '~mixin';
 import Footer from '~templates/Footer';
 import Section from '~templates/Section';
+import MenuControl, { MenuItemTypes } from '~organisms/MenuControl';
 
 export interface MainLayoutProps {
   children: JSX.Element;
 }
 
-export default function MainLayout({ children }: MainLayoutProps) {
+export default function MainLayout({ 
+  children,
+}: MainLayoutProps) {
   return (
     <Box
       className="t-mainLayout"
@@ -32,8 +35,9 @@ export default function MainLayout({ children }: MainLayoutProps) {
       <Box sx={{position: 'absolute', top: rem(3000), right: 0, zIndex: -1}}>
         <img src={bgNeonBlue} alt=''/>
       </Box> */}
-      <Box sx={{position: 'absolute', top: 0, width: '100%', zIndex: 100}}>
-      <Header />
+      
+      <Box sx={{ position: 'absolute', top: 0, width: '100%', zIndex: 100 }}>
+        <Header />
       </Box>
       <main className="t-mainLayout_content_main">
         <Suspense fallback={<Loading size='page' />}>
@@ -41,7 +45,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
         </Suspense>
       </main>
       <footer>
-          <Footer sx={{mt: rem(40)}}/>
+        <Footer sx={{ mt: rem(40) }} />
       </footer>
     </Box>
   );
