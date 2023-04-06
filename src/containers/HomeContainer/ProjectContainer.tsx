@@ -3,7 +3,11 @@ import { useMemo, useState } from "react";
 import LightBoxBase, { LightBoxImageType } from "~organisms/LightBoxBase";
 import { projectDummy } from "~assets/dataDummy/projectDummy";
 
-const ProjectContainer: React.FC = () => {
+interface ProjectContainerProps {
+  onShowMoreClick: () => void;
+}
+
+const ProjectContainer: React.FC<ProjectContainerProps> = ({onShowMoreClick}) => {
   const [galleryImages, setGalleryImages] = useState<LightBoxImageType[] | undefined>();
   const [showFull, setShowFull] = useState<boolean>(false);
 
@@ -31,12 +35,17 @@ const ProjectContainer: React.FC = () => {
       setGalleryImages(undefined);
   }
 
+  const handleShowMoreClick = () => {
+    setShowFull(preState => !preState);
+    onShowMoreClick();
+  }
+
   return (
     <>
       <Project 
         projectList={convertedProjectData}
         onProjectImageClick={handleClickProject}
-        onShowMoreClick={() => setShowFull(preState => !preState)}
+        onShowMoreClick={handleShowMoreClick}
         isShowFull={showFull}
       />
       <LightBoxBase 

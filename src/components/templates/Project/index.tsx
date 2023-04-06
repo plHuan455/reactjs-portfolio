@@ -21,6 +21,7 @@ export interface ProjectProps {
   isShowFull?: boolean;
   onShowMoreClick?: () => void;
   onProjectImageClick?: (projectIndex: number, imgIndex: number) => void;
+  onInView?: () => void;
 }
 
 const Project: React.FC<ProjectProps> = ({

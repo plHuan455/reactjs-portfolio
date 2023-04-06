@@ -6,6 +6,7 @@ import { useMemo } from "react";
 import { rem } from "~mixin";
 import AboutMe, { ContactCardTypes, InfoTypes } from "~templates/AboutMe";
 
+
 const AboutMeContainer: React.FC = () => {
   const contactList = useMemo<ContactCardTypes[]>(() => {
     return [

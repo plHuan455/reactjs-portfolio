@@ -1,3 +1,4 @@
+import { ForwardRefRenderFunction, forwardRef } from "react";
 import { mapModifiers } from "../../../utils/funcs";
 
 type Spacing = 'noPt' | 'noPb';
@@ -8,10 +9,12 @@ interface SectionProps {
   id?: string;
 }
 
-const Section: React.FC<SectionProps> = ({ className, children, modifiers, id }) => {
-  return <section className={mapModifiers(`${className? `${className} `: ''}t-section`, modifiers)} id={id}>
+const Section: ForwardRefRenderFunction<HTMLElement, SectionProps> = ({ className, children, modifiers, id }, ref) => {
+  return <section className={mapModifiers(`${className? `${className} `: ''}t-section`, modifiers)} id={id} ref={ref}>
     {children}
   </section>
 }
 
-export default Section;
+
+
+export default forwardRef(Section);;
