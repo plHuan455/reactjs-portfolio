@@ -4,10 +4,12 @@ import metanodeSrc6 from '~assets/images/metanode-6.png';
 import novaLand1 from '~assets/images/novaland-1.png';
 import novaLand2 from '~assets/images/novaland-2.png';
 import novaLand3 from '~assets/images/novaland-3.png';
-import novacommerce1 from '~assets/images/novacommerce-1.png';
 import novacommerce2 from '~assets/images/novacommerce-2.png';
 import novacommerce3 from '~assets/images/novacommerce-3.png';
 import novacommerce4 from '~assets/images/novacommerce-4.png';
+import moneyTracer1 from '~assets/images/money-tracer-1.png';
+import moneyTracer2 from '~assets/images/money-tracer-2.png';
+import moneyTracer3 from '~assets/images/money-tracer-3.png';
 import { ProjectItemTypes } from '~templates/Project';
 
 export const projectDummy: ProjectItemTypes[] = [
@@ -34,5 +36,15 @@ export const projectDummy: ProjectItemTypes[] = [
     imgSrcList: [novacommerce4, novacommerce2, novacommerce3],
     teamSize: '8 members, 5 front-end, 3 back-end',
     color: '#a0fc7a',
+  },
+  {
+    name: "Money Tracer" ,
+    description: "This web application allows users to create group expenses and display them on a calendar, making it easy to manage the group's cash flow.",
+    technology: 'React + Typescript, Redux, SCSS, MaterialUI, NodeJS + Express, MongoDB',
+    imgSrcList: [moneyTracer3, moneyTracer2, moneyTracer1],
+    teamSize: '1 member',
+    color: '#5443c3',
+    link: 'https://money-tracker-c.web.app/',
+    demoAccount: { username: 'demo', password: '12345'}
   },
 ]

@@ -2,7 +2,7 @@ import { Box, Button } from '@mui/material';
 import React, { useState } from 'react';
 import { rem } from '~mixin';
 import ContainerBase from '~organisms/ContainerBase';
-import ProjectDetail from '~organisms/ProjectDetail';
+import ProjectDetail, { ProjectDemoAccountTypes } from '~organisms/ProjectDetail';
 import icon5 from "~assets/icons/ic_5.svg";
 import SectionTitle from '~molecules/SectionTitle';
 // import "yet-another-react-lightbox/styles.css";
@@ -14,6 +14,8 @@ export interface ProjectItemTypes {
   technology: string;
   teamSize?: string;
   imgSrcList: string[];
+  link?: string;
+  demoAccount?: ProjectDemoAccountTypes;
   color?: string;
 }
 export interface ProjectProps {
@@ -57,6 +59,8 @@ const Project: React.FC<ProjectProps> = ({
                 name={value.name}
                 color={value.color}
                 description={value.description}
+                link={value.link}
+                demoAccount={value.demoAccount}
                 technology={value.technology}
                 teamSize={value.teamSize}
                 imgSrcList={value.imgSrcList}

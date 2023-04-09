@@ -4,12 +4,18 @@ import { rem, resetButton } from '~mixin';
 import CarouselBase from '~organisms/CarouselBase';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
+export interface ProjectDemoAccountTypes {
+  username: string;
+  password: string;
+}
 export interface ProjectDetailProps {
   isRevertRow?: boolean;
   name: string;
   description: string;
   teamSize?: string;
   technology: string;
+  link?: string;
+  demoAccount?: ProjectDemoAccountTypes;
   color?: string;
   imgSrcList: string[];
   onImageClick?: (index: number) => void;
@@ -20,8 +26,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
   name,
   color,
   description,
+  link,
   teamSize,
   technology,
+  demoAccount,
   imgSrcList,
   onImageClick,
 }) => {
@@ -87,15 +95,30 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
       <Box sx={{ color: 'rgba(255, 255, 255, 0.8)' }}>
         <Typography variant='h3' sx={{ color: color ?? 'white', fontSize: rem(44) }}>{name}</Typography>
         <Typography variant='body2' sx={{ mt: rem(18) }}>{description}</Typography>
-        <Box sx={{ mt: rem(18) }}>
+        <Box sx={{ mt: rem(18), '& .MuiBox-root ~ .MuiBox-root': { mt: rem(12)} }}>
           <Box>
             <Typography sx={{ fontWeight: 700, color: '#ffbe82' }}>Technologies:</Typography>
             <Typography sx={{ mt: rem(8) }} variant='body2'>{technology}</Typography>
           </Box>
           {teamSize !== undefined && (
             <Box>
-              <Typography sx={{ fontWeight: 700, color: '#ffbe82', mt: rem(12) }}>Team Size:</Typography>
+              <Typography sx={{ fontWeight: 700, color: '#ffbe82', }}>Team Size:</Typography>
               <Typography sx={{ mt: rem(8) }} variant='body2'>{teamSize}</Typography>
+            </Box>
+          )}
+          {link !== undefined && (
+            <Box>
+              <Typography sx={{ fontWeight: 700, color: '#ffbe82', mt: rem(12) }}>Link:</Typography>
+              <Typography sx={{ mt: rem(8), '& a': {color: '#6759ff'} }} variant='body2'><a href={link} target="_blank">{link}</a></Typography>
+            </Box>
+          )}
+          {demoAccount !== undefined && (
+            <Box>
+              <Typography sx={{ fontWeight: 700, color: '#ffbe82', mt: rem(12) }}>Demo account:</Typography>
+              <Box>
+                <Typography sx={{ mt: rem(8), '& > span': {color: '#afafaf', pr: rem(4)} }} variant='body2'><span>Username:</span>{demoAccount.username}</Typography>
+                <Typography sx={{ mt: rem(8), '& > span': {color: '#afafaf', pr: rem(4)} }} variant='body2'><span>Password:</span>{demoAccount.password}</Typography>
+              </Box>
             </Box>
           )}
         </Box>
