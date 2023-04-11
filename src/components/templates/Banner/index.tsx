@@ -8,32 +8,32 @@ import mountainBackImg from '~assets/images/back-mountain.png'
 import moonImg from '~assets/images/moon.png'
 import bannerDivisionImg from '~assets/images/banner-division.png'
 import { fontFamilyMixin, rem } from '~mixin';
+import _ from 'lodash';
 import useThrottle from '~hooks/useThrottle';
 // import useThrottle from '~hooks/useThrottle';
 
 export interface BannerProps {
+  isOnScreen?: boolean;
 }
 
-const Banner: React.FC<BannerProps> = () => {
+const Banner: React.FC<BannerProps> = ({ isOnScreen }) => {
   const [windowScrollY, setWindowScrollY] = useState<number>(0);
-  const [isPending, startTransition] = useTransition();
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const scrollEventHandler = (e: Event) => {
-      const value = window.scrollY;
-      if (containerRef.current && value > containerRef.current?.clientHeight) {
-        return;
-      }
-      startTransition(() => {
-        setWindowScrollY(value);
-      });
-    }
-    window.addEventListener('scroll', scrollEventHandler);
+  // useEffect(() => {
+  //   const scrollEventHandler = (e: Event) => {
+  //     const value = window.scrollY;
+  //     if (containerRef.current && value > containerRef.current?.clientHeight) {
+  //       return;
+  //     }
+  //       setWindowScrollY(value);
+  //   }
+  //   const throttledHandleScroll = _.throttle(scrollEventHandler, 1000);
+  //   window.addEventListener('scroll', throttledHandleScroll);
 
-    return () => window.removeEventListener('scroll', scrollEventHandler);
-  }, [])
+  //   return () => window.removeEventListener('scroll', throttledHandleScroll);
+  // }, [])
 
   return (
     <Box className="t-banner" sx={{ color: 'white', position: 'relative', overflow: 'hidden' }} ref={containerRef}>
@@ -62,12 +62,13 @@ const Banner: React.FC<BannerProps> = () => {
           },
           width: '100vw',
           zIndex: 1,
+          transitionDuration: '1.5s',
           '& img': {
             width: '100%',
           }
         }}
 
-        style={{transform: `translateY(${windowScrollY * 2}px)`}}
+        style={{transform: isOnScreen ? 'translateY(0)' : `translateY(100vh)`}}
       >
         <img src={moonImg} alt="" />
       </Box>
@@ -77,6 +78,7 @@ const Banner: React.FC<BannerProps> = () => {
           top: 0,
           width: '100vw',
           zIndex: 1,
+          transitionDuration: '0.7s',
           '& img': {
             width: '100%',
             filter: 'brightness(0.65)',
@@ -86,7 +88,7 @@ const Banner: React.FC<BannerProps> = () => {
             }
           }
         }}
-        style={{transform: `translateY(${windowScrollY}px)`}}
+        style={{transform: isOnScreen ? 'translateY(0)' : `translateY(100vh)`}}
       >
         <img src={mountainBackImg} alt="" />
       </Box>
@@ -127,12 +129,13 @@ const Banner: React.FC<BannerProps> = () => {
       <Box sx={{ position: 'absolute', zIndex: 2, top: 0, width: '100%' }} className="animate animate-textMountain">
         <Box
           sx={{
+            transitionDuration: '0.7s',
             pr: {
               xs: rem(60),
               sm: rem(16),
             },
           }}
-          style={{transform: `translateX(${windowScrollY * 2}px)` }}
+          style={{transform: isOnScreen ? 'translateX(0)' : `translateX(100vw)`}}
           >
           <Typography
             sx={{
@@ -193,10 +196,6 @@ const Banner: React.FC<BannerProps> = () => {
       </Box> */}
     </Box>
   )
-};
-
-Banner.defaultProps = {
-  children: undefined,
 };
 
 export default Banner;

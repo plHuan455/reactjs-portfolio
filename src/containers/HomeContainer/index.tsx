@@ -91,7 +91,7 @@ export default function HomeContainer(props: HomeContainerProps) {
   return (
     <>
       <Section modifiers={['noPt']} id="home" ref={(ref) => sectionRefList.current[0] = ref}>
-        <Banner />
+        <Banner isOnScreen={activeMenuId === 1}/>
       </Section>
       <Section id="skills" ref={(ref) => sectionRefList.current[1] = ref}>
         <Skill />
